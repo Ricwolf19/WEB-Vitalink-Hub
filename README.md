@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# VitalinkHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img width="200" height="200" src="/public/Logo.jpg" alt="VitalinkHub Logo">
+</p>
 
-Currently, two official plugins are available:
+VitalinkHub is a web platform developed with TypeScript, Firebase, and Vite. The project aims to support an IoT system equipped with three sensors (temperature, oxygen, and pulse) that gather data and send it to the web. The web platform includes a CRUD system for managing doctors and patients.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- **Sensor Data Integration:**
+  Gather real-time data from temperature, oxygen, and pulse sensors for comprehensive health monitoring.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **User Authentication:**
+  Securely manage user accounts with two types of logins and registrations - Company Account for hospitals or product distributors and Personal Account for individual users.
 
-- Configure the top-level `parserOptions` property like this:
+- **CRUD Operations:**
+  Streamline the management of doctors and patients with a user-friendly CRUD interface.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Mobile App Integration:**
+  Access the platform on the go with a dedicated mobile app for enhanced convenience.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 👥 Team Members
+
+- Brandon Chacon
+- Antonio Rosales
+- Cesar Orozco
+- Ricardo Tapia 
+
+## 🚀 Getting Started
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Ricwolf19/VitalinkHub.git
+
+   Install Dependencies:
+    npm install
+
+    Run the Application:
+    npm run dev
+    ```
+
+    ## 🔧 Technologies Used
+    
+- [TypeScript](https://www.typescriptlang.org/)
+- [Firebase](https://firebase.google.com/)
+- [Vite](https://vitejs.dev/)
+
+## 🤝 Contributions
+
+Contributions are welcome! If you have ideas for improvements, new features, or bug fixes, feel free to submit a pull request.
