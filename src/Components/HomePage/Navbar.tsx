@@ -1,42 +1,79 @@
- import { useState } from "react";
- import logo from "../../assets/logo-rbg.png"
- import { RiMenu4Fill, RiCloseFill } from "react-icons/ri";
- import { MobileNavbar } from "./MovileNavbar";;
+import React from "react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/react";
+import {AcmeLogo} from "./Logo.jsx";
 
-export function Navbar() {
+export function NavbarHome() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-    const [IsMenuOpen, setIsMenuOpen] = useState(true);
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!IsMenuOpen);
-    };
+  return (
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+        <NavbarBrand>
+          <AcmeLogo />
+          <p className="font-bold text-inherit">ACME</p>
+        </NavbarBrand>
+      </NavbarContent>
 
-    return (
-        <>
-        {IsMenuOpen && <MobileNavbar setIsMenuOpen={setIsMenuOpen} />}
-
-        <div className=" bg-blue-50 sticky top-0 z-10">
-            <nav className="max-w-screen-xl mx-auto py-4 px-6">
-                <div className="flex items-center justify-between">
-
-                <img src={logo} alt="logo" className=" h-11 w-auto object-contain"/>
-                <ul className=" hidden md:flex md:gap-14">
-                    <li><a className="menu-item">Home</a></li>
-                    <li><a className="menu-item">Services</a></li>
-                    <li><a className="menu-item">Our Work</a></li>
-                    <li><a className="menu-item">About Us</a></li>
-                </ul>
-
-                <button className=" hidden h-10 bg-blue-600 text-white text-lg px-6 rounded hover:bg-blue-200 hover:text-blue-600 md:block">Login</button>
-
-                {/*Tooggle menu function*/}
-                <button onClick={() => {toggleMenu()}} className="w-11 h-11 bg-blue-100 text-2xl text-blue-600 flex items-center justify-center rounded md:hidden z-50">
-                { IsMenuOpen ? <RiCloseFill /> : <RiMenu4Fill />}
-                </button>
-
-                </div>
-            </nav>
-        </div>
-        </>
-    )
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Features
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link href="#" aria-current="page">
+            Customers
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Integrations
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden lg:flex">
+          <Link href="#">Login</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={Link} color="primary" href="#" variant="flat">
+            Sign Up
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+              }
+              className="w-full"
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
+  );
 }

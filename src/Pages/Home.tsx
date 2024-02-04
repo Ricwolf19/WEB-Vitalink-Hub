@@ -1,10 +1,10 @@
 import { Hero } from "../Components/HomePage/Hero";
-import { Navbar } from "../Components/HomePage/Navbar";
+import { NavbarHome } from "../Components/HomePage/Navbar";
 
 export function Home() {
     return (
         <div className=" bg-blue-50">
-            <Navbar />
+            <NavbarHome></NavbarHome>
             <Hero></Hero>
         </div>
     )
