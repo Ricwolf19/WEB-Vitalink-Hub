@@ -6,16 +6,9 @@ export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    "Services",
+    "Our Team",
+    "Objective",
   ];
 
   return (
@@ -27,24 +20,24 @@ export function NavbarHome() {
         />
         <NavbarBrand>
           <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit text-red-500">VitaLink</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
           <Link color="foreground" href="#">
-            Features
+            Services
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
           <Link href="#" aria-current="page">
-            Customers
+            Our Team
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Integrations
+            Objetive
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -62,9 +55,7 @@ export function NavbarHome() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              color={
-                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
+              color={index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"}
               className="w-full"
               href="#"
               size="lg"
