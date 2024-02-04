@@ -1,6 +1,6 @@
 import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/react";
-import {AcmeLogo} from "./Logo.jsx";
+import {Logo} from "./Logo.jsx";
 
 export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -19,7 +19,7 @@ export function NavbarHome() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <AcmeLogo />
+          <Logo />
           <p className="font-bold text-inherit text-red-500">VitaLink</p>
         </NavbarBrand>
       </NavbarContent>
