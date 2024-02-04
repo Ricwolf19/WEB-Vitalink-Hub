@@ -1,7 +1,7 @@
 # VitalinkHub
 
 <p align="center">
-  <img width="200" height="200" src="/public/favicon.png" alt="VitalinkHub Logo">
+  <img width="300" height="200" src="/public/favicon.png" alt="VitalinkHub Logo">
 </p>
 
 VitalinkHub is a web platform developed with TypeScript, Firebase, and Vite. The project aims to support an IoT system equipped with three sensors (temperature, oxygen, and pulse) that gather data and send it to the web. The web platform includes a CRUD system for managing doctors and patients.
