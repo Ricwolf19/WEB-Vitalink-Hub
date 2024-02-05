@@ -1,4 +1,4 @@
-import { SERVICES } from "../../utils/DataHome";
+import { SERVICES } from "../../Utils/DataHome";
 import { CardsServices } from "./CardsServices";
 
 export function Services(){
