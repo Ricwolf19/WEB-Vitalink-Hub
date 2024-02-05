@@ -1,3 +1,4 @@
+import ModalContacUs  from "../HomePage/ModalContactUs";
 import HeroIMG1 from "../../assets/part-1-img.jpg"
 import HeroIMG2 from "../../assets/part-2-img.jpg"
 import HeroIMG3 from "../../assets/part-3-img.jpg"
@@ -11,8 +12,7 @@ export function Hero() {
                 <p className=" text-lg leading-6 text-blue-800 mb-6 md:w-4/5">
                 "Elevate Your Health with VitaLink: Smart Monitoring, Real Results."
                 </p>
-
-                <button className="primary-btn">Contact Us</button>
+                <ModalContacUs/>
             </div>
 
             <div className="flex gap-2 justify-center md:gap-3 lg:gap-5">

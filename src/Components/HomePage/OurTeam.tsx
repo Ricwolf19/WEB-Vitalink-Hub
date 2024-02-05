@@ -73,7 +73,7 @@ export function OurTeam() {
                 <h5 className="text-2xl font-semibold text-blue-700 text-center mb-10">Our Team</h5>
                 <div className="text-center">
                     <Slider {...settings}>
-                        <div className="card p-4 bg-blue-100 rounded shadow-lg">
+                        <div className="card p-4  rounded ">
                             <img
                                 src={RicardoT}
                                 alt="RicardoT"
@@ -85,7 +85,7 @@ export function OurTeam() {
                                 </h3>
                             </div>
                         </div>
-                        <div className="card p-4 bg-blue-100 rounded shadow-lg">
+                        <div className="card p-4 rounded ">
                             <img
                                 src={BrandonC}
                                 alt="BrandonC"
@@ -97,7 +97,7 @@ export function OurTeam() {
                                 </h3>
                             </div>
                         </div>
-                        <div className="card p-4 bg-blue-100 rounded shadow-lg">
+                        <div className="card p-4 rounded ">
                             <img
                                 src={AntonioR}
                                 alt="JoseR"
@@ -109,7 +109,7 @@ export function OurTeam() {
                                 </h3>
                             </div>
                         </div>
-                        <div className="card p-4 bg-blue-100 rounded shadow-lg">
+                        <div className="card p-4 rounded ">
                             <img
                                 src={CesarO}
                                 alt="CesarO"

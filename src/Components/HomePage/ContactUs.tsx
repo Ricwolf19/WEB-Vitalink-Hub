@@ -1,4 +1,5 @@
 const imgContact = 'https://img.freepik.com/premium-photo/words-with-contact-us-business-concept-idea_352439-357.jpg?size=626&ext=jpg&ga=GA1.2.1593590909.1707024521&semt=ais'
+import ModalContactUs from "./ModalContactUs"
 
 export function ContactUs() {
     return (
@@ -13,7 +14,7 @@ export function ContactUs() {
                         "Have questions or need assistance? Feel free to reach out to us. Our dedicated team at VitaLink is here to provide support and answer any inquiries you may have. Your health and satisfaction are our priorities. Contact VitaLink today for a connected and personalized healthcare experience."
                     </p>
 
-                    <button className="primary-btn">Send Mesagge</button>
+                    <ModalContactUs></ModalContactUs>
                 </div>
             </div>
         </div>
