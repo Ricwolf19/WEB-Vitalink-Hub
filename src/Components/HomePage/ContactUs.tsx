@@ -3,7 +3,7 @@ const imgContact = 'https://img.freepik.com/premium-photo/words-with-contact-us-
 export function ContactUs() {
     return (
         <div className="bg-blue-50">
-            <div className="max-w-[1200px] h-auto mx-auto flex flex-col items-start md:h-[400px] md:flex-row min-[1090px]:h-[320px]">
+            <div className="max-w-[1200px] py-10 h-auto mx-auto flex flex-col items-start md:h-[400px] md:flex-row min-[1090px]:h-[320px]">
                 <img src={imgContact} alt="imgContact" className=" w-full md:w-1/2 md:h-full object-cover" />
 
                 <div className="p-10">

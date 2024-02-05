@@ -14,6 +14,7 @@ export function Home() {
             <Objective></Objective>
             <Services></Services>
             <OurTeam></OurTeam>
+            <br /><br />
             <ContactUs></ContactUs>
             <Footer></Footer>
         </div>

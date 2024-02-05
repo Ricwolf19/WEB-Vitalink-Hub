@@ -1,4 +1,4 @@
-import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+// import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,43 +8,41 @@ import AntonioR from "../../Assets/AntonioR-img.jpg"
 import CesarO from "../../Assets/CesarO-img.jpg"
 
 //Interface of arrow for better practice
-interface ArrowProps {
-  className?: string;
-  style?: React.CSSProperties;
-  onClick?: () => void;
-}
+// interface ArrowProps {
+//     className?: string;
+//     style?: React.CSSProperties;
+//     onClick?: () => void;
+// }
 
-function NextArrow(props: ArrowProps) {
-  const { className, style, onClick } = props;
-  return (
-    <FaChevronRight
-      className={`next-arrow ${className}`}
-      style={{ ...style, display: "block", color: "blue", fontSize: "30px" }}
-      onClick={onClick}
-    />
-  );
-}
+// function NextArrow(props: ArrowProps) {
+//     const { className, style, onClick } = props;
+//     return (
+//         <FaChevronRight
+//             className={`next-arrow ${className}`}
+//             style={{ ...style, display: "block", color: "blue", fontSize: "30px" }}
+//             onClick={onClick}
+//         />
+//     );
+// }
 
-function PrevArrow(props: ArrowProps) {
-  const { className, style, onClick } = props;
-  return (
-    <FaChevronLeft
-      className={`prev-arrow ${className}`}
-      style={{ ...style, display: "block", color: "blue", fontSize: "30px" }}
-      onClick={onClick}
-    />
-  );
-}
+// function PrevArrow(props: ArrowProps) {
+//     const { className, style, onClick } = props;
+//     return (
+//         <FaChevronLeft
+//             className={`prev-arrow ${className}`}
+//             style={{ ...style, display: "block", color: "blue", fontSize: "0px" }}
+//             onClick={onClick}
+//         />
+//     );
+// }
 
 export function OurTeam() {
     var settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 1000,
         slidesToShow: 4,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
             {
@@ -56,7 +54,7 @@ export function OurTeam() {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2
+                    slidesToShow: 1
                 }
             },
             {
@@ -71,64 +69,61 @@ export function OurTeam() {
 
     return (
         <section>
-        <div className="container mx-auto px-4 py-10 bg-white">
-            <div className="text-center">
-                <Slider {...settings}>
-                    <div className="card p-4 bg-white rounded shadow-lg">
-                        <img
-                            src={RicardoT}
-                            alt="RicardoT"
-                            className="w-full h-[390px] object-cover rounded-t"
-                        />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">
-                                Ricardo Humberto Tapia Chavez
-                            </h3>
-                            <p className="text-gray-700">TID51M</p>
+            <div className="max-w-[1200px] mx-auto">
+                <h5 className="text-2xl font-semibold text-blue-700 text-center mb-10">Our Team</h5>
+                <div className="text-center">
+                    <Slider {...settings}>
+                        <div className="card p-4 bg-blue-100 rounded shadow-lg">
+                            <img
+                                src={RicardoT}
+                                alt="RicardoT"
+                                className="w-full h-[400px] object-cover rounded-t"
+                            />
+                            <div className="p-4">
+                                <h3 className="text-lg font-semibold text-blue-900 text-center">
+                                    Ricardo Humberto Tapia Chavez
+                                </h3>
+                            </div>
                         </div>
-                    </div>
-                    <div className="card p-4 bg-white rounded shadow-lg">
-                        <img
-                            src={BrandonC}
-                            alt="BrandonC"
-                            className="w-full h-[390px] object-cover rounded-t"
-                        />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">
-                                Brandon Daniel Chacón Campos
-                            </h3>
-                            <p className="text-gray-700">TID51M</p>
+                        <div className="card p-4 bg-blue-100 rounded shadow-lg">
+                            <img
+                                src={BrandonC}
+                                alt="BrandonC"
+                                className="w-full h-[400px] object-cover rounded-t"
+                            />
+                            <div className="p-4">
+                                <h3 className="text-lg font-semibold text-blue-900 text-center ">
+                                    Brandon Daniel Chacón Campos
+                                </h3>
+                            </div>
                         </div>
-                    </div>
-                    <div className="card p-4 bg-white rounded shadow-lg">
-                        <img
-                            src={AntonioR}
-                            alt="JoseR"
-                            className="w-full h-[390px] object-cover rounded-t"
-                        />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">
-                                José Antonio Rosales Maldonado
-                            </h3>
-                            <p className="text-gray-700">TID51M</p>
+                        <div className="card p-4 bg-blue-100 rounded shadow-lg">
+                            <img
+                                src={AntonioR}
+                                alt="JoseR"
+                                className="w-full h-[400px] object-cover rounded-t"
+                            />
+                            <div className="p-4">
+                                <h3 className="text-lg font-semibold text-blue-900 text-center ">
+                                    José Antonio Rosales Maldonado
+                                </h3>
+                            </div>
                         </div>
-                    </div>
-                    <div className="card p-4 bg-white rounded shadow-lg">
-                        <img
-                            src={CesarO}
-                            alt="CesarO"
-                            className="w-full h-[390px] object-cover rounded-t"
-                        />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">
-                                César Gabriel Orozco Torres
-                            </h3>
-                            <p className="text-gray-700">TID51M</p>
+                        <div className="card p-4 bg-blue-100 rounded shadow-lg">
+                            <img
+                                src={CesarO}
+                                alt="CesarO"
+                                className="w-full h-[400px] object-cover rounded-t"
+                            />
+                            <div className="p-4">
+                                <h3 className="text-lg font-semibold text-blue-900 text-center ">
+                                    César Gabriel Orozco Torres
+                                </h3>
+                            </div>
                         </div>
-                    </div>
-                </Slider>
+                    </Slider>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
     );
 }

@@ -27,7 +27,7 @@ export function NavbarHome() {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
           <Link color="foreground" href="#">
-            Services
+            Our Services
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
@@ -37,7 +37,7 @@ export function NavbarHome() {
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Objetive
+            Contact Us
           </Link>
         </NavbarItem>
       </NavbarContent>
