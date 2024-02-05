@@ -14,7 +14,7 @@ export default function ModalContactUs() {
 
     const [state, handleSubmit] = useForm("xleqjwoq");
     if (state.succeeded) {
-        return <p>Thanks for joining!</p>;
+        return <p className=" text-red-600 font-semibold">Thank you for your message, from the vitalinkhub team.</p>;
     }
 
     return (
@@ -25,7 +25,7 @@ export default function ModalContactUs() {
                     onPress={handleOpen}
                     className="capitalize"
                 >
-                    {'Contact Us'}
+                    {'Send Message'}
                 </Button>
             </div>
             <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
@@ -36,12 +36,12 @@ export default function ModalContactUs() {
                             <ModalBody>
                                 <form onSubmit={handleSubmit}>
                                     <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                                        <Input  label="Name" id="message" name="message"/>
-                                        <Input  label="Last name" id="message" name="message" />
+                                        <Input  label="Name" id="message" name="message" color="primary"/>
+                                        <Input  label="Last name" id="message" name="message" color="primary"/>
                                     </div>
                                     <br />
                                     <div className="flex w-full flex-wrap gap-4">
-                                        <Input type="email" label="Email" id="email" name="email" />
+                                        <Input type="email" label="Email" id="email" name="email" color="primary"/>
                                         <ValidationError
                                             prefix="Email"
                                             field="email"
@@ -51,8 +51,9 @@ export default function ModalContactUs() {
                                     <br />
                                     <div className="w-full grid">
                                         <Textarea
-                                            variant='underlined'
+                                            variant='flat'
                                             labelPlacement="outside"
+                                            color="primary"
                                             placeholder="Message"
                                             className="col-span-12 md:col-span-6 mb-6 md:mb-0"
                                             id="message"

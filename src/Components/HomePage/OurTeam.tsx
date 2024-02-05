@@ -77,7 +77,7 @@ export function OurTeam() {
                             <img
                                 src={RicardoT}
                                 alt="RicardoT"
-                                className="w-full h-[400px] object-cover rounded-t"
+                                className="w-full h-[400px] object-cover rounded"
                             />
                             <div className="p-4">
                                 <h3 className="text-lg font-semibold text-blue-900 text-center">
@@ -89,7 +89,7 @@ export function OurTeam() {
                             <img
                                 src={BrandonC}
                                 alt="BrandonC"
-                                className="w-full h-[400px] object-cover rounded-t"
+                                className="w-full h-[400px] object-cover rounded"
                             />
                             <div className="p-4">
                                 <h3 className="text-lg font-semibold text-blue-900 text-center ">
@@ -101,7 +101,7 @@ export function OurTeam() {
                             <img
                                 src={AntonioR}
                                 alt="JoseR"
-                                className="w-full h-[400px] object-cover rounded-t"
+                                className="w-full h-[400px] object-cover rounded"
                             />
                             <div className="p-4">
                                 <h3 className="text-lg font-semibold text-blue-900 text-center ">
@@ -113,7 +113,7 @@ export function OurTeam() {
                             <img
                                 src={CesarO}
                                 alt="CesarO"
-                                className="w-full h-[400px] object-cover rounded-t"
+                                className="w-full h-[400px] object-cover rounded"
                             />
                             <div className="p-4">
                                 <h3 className="text-lg font-semibold text-blue-900 text-center ">

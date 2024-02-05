@@ -14,7 +14,7 @@ export function CardsServices({ imgUrl, title, description }: CardServicesProps)
             <div className="flex-1">
                 <div className="p-10">
                     <h6 className="text-md md:text-xl text-blue-800 font-bold mb-3">{title}</h6>
-                    <p className="text-md md:text-md leading-6 text-blue-800 whitespace-pre-line">{description}</p>
+                    <p className="text-md md:text-md leading-6 text-blue-800 whitespace-pre-line text-justify">{description}</p>
                 </div>
             </div>
         </div>
