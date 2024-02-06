@@ -71,7 +71,7 @@ export function OurTeam() {
                     <Slider {...settings}>
                         <div className="card p-4  rounded ">
                             <img
-                                src="src/Assets/RicardoT-img.jpg"
+                                src="src/assets/RicardoT-img.jpg"
                                 alt="RicardoT"
                                 className="w-full h-[400px] object-cover rounded"
                             />
@@ -83,7 +83,7 @@ export function OurTeam() {
                         </div>
                         <div className="card p-4 rounded ">
                             <img
-                                src="src/Assets/BrandonC-img.jpg"
+                                src="src/assets/BrandonC-img.jpg"
                                 alt="BrandonC"
                                 className="w-full h-[400px] object-cover rounded"
                             />
@@ -95,7 +95,7 @@ export function OurTeam() {
                         </div>
                         <div className="card p-4 rounded ">
                             <img
-                                src="src/Assets/AntonioR-img.jpg"
+                                src="src/assets/AntonioR-img.jpg"
                                 alt="JoseR"
                                 className="w-full h-[400px] object-cover rounded"
                             />
@@ -107,7 +107,7 @@ export function OurTeam() {
                         </div>
                         <div className="card p-4 rounded ">
                             <img
-                                src="src\Assets\CesarO-img.jpg"
+                                src="src\assets\CesarO-img.jpg"
                                 alt="CesarO"
                                 className="w-full h-[400px] object-cover rounded"
                             />
