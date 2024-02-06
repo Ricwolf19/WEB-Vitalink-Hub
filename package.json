@@ -16,6 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
+    "react-scroll": "^1.9.0",
     "react-slick": "^0.30.1",
     "slick-carousel": "^1.8.1",
     "wouter": "^2.12.1"
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
+    "@types/react-scroll": "^1.8.10",
     "@types/react-slick": "^0.23.13",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",

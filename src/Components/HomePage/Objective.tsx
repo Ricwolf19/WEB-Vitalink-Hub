@@ -3,7 +3,7 @@ import { Image } from "@nextui-org/react";
 
 export function Objective() {
     return (
-        <section className="max-w-[1200px] flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between lg:items-stretch mx-auto lg:gap-10 lg:p-6">
+        <section id="Objective" className="max-w-[1200px] flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between lg:items-stretch mx-auto lg:gap-10 lg:p-6">
             <div className="flex-1 order-2 lg:order-1 mb-8 lg:mb-0">
                 <div className="p-2">
                     <Image

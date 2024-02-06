@@ -1,14 +1,16 @@
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/react";
-import {Logo} from "./Logo.jsx";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@nextui-org/react";
+import { Logo } from "./Logo.jsx";
+import { Link } from "react-scroll";
 
 export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
+    "Porpuse",
     "Services",
     "Our Team",
-    "Objective",
+    "Contact Us",
   ];
 
   return (
@@ -25,45 +27,57 @@ export function NavbarHome() {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Our Services
+        <NavbarItem isActive>
+          <Link to="Objective" smooth spy offset={-80} className="text-red-600">
+            Porpuse
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Our Team
+          <Link to="Services" smooth spy offset={-80} className="text-red-600">
+            Services
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Contact Us
+        <NavbarItem isActive>
+          <Link to="OurTeam" smooth spy offset={-80} className="text-red-600">
+            Our Team
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Button as={Link} color="danger" href="#" variant="flat">
+            Login
+          </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button as={Link} color="danger" href="#" variant="flat">
             Sign Up
           </Button>
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"}
-              className="w-full"
-              href="#"
-              size="lg"
-            >
-              {item}
+        <NavbarMenuItem>
+          <NavbarItem isActive className=" pb-4">
+            <Link to="Objective" smooth spy offset={-80} className="text-red-600">
+              Porpuse
             </Link>
-          </NavbarMenuItem>
-        ))}
+          </NavbarItem>
+          <NavbarItem isActive className=" pb-4">
+            <Link to="Services" smooth spy offset={-80} className="text-red-600">
+              Services
+            </Link>
+          </NavbarItem>
+          <NavbarItem isActive className=" pb-4">
+            <Link to="OurTeam" smooth spy offset={-80} className="text-red-600">
+              Our Team
+            </Link>
+          </NavbarItem>
+          <NavbarItem isActive className=" pb-4">
+            <Link to="ContactUs" smooth spy offset={-80} className="text-red-600">
+              Contact Us
+            </Link>
+          </NavbarItem>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

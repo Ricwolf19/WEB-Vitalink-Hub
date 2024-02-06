@@ -68,7 +68,7 @@ export function OurTeam() {
     };
 
     return (
-        <section>
+        <section id="OurTeam">
             <div className="max-w-[1200px] mx-auto">
                 <h5 className="text-2xl font-semibold text-blue-700 text-center mb-10">Our Team</h5>
                 <div className="text-center">
