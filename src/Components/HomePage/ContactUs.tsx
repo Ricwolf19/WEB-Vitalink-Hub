@@ -1,4 +1,3 @@
-const imgContact = 'https://img.freepik.com/premium-photo/words-with-contact-us-business-concept-idea_352439-357.jpg?size=626&ext=jpg&ga=GA1.2.1593590909.1707024521&semt=ais'
 import ModalContactUs from "./ModalContactUs"
 import { Image } from "@nextui-org/react";
 
@@ -11,7 +10,7 @@ export function ContactUs() {
                         width={1600}
                         height={1000}
                         alt="NextUI hero Image with delay"
-                        src={imgContact}
+                        src="https://img.freepik.com/premium-photo/words-with-contact-us-business-concept-idea_352439-357.jpg?size=626&ext=jpg&ga=GA1.2.1593590909.1707024521&semt=ais"
                     />
 
                     <div className="p-6">

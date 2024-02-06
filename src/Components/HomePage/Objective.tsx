@@ -1,4 +1,3 @@
-const img = 'https://img.freepik.com/free-vector/healthcare-background-with-medical-symbols-hexagonal-frame_1017-26363.jpg?size=626&ext=jpg&ga=GA1.1.1593590909.1707024521&semt=sph'
 import { Image } from "@nextui-org/react";
 
 export function Objective() {
@@ -10,7 +9,7 @@ export function Objective() {
                         width={550}
                         height={550}
                         alt="NextUI hero Image with delay"
-                        src={img}
+                        src="https://img.freepik.com/free-vector/healthcare-background-with-medical-symbols-hexagonal-frame_1017-26363.jpg?size=626&ext=jpg&ga=GA1.1.1593590909.1707024521&semt=sph"
                         className="object-cover w-full lg:w-auto h-auto lg:h-full"
                     />
                 </div>

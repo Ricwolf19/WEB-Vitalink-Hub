@@ -2,10 +2,6 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import RicardoT from "../../Assets/RicardoT-img.jpg"
-import BrandonC from "../../Assets/BrandonC-img.jpg"
-import AntonioR from "../../Assets/AntonioR-img.jpg"
-import CesarO from "../../Assets/CesarO-img.jpg"
 
 //Interface of arrow for better practice
 // interface ArrowProps {
@@ -75,7 +71,7 @@ export function OurTeam() {
                     <Slider {...settings}>
                         <div className="card p-4  rounded ">
                             <img
-                                src={RicardoT}
+                                src="src/Assets/RicardoT-img.jpg"
                                 alt="RicardoT"
                                 className="w-full h-[400px] object-cover rounded"
                             />
@@ -87,7 +83,7 @@ export function OurTeam() {
                         </div>
                         <div className="card p-4 rounded ">
                             <img
-                                src={BrandonC}
+                                src="src/Assets/BrandonC-img.jpg"
                                 alt="BrandonC"
                                 className="w-full h-[400px] object-cover rounded"
                             />
@@ -99,7 +95,7 @@ export function OurTeam() {
                         </div>
                         <div className="card p-4 rounded ">
                             <img
-                                src={AntonioR}
+                                src="src/Assets/AntonioR-img.jpg"
                                 alt="JoseR"
                                 className="w-full h-[400px] object-cover rounded"
                             />
@@ -111,7 +107,7 @@ export function OurTeam() {
                         </div>
                         <div className="card p-4 rounded ">
                             <img
-                                src={CesarO}
+                                src="src\Assets\CesarO-img.jpg"
                                 alt="CesarO"
                                 className="w-full h-[400px] object-cover rounded"
                             />

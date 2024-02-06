@@ -1,7 +1,5 @@
 import ModalContacUs  from "../HomePage/ModalContactUs";
-import HeroIMG1 from "../../assets/part-1-img.jpg"
-import HeroIMG2 from "../../assets/part-2-img.jpg"
-import HeroIMG3 from "../../assets/part-3-img.jpg"
+
 
 export function Hero() {
     return (
@@ -18,9 +16,9 @@ export function Hero() {
             </div>
 
             <div className="flex gap-2 justify-center md:gap-3 lg:gap-5">
-                <img className="hero-img" src={HeroIMG1} alt="img1" />
-                <img className="mt-[5%] hero-img" src={HeroIMG2} alt="img2" />
-                <img className="hero-img" src={HeroIMG3} alt="img3" />
+                <img className="hero-img" src="src\Assets\part-1-img.jpg" alt="img1" />
+                <img className="mt-[5%] hero-img" src="src\Assets\part-1-img.jpg" alt="img2" />
+                <img className="hero-img" src="src\Assets\part-1-img.jpg" alt="img3" />
             </div>
 
         </section>
