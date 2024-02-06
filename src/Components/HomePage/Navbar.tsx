@@ -43,12 +43,12 @@ export function NavbarHome() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Button as={Link} href="/login" color="danger" variant="light">
+          <Button as={Link} href="/Dashboard" color="danger" variant="light">
             Login
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} href="/signup" color="danger" variant="ghost">
+          <Button as={Link} href="/Dashboard" color="danger" variant="ghost">
             Sign Up
           </Button>
         </NavbarItem>
