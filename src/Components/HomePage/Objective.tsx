@@ -18,7 +18,7 @@ export function Objective() {
                 <div className="max-w-xl">
                     <div className="p-5">
                         <h2 className="font-palanquin text-4xl lg:text-5xl font-bold text-center lg:text-left capitalize">
-                            Our <span className="text-blue-800">Purpose</span>
+                            Our <span className="text-blue-800">Objective</span>
                         </h2>
                         <p className="mt-4 info-text lg:max-w-lg text-justify lg:text-justify">
                             VitaLink reimagines healthcare with SensorPath technology, offering seamless monitoring of vital signs for personalized wellness. Our purpose is to empower individuals with real-time health insights, connect healthcare professionals with actionable data, and revolutionize the way we approach well-being. Experience precision care, effortless health tracking, and a brighter, healthier future with VitaLink.

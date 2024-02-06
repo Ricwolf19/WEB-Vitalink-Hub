@@ -22,7 +22,7 @@ export function NavbarHome() {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive>
           <ScrollLink to="Objective" spy offset={-80} duration={500} className="text-red-600">
-            Porpuse
+            Objective
           </ScrollLink>
         </NavbarItem>
         <NavbarItem isActive>
@@ -33,6 +33,11 @@ export function NavbarHome() {
         <NavbarItem isActive>
           <ScrollLink to="OurTeam" spy offset={-80} duration={500} className="text-red-600">
             Our Team
+          </ScrollLink>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <ScrollLink to="ContactUs" spy offset={-80} duration={500} className="text-red-600">
+            Contact us
           </ScrollLink>
         </NavbarItem>
       </NavbarContent>
@@ -51,7 +56,7 @@ export function NavbarHome() {
       <NavbarMenu>
         <NavbarMenuItem>
           <ScrollLink to="Objective" spy offset={-80} duration={500} className="text-red-600">
-            Porpuse
+          Objective
           </ScrollLink>
         </NavbarMenuItem>
         <NavbarMenuItem>
