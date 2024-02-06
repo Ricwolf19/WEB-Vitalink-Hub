@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@nextui-org/react";
 import { Logo } from "./Logo.jsx";
-import { Link as ScrollLink} from "react-scroll"; //Se puede adaptar nombre a lo que se agarre de el paquete
+import { Link as ScrollLink } from "react-scroll"; //Se puede adaptar nombre a lo que se agarre de el paquete
 
 export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -21,7 +21,7 @@ export function NavbarHome() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive>
-        <ScrollLink to="Objective" spy offset={-80} duration={500} className="text-red-600">
+          <ScrollLink to="Objective" spy offset={-80} duration={500} className="text-red-600">
             Porpuse
           </ScrollLink>
         </NavbarItem>
@@ -50,26 +50,24 @@ export function NavbarHome() {
       </NavbarContent>
       <NavbarMenu>
         <NavbarMenuItem>
-          <NavbarItem isActive className=" pb-4">
-            <ScrollLink to="Objective" spy offset={-80} duration={500} className="text-red-600">
-              Porpuse
-            </ScrollLink>
-          </NavbarItem>
-          <NavbarItem isActive className=" pb-4">
-            <ScrollLink to="Services" spy offset={-80} duration={500} className="text-red-600">
-              Services
-            </ScrollLink>
-          </NavbarItem>
-          <NavbarItem isActive className=" pb-4">
-            <ScrollLink to="OurTeam" spy offset={-80} duration={500} className="text-red-600">
-              Our Team
-            </ScrollLink>
-          </NavbarItem>
-          <NavbarItem isActive className=" pb-4">
-            <ScrollLink to="ContactUs" spy offset={-80} duration={500} className="text-red-600">
-              Contact Us
-            </ScrollLink>
-          </NavbarItem>
+          <ScrollLink to="Objective" spy offset={-80} duration={500} className="text-red-600">
+            Porpuse
+          </ScrollLink>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <ScrollLink to="Services" spy offset={-80} duration={500} className="text-red-600">
+            Services
+          </ScrollLink>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <ScrollLink to="OurTeam" spy offset={-80} duration={500} className="text-red-600">
+            Our Team
+          </ScrollLink>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <ScrollLink to="ContactUs" spy offset={-80} duration={500} className="text-red-600">
+            Contact Us
+          </ScrollLink>
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
