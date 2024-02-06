@@ -17,8 +17,8 @@ export function Hero() {
 
             <div className="flex gap-2 justify-center md:gap-3 lg:gap-5">
                 <img className="hero-img" src="src\assets\part-1-img.jpg" alt="img1" />
-                <img className="mt-[5%] hero-img" src="src\assets\part-1-img.jpg" alt="img2" />
-                <img className="hero-img" src="src\assets\part-1-img.jpg" alt="img3" />
+                <img className="mt-[5%] hero-img" src="src\assets\part-2-img.jpg" alt="img2" />
+                <img className="hero-img" src="src\assets\part-3-img.jpg" alt="img3" />
             </div>
 
         </section>
