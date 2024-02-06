@@ -1,17 +1,10 @@
 import React from "react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@nextui-org/react";
+import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@nextui-org/react";
 import { Logo } from "./Logo.jsx";
-import { Link } from "react-scroll";
+import { Link as ScrollLink} from "react-scroll";
 
 export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  const menuItems = [
-    "Porpuse",
-    "Services",
-    "Our Team",
-    "Contact Us",
-  ];
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -28,29 +21,29 @@ export function NavbarHome() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive>
-          <Link to="Objective" smooth spy offset={-80} className="text-red-600">
+          <ScrollLink to="Objective" smooth spy offset={-80} className="text-red-600">
             Porpuse
-          </Link>
+          </ScrollLink>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link to="Services" smooth spy offset={-80} className="text-red-600">
+          <ScrollLink to="Services" smooth spy offset={-80} className="text-red-600">
             Services
-          </Link>
+          </ScrollLink>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link to="OurTeam" smooth spy offset={-80} className="text-red-600">
+          <ScrollLink to="OurTeam" smooth spy offset={-80} className="text-red-600">
             Our Team
-          </Link>
+          </ScrollLink>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Button as={Link} color="danger" href="#" variant="flat">
+          <Button as={Link} href="/signup" color="danger" variant="light">
             Login
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="danger" href="#" variant="flat">
+          <Button as={Link} href="/signup" color="danger" variant="ghost">
             Sign Up
           </Button>
         </NavbarItem>
@@ -58,24 +51,24 @@ export function NavbarHome() {
       <NavbarMenu>
         <NavbarMenuItem>
           <NavbarItem isActive className=" pb-4">
-            <Link to="Objective" smooth spy offset={-80} className="text-red-600">
+            <ScrollLink to="Objective" smooth spy offset={-80} className="text-red-600">
               Porpuse
-            </Link>
+            </ScrollLink>
           </NavbarItem>
           <NavbarItem isActive className=" pb-4">
-            <Link to="Services" smooth spy offset={-80} className="text-red-600">
+            <ScrollLink to="Services" smooth spy offset={-80} className="text-red-600">
               Services
-            </Link>
+            </ScrollLink>
           </NavbarItem>
           <NavbarItem isActive className=" pb-4">
-            <Link to="OurTeam" smooth spy offset={-80} className="text-red-600">
+            <ScrollLink to="OurTeam" smooth spy offset={-80} className="text-red-600">
               Our Team
-            </Link>
+            </ScrollLink>
           </NavbarItem>
           <NavbarItem isActive className=" pb-4">
-            <Link to="ContactUs" smooth spy offset={-80} className="text-red-600">
+            <ScrollLink to="ContactUs" smooth spy offset={-80} className="text-red-600">
               Contact Us
-            </Link>
+            </ScrollLink>
           </NavbarItem>
         </NavbarMenuItem>
       </NavbarMenu>
