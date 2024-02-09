@@ -5,6 +5,10 @@ import {Tabs, Tab, Input, Link, Button, Card, CardBody} from "@nextui-org/react"
 export function SignIn() {
   const [selected, setSelected] = React.useState("login");
 
+  const handleSelectionChange = (key: string | number) => {
+    setSelected(key as string);
+  };
+
   return (
     <div className="flex flex-col w-full">
       <Card className="max-w-full w-[340px] h-[400px]">
@@ -14,7 +18,7 @@ export function SignIn() {
             size="md"
             aria-label="Tabs form"
             selectedKey={selected}
-            onSelectionChange={setSelected}
+            onSelectionChange={handleSelectionChange}
           >
             <Tab key="login" title="Login">
               <form className="flex flex-col gap-4">
