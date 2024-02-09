@@ -42,14 +42,9 @@ export function NavbarHome() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Button as={Link} href="/Dashboard" color="danger" variant="light">
-            Login
-          </Button>
-        </NavbarItem>
         <NavbarItem>
-          <Button as={Link} href="/Dashboard" color="danger" variant="ghost">
-            Sign Up
+          <Button as={Link} href="/SignIn" color="danger" variant="ghost">
+            Sign in
           </Button>
         </NavbarItem>
       </NavbarContent>

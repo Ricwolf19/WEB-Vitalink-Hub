@@ -12,10 +12,12 @@
   "dependencies": {
     "@formspree/react": "^2.5.1",
     "@nextui-org/react": "^2.2.9",
+    "firebase": "^10.8.0",
     "framer-motion": "^11.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.0",
     "react-scroll": "^1.9.0",
     "react-slick": "^0.30.1",
     "slick-carousel": "^1.8.1",
