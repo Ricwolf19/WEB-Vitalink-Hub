@@ -12,7 +12,6 @@ export function SignUp() {
     password: ''
   })
 
-  const siteKey = import.meta.env.VITE_RECAPTCHA_KEY;
   const { signUp } = useAuth();
   const [error, setError] = useState<string | null>(null);
 
@@ -85,7 +84,7 @@ export function SignUp() {
 
       <div className="pl-[20%] mt-4 w-full md:w-3/4 lg:w-1/2">
         <ReCAPTCHA
-          sitekey={siteKey}
+          sitekey={import.meta.env.VITE_RECAPTCHA_KEY}
           onChange={handleCaptchaChange}
           size="compact"
           theme="dark"
