@@ -84,7 +84,7 @@ export function SignUp() {
 
       <div className="pl-[20%] mt-4 w-full md:w-3/4 lg:w-1/2">
         <ReCAPTCHA
-          sitekey={import.meta.env.VITE_RECAPTCHA_KEY}
+          sitekey={import.meta.env.VITE_RECAPTCHA_KEY as string}
           onChange={handleCaptchaChange}
           size="compact"
           theme="dark"
