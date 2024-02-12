@@ -12,7 +12,7 @@ export function SignUp() {
     password: ''
   })
 
-  const siteKey = "6LdPmGwpAAAAANHjG3BVHr1DPtqodRh-bL4K6DTd"
+  const siteKey = import.meta.env.VITE_RECAPTCHA_KEY;
   const { signUp } = useAuth();
   const [error, setError] = useState<string | null>(null);
 
