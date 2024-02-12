@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@nextui-org/react";
-import { Link as linkWouter} from 'wouter'
+import { Link as LinkDom} from 'react-router-dom'
 import { Logo } from "./Logo.jsx";
 import { Link as ScrollLink } from "react-scroll"; //Se puede adaptar nombre a lo que se agarre de el paquete
 
@@ -44,7 +44,12 @@ export function NavbarHome() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={linkWouter} href="/SignIn" color="danger" variant="ghost">
+          <Button as={LinkDom} to={"/Login"} color="danger" variant="ghost">
+            Login
+          </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={LinkDom} to={"/SignUp"} color="danger" variant="solid">
             Sign in
           </Button>
         </NavbarItem>

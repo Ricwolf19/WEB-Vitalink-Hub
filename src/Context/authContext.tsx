@@ -1,73 +1,111 @@
-// import { createContext, useContext, useEffect, useState } from "react";
-// import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail /*Dispara evento de estado Ejem: cierra o abre sesion el user*/ } from "firebase/auth"; //Se exporta esta funcion que nos permite interactuar con firebase
-// import { auth, db } from '../Firebase'
-// import { doc, setDoc, getDoc } from "firebase/firestore";
-// import { useNavigate } from "react-router-dom";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut,
+    sendPasswordResetEmail,
+} from "firebase/auth";
+import { auth, db } from "../Firebase";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+
+interface AuthContextProps {
+    signUp: (email: string, password: string) => void;
+    login: (email: string, password: string) => void;
+    logOut: () => void;
+    // loginWithGoogle: () => void;
+    resetPassword: (email: string) => void;
+    user: any;
+    loading: boolean;
+}
+
+const authContext = createContext<AuthContextProps | undefined>(undefined);
+
+export const useAuth = (): AuthContextProps => {
+    const context = useContext(authContext);
+    if (!context) throw new Error("There is no auth provider");
+    return context;
+};
+
+interface AuthProviderProps {
+    children: ReactNode;
+}
+
+export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
+    const navigate = useNavigate();
+    const [user, setUser] = useState<any>(null); // Cambia 'any' con el tipo correcto para tu usuario
+    const [loading, setLoading] = useState(true);
+
+    const signUp = (email: string, password: string): void => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((creds) =>
+                setDoc(doc(db, "users", creds.user.uid), { rol: "user" })
+            )
+            .then(() => navigate("/Dashboard"));
+    };
+
+    const login = async (email: string, password: string): Promise<void> => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((creds) => {
+                getDoc(doc(db, "users", creds.user.uid)).then((docSnap) => {
+                    if (docSnap.exists()) {
+                        switch (docSnap.data().rol) {
+                            case "admin":
+                                navigate("/AdminView");
+                                break;
+                            case "user":
+                                navigate("/Dashboard");
+                                break;
+                        }
+                    }
+                });
+            });
+    };
+
+    const logOut = async (): Promise<void> => {
+        await signOut(auth);
+    };
 
 
-// export const authContext = createContext(); //Se exporta el contexto en una variable la cual ya este creado
-// export const useAuth = () => { //Se pasa el contenido a useAuth para asi poder usar el contexto
-//     const context = useContext(authContext)
-//     if (!context) throw new Error('There is not auth provider') //Si no hay contexto tirar el error
-//     return context
-// }
+    // const loginWithGoogle = (): void => {
+    //     const googleProvider = new GoogleAuthProvider();
+    //     signInWithPopup(auth, googleProvider);
+    // };
 
 
-// export function AuthProvider({ children }) { //Funcion para la autenticacion y dar validacion a todos los hijos de este funcion
-//     const navigate = useNavigate(); //Muy importante ver que este adentro de el componente donde se vaya a usar solamente ya que ese es su scope por cada componente
-//     const [user, setUser] = useState(null)
-//     const [loading, setLoading] = useState(true)
+    const resetPassword = async (email: string): Promise<void> => {
+        try {
+            // Espera a que la promesa se resuelva antes de continuar
+            await sendPasswordResetEmail(auth, email);
 
-//     const signUp = (email, password) => {
-//         createUserWithEmailAndPassword(auth, email, password) //El uso es enviar todos los datos a fireBase
-//             .then((creds) =>
-//                 setDoc(doc(db, "users", creds.user.uid), { rol: "user" }),
-//             )
-//             .then(() => navigate("/"))
-//     };
-
-//     const login = async (email, password) => {
-//         /*const userCredantials = await */ signInWithEmailAndPassword(auth, email, password) //Se crea una funcion login y que usa la funcion signWith de Firebase para logearse
-//             //console.log(userCredantials) Informacion de credenciales extra de firebase diminuto easter-egg
-//             .then((creds) => {
-//                 getDoc(doc(db, "users", creds.user.uid)).then((docSnap) => {
-//                     if (docSnap.exists()) {
-//                         switch (docSnap.data().rol) {
-//                             case "admin":
-//                                 navigate("/AdminView");
-//                                 break;
-//                             case "user":
-//                                 navigate("/");
-//                                 break;
-//                         }
-//                     }
-//                 });
-//             })
-//     }
-
-//     const logOut = () => signOut(auth)
-
-//     const loginWithGoogle = () => {
-//         const googleProvider = new GoogleAuthProvider()
-//         return signInWithPopup(auth, googleProvider)
-//     }
-
-//     const resetPassword = (email) => sendPasswordResetEmail(auth, email)
+            console.log(`Correo de restablecimiento de contraseña enviado a ${email}`);
+        } catch (error: any) {
+            // Proporciona un tipo explícito para 'error'
+            console.error(`Error al enviar el correo de restablecimiento de contraseña: ${error.message}`);
+        }
+    };
 
 
-//     useEffect(() => { //Cuando el usuario esta logerado esta funcion devuelve el objeto entero
-//         const unsuscribe = onAuthStateChanged(auth, currenUser => { //Estamos a travez de esta funcion onAuthStateChanged escuchando si el usuario esta logeado o no
-//             setUser(currenUser)          //console.log(currenUser) //Se almacenara para que los otros componentes puedan usarlo/
-//             setLoading(false)
-//         })
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            setLoading(false);
+        });
 
-//         return () => unsuscribe() //Aqui indicamos que cuando el componente desaparezca se desuscribe asi haciendo logOut
-//         //console.log('auth provider loader')
-//     }, [])
+        return () => unsubscribe();
+    }, []);
 
-//     return (
-//         <authContext.Provider value={{ signUp, login, user, logOut, loading, loginWithGoogle, resetPassword }}>
-//             {children}
-//         </authContext.Provider>  //Se retorna el valor del objeto user y su hijo en un contexto
-//     )
-// }
+    const contextValue: AuthContextProps = {
+        signUp,
+        login,
+        logOut,
+        resetPassword,
+        user,
+        loading,
+    };
+
+    return (
+        <authContext.Provider value={contextValue}>{children}</authContext.Provider>
+    );
+}
