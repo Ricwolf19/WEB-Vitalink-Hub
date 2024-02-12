@@ -12,7 +12,7 @@ export default function ModalContactUs() {
         onOpen();
     }
 
-    const [state, handleSubmit] = useForm("xleqjwoq");
+    const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_KEY);
     if (state.succeeded) {
         return <p className=" text-red-600 font-semibold">Thank you for your message, from the vitalinkhub team.</p>;
     }
