@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@nextui-org/react";
-import { Link as LinkDom} from 'react-router-dom'
+import { Link as LinkDom } from 'react-router-dom'
 import { Logo } from "./Logo.jsx";
 import { Link as ScrollLink } from "react-scroll"; //Se puede adaptar nombre a lo que se agarre de el paquete
 
@@ -41,23 +41,23 @@ export function NavbarHome() {
             Contact us
           </ScrollLink>
         </NavbarItem>
+        <NavbarItem isActive>
+          <Button as={LinkDom} to={"/SignUp"} color="danger" variant="solid">
+            SignUp
+          </Button>
+        </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={LinkDom} to={"/Login"} color="danger" variant="ghost">
+        <Button as={LinkDom} to={"/Login"} color="danger" variant="ghost">
             Login
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={LinkDom} to={"/SignUp"} color="danger" variant="solid">
-            Sign in
           </Button>
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
         <NavbarMenuItem>
           <ScrollLink to="Objective" spy offset={-80} duration={500} className="text-red-600">
-          Objective
+            Objective
           </ScrollLink>
         </NavbarMenuItem>
         <NavbarMenuItem>
@@ -74,6 +74,13 @@ export function NavbarHome() {
           <ScrollLink to="ContactUs" spy offset={-80} duration={500} className="text-red-600">
             Contact Us
           </ScrollLink>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <NavbarItem>
+          <Button as={LinkDom} to={"/SignUp"} color="danger" variant="solid">
+            SignUp
+          </Button>
+          </NavbarItem>
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
