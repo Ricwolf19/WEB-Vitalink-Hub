@@ -1,3 +1,4 @@
+import { SideBar } from "../Components/Dashboard/SideBar"
 import { useAuth } from "../Context/authContext" //Se importa el useAuth del authContext para poder usarlo en el home
 
 export function Dashboard() {
@@ -22,11 +23,14 @@ export function Dashboard() {
 
 
     return (
+        // <div>
+        //      <SideBar></SideBar>
+        // </div>
         <div className="bg-blue-100">
             <div className="w-full flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
-                <div className="w-16 h-16 p-2  bg-gray-200 dark:bg-gray-800 transition-all transform hover:scale-110">
-                    <img src={user.photoURL || '/user-icon.jpg'} className="h-full w-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200" />
-                </div>
+                {/* <div className="w-16 h-16 p-2  bg-gray-200 dark:bg-gray-800 transition-all transform hover:scale-110">
+                    <img src={user.photoURL || '/user-icon.jpg'} className="h-full w-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200" /> 
+                </div> */}
                 <br />
                 <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-200 mb-4">Welcome, {user.displayName || user.email}</h1>
 

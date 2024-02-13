@@ -34,7 +34,7 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
     const navigate = useNavigate();
-    const [user, setUser] = useState<any>(null); // Cambia 'any' con el tipo correcto para tu usuario
+    const [user, setUser] = useState<any>(null); 
     const [loading, setLoading] = useState(true);
 
     const signUp = (email: string, password: string): void => {
