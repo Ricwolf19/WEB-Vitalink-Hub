@@ -8,7 +8,7 @@ export function Hero() {
                 <h2 className="text-3xl font-bold text-gradient mb-3 md:text-4xl md:leading-[3rem] lg:text-5xl lg:leading-[4rem]">Smart Health, Smarter Living</h2>
 
                 <p className=" text-lg leading-6 text-blue-800 mb-6 md:w-4/5">
-                "Elevate Your Health with VitaLink: Smart Monitoring, Real Results."
+                "Elevate Your Health with VitaLink; Smart Monitoring, Real Results".
                 </p>
                 <div className="">
                 <ModalContacUs/>

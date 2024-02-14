@@ -38,7 +38,7 @@ export function NavbarHome() {
         </NavbarItem>
         <NavbarItem isActive>
           <ScrollLink to="ContactUs" spy offset={-80} duration={500} className="text-red-600">
-            Contact us
+            Contact Us
           </ScrollLink>
         </NavbarItem>
         <NavbarItem isActive>
