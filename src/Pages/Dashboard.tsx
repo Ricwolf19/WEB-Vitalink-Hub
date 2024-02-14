@@ -13,15 +13,16 @@ import {
 
 export function Dashboard() {
 
-    const { user, logOut, loading } = useAuth() //Se exportan las propiedades necesarias para todo 
+    const {  loading } = useAuth() //Se exportan las propiedades necesarias para todo 
+    //Se quito user y LogOut de propiedades
 
-    const handleLogout = async () => { //Se crea una funcion asyncrona para poder deslogearse
-        try {
-            await logOut()
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    // const handleLogout = async () => { //Se crea una funcion asyncrona para poder deslogearse
+    //     try {
+    //         await logOut()
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     /* if (!user) { //Si no se tiene usuario se redirige al login
       navigate('/login')
@@ -47,7 +48,7 @@ export function Dashboard() {
                 <SideBarItem icon={<Receipt size={20} />} text="Billings" />
                 <hr className="my-3" />
                 <SideBarItem icon={<Settings size={20} />} text="Settings" />
-                <SideBarItem icon={<LifeBuoy size={20} />} text="Help" />
+                <SideBarItem icon={<LifeBuoy size={20} />} text="Log out" to="/" />
                 
             </SideBar>
         </main>
