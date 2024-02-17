@@ -42,7 +42,7 @@ export function NavbarHome() {
           </ScrollLink>
         </NavbarItem>
         <NavbarItem isActive>
-          <Button as={LinkDom} to={"/SignUp"} color="danger" variant="solid">
+          <Button color="danger" variant="solid">
             SignUp
           </Button>
         </NavbarItem>

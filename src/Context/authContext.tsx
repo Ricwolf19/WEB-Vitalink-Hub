@@ -37,13 +37,13 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
     const [user, setUser] = useState<any>(null); 
     const [loading, setLoading] = useState(true);
 
-    const signUp = (email: string, password: string): void => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((creds) =>
-                setDoc(doc(db, "users", creds.user.uid), { rol: "user" })
-            )
-            .then(() => navigate("/Dashboard"));
-    };
+    // const signUp = (email: string, password: string): void => {
+    //     createUserWithEmailAndPassword(auth, email, password)
+    //         .then((creds) =>
+    //             setDoc(doc(db, "users", creds.user.uid), { rol: "user" })
+    //         )
+    //         .then(() => navigate("/Dashboard"));
+    // };
 
     const login = async (email: string, password: string): Promise<void> => {
         signInWithEmailAndPassword(auth, email, password)
@@ -97,7 +97,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
     }, []);
 
     const contextValue: AuthContextProps = {
-        signUp,
+        // signUp,
         login,
         logOut,
         resetPassword,
