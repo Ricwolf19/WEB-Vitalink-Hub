@@ -1,15 +1,15 @@
-import { SideBar, SideBarItem } from "../Components/Dashboard/SideBar"
+// import { SideBar, SideBarItem } from "../Components/Dashboard/SideBar"
 import { useAuth } from "../Context/authContext" //Se importa el useAuth del authContext para poder usarlo en el home
-import {
-    LifeBuoy,
-    Receipt,
-    Boxes,
-    Package,
-    UserCircle,
-    BarChart3,
-    LayoutDashboard,
-    Settings,
-} from 'lucide-react'
+// import {
+//     LifeBuoy,
+//     Receipt,
+//     Boxes,
+//     Package,
+//     UserCircle,
+//     BarChart3,
+//     LayoutDashboard,
+//     Settings,
+// } from 'lucide-react'
 
 export function Dashboard() {
 
@@ -35,7 +35,7 @@ export function Dashboard() {
 
     return (
         <main className="App">
-            <SideBar>
+            {/* <SideBar>
                 <SideBarItem
                     icon={<LayoutDashboard size={20} />}
                     text="Dashboard"
@@ -49,8 +49,7 @@ export function Dashboard() {
                 <hr className="my-3" />
                 <SideBarItem icon={<Settings size={20} />} text="Settings" />
                 <SideBarItem icon={<LifeBuoy size={20} />} text="Log out" to="/" />
-                
-            </SideBar>
+            </SideBar> */}
         </main>
         // <div className="bg-blue-100">
         //     <div className="w-full flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
