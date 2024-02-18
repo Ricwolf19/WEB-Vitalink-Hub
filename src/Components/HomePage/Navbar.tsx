@@ -101,10 +101,9 @@ export function NavbarHome() {
             placeholder="Select an audience"
             selectedKeys={value}
             className="max-w-xs"
-            onSelectionChange={(selectedValues) => {
-              // Convierte los valores seleccionados a un solo string
-              const selectedValue = Array.from(selectedValues)[0] || ""; // Si no hay valores seleccionados, usa una cadena vacía
-              setValue(new Set([selectedValue]));
+            onSelectionChange={(selectedValue) => {
+              // Establece el valor seleccionado directamente como un string
+              setValue(selectedValue as string);
             }}
             id="message"
             name="message"
@@ -216,10 +215,9 @@ export function NavbarHome() {
             placeholder="Select an audience"
             selectedKeys={value}
             className="max-w-xs"
-            onSelectionChange={(selectedValues) => {
-              // Convierte los valores seleccionados a un solo string
-              const selectedValue = Array.from(selectedValues)[0] || ""; // Si no hay valores seleccionados, usa una cadena vacía
-              setValue(new Set([selectedValue]));
+            onSelectionChange={(selectedValue) => {
+              // Establece el valor seleccionado directamente como un string
+              setValue(selectedValue as string);
             }}
             id="message"
             name="message"
