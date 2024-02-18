@@ -1,8 +1,7 @@
 import React from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { useForm, ValidationError } from '@formspree/react';
-import { Input } from "@nextui-org/react";
-import { Textarea } from "@nextui-org/react";
+import { Input, Textarea } from "@nextui-org/react";
 
 export default function ModalContactUs() {
     const { isOpen, onOpen, onClose } = useDisclosure();
