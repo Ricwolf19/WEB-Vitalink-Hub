@@ -29,7 +29,11 @@ export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-  const [value, setValue] = React.useState<string>("");
+  const selectOptions = [
+    { label: "Personal Use", value: "personal", description: "Select this option for personal use." },
+    { label: "Company", value: "company", description: "Select this option for company-related accounts." },
+    { label: "Hospital", value: "hospital", description: "Select this option for hospital-related accounts." },
+  ] 
 
 
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_KEY as string);
@@ -94,24 +98,20 @@ export function NavbarHome() {
 
           <form onSubmit={handleSubmit} className="mt-4">
           <div className="flex w-full h-full items-center justify-center">
-            <Select
-            label="Target audience"
-            variant="underlined"
-            color="danger"
-            placeholder="Select an audience"
-            selectedKeys={value}
-            className="max-w-xs"
-            onSelectionChange={(selectedValue) => {
-              // Establece el valor seleccionado directamente como un string
-              setValue(selectedValue as string);
-            }}
-            id="message"
-            name="message"
-          >
-            <SelectItem value="personal">Personal Use</SelectItem>
-            <SelectItem value="company">Company</SelectItem>
-            <SelectItem value="hospital">Hospital</SelectItem>
-          </Select>
+           <Select
+        label="Target audience"
+        className="max-w-xs"
+        variant="underlined"
+        color="danger"
+        id="message"
+        name="message"
+      >
+        {selectOptions.map((option) => (
+          <SelectItem key={option.value} value={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </Select>
     </div>
             <br />
             <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
@@ -208,24 +208,20 @@ export function NavbarHome() {
 
           <form onSubmit={handleSubmit} className="mt-4">
           <div className="flex w-full h-full items-center justify-center">
-          <Select
-            label="Target audience"
-            variant="underlined"
-            color="danger"
-            placeholder="Select an audience"
-            selectedKeys={value}
-            className="max-w-xs"
-            onSelectionChange={(selectedValue) => {
-              // Establece el valor seleccionado directamente como un string
-              setValue(selectedValue as string);
-            }}
-            id="message"
-            name="message"
-          >
-            <SelectItem value="personal">Personal Use</SelectItem>
-            <SelectItem value="company">Company</SelectItem>
-            <SelectItem value="hospital">Hospital</SelectItem>
-          </Select>
+           <Select
+        label="Target audience"
+        className="max-w-xs"
+        variant="underlined"
+        color="danger"
+        id="message"
+        name="message"
+      >
+        {selectOptions.map((option) => (
+          <SelectItem key={option.value} value={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </Select>
     </div>
             <br />
             <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
