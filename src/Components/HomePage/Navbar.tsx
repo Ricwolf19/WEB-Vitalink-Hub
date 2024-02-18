@@ -106,7 +106,10 @@ export function NavbarHome() {
             placeholder="Select an audience"
             selectedKeys={value}
             className="max-w-xs"
-            onSelectionChange={(keys: Selection) => setValue(keys)}
+            onSelectionChange={(keys: Selection) => {
+              const newSet = new Set(keys); // Transform `Selection` type to `Set` type if 'keys' is iterable
+              setValue(newSet);
+            }}
             id="message"
             name="message"
           >
