@@ -27,7 +27,7 @@ export default function ModalContactUs() {
                     {'Send Message'}
                 </Button>
             </div>
-            <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
+            <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}  placement="top-center">
                 <ModalContent>
                     {(onClose) => (
                         <>
