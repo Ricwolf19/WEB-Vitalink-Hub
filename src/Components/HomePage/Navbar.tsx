@@ -17,6 +17,7 @@ import {
   Textarea,
   Select,
   SelectItem,
+  Selection,
 } from "@nextui-org/react";
 
 import { Link as LinkDom } from 'react-router-dom'
@@ -105,7 +106,7 @@ export function NavbarHome() {
             placeholder="Select an audience"
             selectedKeys={value}
             className="max-w-xs"
-            onSelectionChange={setValue}
+            onSelectionChange={(keys: Selection) => setValue(keys)}
             id="message"
             name="message"
           >
