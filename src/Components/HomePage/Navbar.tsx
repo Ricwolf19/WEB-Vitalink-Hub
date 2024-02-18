@@ -19,10 +19,10 @@ import {
   SelectItem,
 } from "@nextui-org/react";
 
-import { Link as LinkDom } from 'react-router-dom'
-import { Logo } from "./Logo.jsx";
+import { Logo } from "./Icons";
 import { Link as ScrollLink } from "react-scroll"; //Se puede adaptar nombre a lo que se agarre de el paquete
 import { useForm, ValidationError } from '@formspree/react';
+import { Login } from "./Login";
 
 export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -153,9 +153,7 @@ export function NavbarHome() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={LinkDom} to={"/Login"} color="danger" variant="ghost">
-            Login
-          </Button>
+          <Login />
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
