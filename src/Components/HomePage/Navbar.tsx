@@ -29,11 +29,10 @@ export function NavbarHome() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   const selectOptions = [
-    { label: "Personal Use", value: "personal", description: "Select this option for personal use." },
-    { label: "Company", value: "company", description: "Select this option for company-related accounts." },
-    { label: "Hospital", value: "hospital", description: "Select this option for hospital-related accounts." },
+    { label: "Personal Use", value: "personal", description: "Selected option for personal use.  " },
+    { label: "Company", value: "company", description: "Selected for company-related accounts.  " },
+    { label: "Hospital", value: "hospital", description: "Selected option for hospital-related accounts.  " },
   ] 
-
 
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_KEY as string);
     
@@ -106,7 +105,7 @@ export function NavbarHome() {
         name="message"
       >
         {selectOptions.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem key={option.description} value={option.value}>
             {option.label}
           </SelectItem>
         ))}
@@ -207,7 +206,7 @@ export function NavbarHome() {
 
           <form onSubmit={handleSubmit} className="mt-4">
           <div className="flex w-full h-full items-center justify-center">
-           <Select
+          <Select
         label="Target audience"
         className="max-w-xs"
         variant="underlined"
@@ -216,7 +215,7 @@ export function NavbarHome() {
         name="message"
       >
         {selectOptions.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem key={option.description} value={option.value}>
             {option.label}
           </SelectItem>
         ))}
