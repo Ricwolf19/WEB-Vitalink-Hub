@@ -29,16 +29,10 @@ export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-  const [value, setValue] = React.useState<Set<string>>(new Set());
+  const [value, setValue] = React.useState<string>("");
 
 
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_KEY as string);
-
-    const selectOptions = [
-      { label: "Personal Use", value: "personal", description: "Select this option for personal use." },
-      { label: "Company", value: "company", description: "Select this option for company-related accounts." },
-      { label: "Hospital", value: "hospital", description: "Select this option for hospital-related accounts." },
-    ] as const;
     
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -100,25 +94,24 @@ export function NavbarHome() {
 
           <form onSubmit={handleSubmit} className="mt-4">
           <div className="flex w-full h-full items-center justify-center">
-          <Select
+            <Select
             label="Target audience"
             variant="underlined"
             color="danger"
             placeholder="Select an audience"
             selectedKeys={value}
             className="max-w-xs"
-            onSelectionChange={(keys) => {
-              // Convierte las teclas seleccionadas a un conjunto
-              setValue(new Set(Array.from(keys)));
-            }}            
+            onSelectionChange={(selectedValues) => {
+              // Convierte los valores seleccionados a un solo string
+              const selectedValue = Array.from(selectedValues)[0] || ""; // Si no hay valores seleccionados, usa una cadena vacía
+              setValue(new Set([selectedValue]));
+            }}
             id="message"
             name="message"
           >
-            {selectOptions.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
-                {option.label}
-              </SelectItem>
-            ))}
+            <SelectItem value="personal">Personal Use</SelectItem>
+            <SelectItem value="company">Company</SelectItem>
+            <SelectItem value="hospital">Hospital</SelectItem>
           </Select>
     </div>
             <br />
@@ -223,18 +216,17 @@ export function NavbarHome() {
             placeholder="Select an audience"
             selectedKeys={value}
             className="max-w-xs"
-            onSelectionChange={(keys) => {
-              // Convierte las teclas seleccionadas a un conjunto
-              setValue(new Set(Array.from(keys)));
-            }}     
+            onSelectionChange={(selectedValues) => {
+              // Convierte los valores seleccionados a un solo string
+              const selectedValue = Array.from(selectedValues)[0] || ""; // Si no hay valores seleccionados, usa una cadena vacía
+              setValue(new Set([selectedValue]));
+            }}
             id="message"
             name="message"
           >
-            {selectOptions.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
-                {option.label}
-              </SelectItem>
-            ))}
+            <SelectItem value="personal">Personal Use</SelectItem>
+            <SelectItem value="company">Company</SelectItem>
+            <SelectItem value="hospital">Hospital</SelectItem>
           </Select>
     </div>
             <br />
