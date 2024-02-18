@@ -189,7 +189,8 @@ export function NavbarHome() {
         </NavbarMenuItem>
         <NavbarMenuItem>
           <NavbarItem>
-           <Button onPress={onOpen} color="danger" variant="solid">
+           
+          <Button onPress={onOpen} color="danger" variant="solid">
         Sign Up
       </Button>
       <Modal
@@ -221,7 +222,10 @@ export function NavbarHome() {
             placeholder="Select an audience"
             selectedKeys={value}
             className="max-w-xs"
-            onSelectionChange={setValue}
+            onSelectionChange={(keys: Selection) => {
+              const newSet = new Set(keys); // Transform `Selection` type to `Set` type if 'keys' is iterable
+              setValue(newSet);
+            }}
             id="message"
             name="message"
           >
@@ -268,6 +272,7 @@ export function NavbarHome() {
     )}
   </ModalContent>
 </Modal>
+
           </NavbarItem>
         </NavbarMenuItem>
       </NavbarMenu>
