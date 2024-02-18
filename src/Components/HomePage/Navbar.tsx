@@ -32,11 +32,11 @@ export function NavbarHome() {
 
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_KEY as string);
 
-    const selectOptions: string[] = [
+    const selectOptions = [
       { label: "Personal Use", value: "personal", description: "Select this option for personal use." },
       { label: "Company", value: "company", description: "Select this option for company-related accounts." },
       { label: "Hospital", value: "hospital", description: "Select this option for hospital-related accounts." },
-    ];
+    ] as const;
     
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
