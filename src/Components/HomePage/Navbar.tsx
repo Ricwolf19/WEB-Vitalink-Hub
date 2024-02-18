@@ -29,7 +29,7 @@ export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-  const [value, setValue] = React.useState(new Set([]));
+  const [value, setValue] = React.useState<Set<Key>>(new Set());
 
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_KEY as string);
 
