@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../../Context/authContext.tsx";
 // import { Link, useNavigate } from "react-router-dom";
-import { Alert } from "../SignIn/Alert.tsx";
+import { Alert } from "./Alert.tsx";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Link} from "@nextui-org/react";
-import { MailIcon, LockIcon } from './Icons.tsx';
+import { MailIcon, LockIcon, Logo } from '../HomePage/Icons.tsx';
 
 export function Login() {
   // const navigate = useNavigate();
@@ -106,15 +106,20 @@ export function Login() {
       <div>
       <Button onPress={onOpen} color="danger" variant="ghost">Login</Button>
       <Modal
+        backdrop="opaque"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        placement="top-center"
+        scrollBehavior={'inside'}
+        classNames={{
+          backdrop: "bg-gradient-to-t from-blue-900 to-blue-900/10 backdrop-opacity-900",
+        }}
       >
         <ModalContent>
           {(onClose) => (
             <>
             <form onSubmit={handleSubmit}>
-              <ModalHeader className="flex flex-col gap-1 text-center">Log in</ModalHeader>
+              
+              <ModalHeader className="flex flex-col gap-1 text-center text-blue-600"><Logo />Login</ModalHeader>
               {error && <Alert mesagge={error} />}
               <ModalBody>
                 <Input
@@ -123,7 +128,8 @@ export function Login() {
                     <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
                   }
                   label="Email"
-                  variant="bordered"
+                  color="primary" 
+                  variant="flat"
                   type="email"
                   name="email"
                   placeholder="yourEmail@gmail.ltd"
@@ -135,7 +141,8 @@ export function Login() {
                   }
                   label="Password"
                   type="password"
-                  variant="bordered"
+                  color="primary" 
+                  variant="flat"
                   name="password"
                   id="password"
                   placeholder="******"

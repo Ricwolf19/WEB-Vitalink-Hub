@@ -22,7 +22,7 @@ import {
 import { Logo } from "./Icons";
 import { Link as ScrollLink } from "react-scroll"; //Se puede adaptar nombre a lo que se agarre de el paquete
 import { useForm, ValidationError } from '@formspree/react';
-import { Login } from "./Login";
+import { Login } from "../SignIn/Login";
 
 export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
