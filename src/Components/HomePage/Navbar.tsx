@@ -1,4 +1,4 @@
-import React, { Key } from "react";
+import React from "react";
 import { 
   Navbar, 
   NavbarBrand, 
@@ -29,7 +29,8 @@ export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-  const [value, setValue] = React.useState<Set<Key>>(new Set());
+  const [value, setValue] = React.useState<Set<string>>(new Set());
+
 
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_KEY as string);
 
@@ -106,10 +107,10 @@ export function NavbarHome() {
             placeholder="Select an audience"
             selectedKeys={value}
             className="max-w-xs"
-            onSelectionChange={(keys: Selection) => {
-              const newSet = new Set(keys); // Transform `Selection` type to `Set` type if 'keys' is iterable
-              setValue(newSet);
-            }}
+            onSelectionChange={(keys) => {
+              // Convierte las teclas seleccionadas a un conjunto
+              setValue(new Set(Array.from(keys)));
+            }}            
             id="message"
             name="message"
           >
@@ -222,10 +223,10 @@ export function NavbarHome() {
             placeholder="Select an audience"
             selectedKeys={value}
             className="max-w-xs"
-            onSelectionChange={(keys: Selection) => {
-              const newSet = new Set(keys); // Transform `Selection` type to `Set` type if 'keys' is iterable
-              setValue(newSet);
-            }}
+            onSelectionChange={(keys) => {
+              // Convierte las teclas seleccionadas a un conjunto
+              setValue(new Set(Array.from(keys)));
+            }}     
             id="message"
             name="message"
           >
