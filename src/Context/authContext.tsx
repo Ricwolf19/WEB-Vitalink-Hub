@@ -1,17 +1,21 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import {
-    createUserWithEmailAndPassword,
+    // createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
     sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth, db } from "../Firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { 
+    doc, 
+    // setDoc, 
+    getDoc 
+} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 interface AuthContextProps {
-    signUp: (email: string, password: string) => void;
+    // signUp: (email: string, password: string) => void;
     login: (email: string, password: string) => void;
     logOut: () => void;
     // loginWithGoogle: () => void;
