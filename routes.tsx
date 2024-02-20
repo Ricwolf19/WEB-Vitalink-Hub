@@ -1,13 +1,12 @@
-import React from 'react'; 
-
 import {
-  LucideHome,
-  UserRound,
-  Table2Icon,
-  BellDot,
-} from "lucide-react"
-
-import { Home, Profile, Tables, Notifications } from "./src/Pages/Dashboard";
+  HomeIcon,
+  UserCircleIcon,
+  TableCellsIcon,
+  InformationCircleIcon,
+  // ServerStackIcon,
+  // RectangleStackIcon,
+} from "@heroicons/react/24/solid";
+import { Home, Profile, Tables, Notifications } from "./src/Pages/Modules";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -18,28 +17,28 @@ export const routes = [
     layout: "dashboard",
     pages: [
       {
-        icon: React.createElement(LucideHome, icon), // Render the icon using React.createElement
+        icon: <HomeIcon {...icon} />,
         name: "dashboard",
         path: "/home",
-        element: React.createElement(Home), // Render the element using React.createElement
+        element: <Home />,
       },
       {
-        icon: React.createElement(UserRound, icon),
+        icon: <UserCircleIcon {...icon} />,
         name: "profile",
         path: "/profile",
-        element: React.createElement(Profile),
+        element: <Profile />,
       },
       {
-        icon: React.createElement(Table2Icon, icon),
+        icon: <TableCellsIcon {...icon} />,
         name: "tables",
         path: "/tables",
-        element: React.createElement(Tables), 
+        element: <Tables />,
       },
       {
-        icon: React.createElement(BellDot, icon), 
+        icon: <InformationCircleIcon {...icon} />,
         name: "notifications",
         path: "/notifications",
-        element: React.createElement(Notifications),
+        element: <Notifications />,
       },
     ],
   },
@@ -64,5 +63,3 @@ export const routes = [
 ];
 
 export default routes;
-
-

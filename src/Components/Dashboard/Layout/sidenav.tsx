@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
-  Avatar,
+  // Avatar,
   Button,
   IconButton,
   Typography,
@@ -14,7 +14,7 @@ interface Page {
   icon?: any;
   name: string;
   path: string;
-  color: any; // Use the union type
+  color?: any; // Making color optional
 }
 
 interface Layout {
@@ -24,12 +24,10 @@ interface Layout {
 }
 
 interface SidenavProps {
-  brandImg?: string;
-  brandName?: string;
   routes: Layout[];
 }
 
-export function Sidenav({ brandImg, brandName, routes }: SidenavProps) {
+export function Sidenav({ routes }: SidenavProps) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavColor, sidenavType, openSidenav } = controller;
   const sidenavTypes: any = {
@@ -40,21 +38,23 @@ export function Sidenav({ brandImg, brandName, routes }: SidenavProps) {
 
   return (
     <aside
-      className={`${sidenavTypes[sidenavType]} ${
-        openSidenav ? "translate-x-0" : "-translate-x-80"
-      } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100`}
+      className={`${sidenavTypes[sidenavType]} ${openSidenav ? "translate-x-0" : "-translate-x-80"
+        } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100`}
     >
       <div
         className={`relative`}
       >
         <Link to="/" className="py-6 px-8 text-center">
           <Typography
-          placeholder=""
-            variant="h6"
+            placeholder=""
+            variant="h4"
             color={sidenavType === "dark" ? "white" : "blue-gray"}
           >
-            {brandName}
+            VitaLink
           </Typography>
+          <div className="flex justify-center items-center h-full">
+            <img src="/logo-rbg.png" alt="VitaLink" className="max-w-[50%] max-h-[50%]" />
+          </div>
         </Link>
         <IconButton
           placeholder=""
@@ -74,7 +74,7 @@ export function Sidenav({ brandImg, brandName, routes }: SidenavProps) {
             {title && (
               <li className="mx-3.5 mt-4 mb-2">
                 <Typography
-                placeholder=""
+                  placeholder=""
                   variant="small"
                   color={sidenavType === "dark" ? "white" : "blue-gray"}
                   className="font-black uppercase opacity-75"
@@ -88,21 +88,21 @@ export function Sidenav({ brandImg, brandName, routes }: SidenavProps) {
                 <NavLink to={`/${layout}${path}`}>
                   {({ isActive }) => (
                     <Button
-                    placeholder=""
+                      placeholder=""
                       variant={isActive ? "gradient" : "text"}
                       color={
                         isActive
                           ? sidenavColor
                           : sidenavType === "dark"
-                          ? "white"
-                          : "blue-gray"
+                            ? "white"
+                            : "blue-gray"
                       }
                       className="flex items-center gap-4 px-4 capitalize"
                       fullWidth
                     >
                       {icon}
                       <Typography
-                      placeholder=""
+                        placeholder=""
                         color="inherit"
                         className="font-medium capitalize"
                       >
@@ -121,8 +121,8 @@ export function Sidenav({ brandImg, brandName, routes }: SidenavProps) {
 }
 
 Sidenav.defaultProps = {
-  brandImg: "/img/logo-ct.png",
-  brandName: "Material Tailwind React",
+  brandImg: "/logo-rbg.png",
+  brandName: "VitaLink",
 };
 
 Sidenav.propTypes = {

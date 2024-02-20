@@ -8,15 +8,15 @@ import {
 import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
 
-interface StataticsCharts {
-  color: "white";
-  title: string;
-  description: string;
-  footer: string;
-  chart: any;
-}
+// interface StataticsCharts {
+//   color: "white";
+//   title: string;
+//   description: string;
+//   footer: string;
+//   chart: any;
+// }
 
-export function StatisticsChart({ color, chart, title, description, footer }: StataticsCharts) {
+export function StatisticsChart({ color, chart, title, description, footer }: any) {
   return (
     <Card className="border border-blue-gray-100 shadow-sm" placeholder="">
       <CardHeader variant="gradient" placeholder="" color={color} floated={false} shadow={false}>
