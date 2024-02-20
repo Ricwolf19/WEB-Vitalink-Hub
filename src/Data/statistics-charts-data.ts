@@ -1,4 +1,4 @@
-import { chartsConfig } from "../configs"; 
+import { chartsConfig } from "../Configs"; 
 //Se agarra el import desde un indice que exporta todas las funciones haciendo asi mas facil 
 // la manipulacionn de importaciones
 

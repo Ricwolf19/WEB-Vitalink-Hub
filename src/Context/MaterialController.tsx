@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 interface State {
   openSidenav: boolean;
-  sidenavColor: string;
+  sidenavColor: any;
   sidenavType: string;
   transparentNavbar: boolean;
-  fixedNavbar: boolean;
+  fixedNavbar: any;
   openConfigurator: boolean;
 }
 
