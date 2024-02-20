@@ -15,7 +15,7 @@ function App() {
           {/* <Route path='/Login' element={<Login />} /> */}
           {/* <Route path='/SignUp' element={<SignUp />} /> */}
           <Route path='/dashboard/*' element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
-          <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+          <Route path="*" element={ <ProtectedRoute> <Navigate to="/dashboard/home" replace /> </ProtectedRoute>} />
         </Routes>
       </AuthProvider>
     </div>
