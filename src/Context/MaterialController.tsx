@@ -54,10 +54,10 @@ interface MaterialTailwindControllerProviderProps {
 export function MaterialTailwindControllerProvider({ children }: MaterialTailwindControllerProviderProps) {
     const initialState: State = {
       openSidenav: false,
-      sidenavColor: "dark",
+      sidenavColor: "blue",
       sidenavType: "white",
-      transparentNavbar: true,
-      fixedNavbar: false,
+      transparentNavbar: false,
+      fixedNavbar: true,
       openConfigurator: false,
     };
   

@@ -59,7 +59,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
                                 navigate("/AdminView");
                                 break;
                             case "user":
-                                navigate("/Dashboard");
+                                navigate("/dashboard");
                                 break;
                         }
                     }

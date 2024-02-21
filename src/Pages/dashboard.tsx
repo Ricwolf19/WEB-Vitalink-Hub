@@ -1,20 +1,20 @@
 import { useAuth } from "../Context/authContext" //Se importa el useAuth del authContext para poder usarlo en el home
 import { Routes, Route } from "react-router-dom";
-import { Cog6ToothIcon } from "@heroicons/react/24/solid";
-import { IconButton } from "@material-tailwind/react";
+import { MoveUpIcon } from "lucide-react";
+import { IconButton, Typography } from "@material-tailwind/react";
 import {
   Sidenav,
   DashboardNavbar,
-  Configurator,
+  // Configurator,
   Footer,
 } from "../Components/Dashboard/Layout";
 import routes from "../../routes";
-import { useMaterialTailwindController, setOpenConfigurator } from "../Context/MaterialController";
+import { useMaterialTailwindController } from "../Context/MaterialController";
 
 
 export function Dashboard() {
   const { loading } = useAuth() //Se exportan las propiedades necesarias para todo 
-  const [controller, dispatch] = useMaterialTailwindController();
+  const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
   //Se quito user y LogOut de propiedades
 
@@ -45,17 +45,19 @@ export function Dashboard() {
       />
       <div className="p-4 xl:ml-80">
         <DashboardNavbar />
-        <Configurator />
+        {/* <Configurator /> */}
+        <Typography as="a" href="#" placeholder=""> {/* arrow to up in all sites */}
         <IconButton
           placeholder=""
           size="lg"
-          color="white"
-          className="fixed bottom-8 right-8 z-40 rounded-full shadow-blue-gray-900/10"
+          color="red"
+          className="fixed bottom-12 right-4 z-40 shadow-blue-gray-900/10"
           ripple={false}
-          onClick={() => setOpenConfigurator(dispatch, true)}
+          // onClick={() => setOpenConfigurator(dispatch, true)}
         >
-          <Cog6ToothIcon className="h-5 w-5" />
+          <MoveUpIcon className="h-5 w-5" href="#" />
         </IconButton>
+        </Typography>
         <Routes>
           {routes.map(
             ({ layout, pages }) =>

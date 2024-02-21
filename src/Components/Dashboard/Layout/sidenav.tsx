@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+//import { XMarkIcon } from "@heroicons/react/24/outline";
+import { X } from 'lucide-react'
 import {
   // Avatar,
   Button,
@@ -36,10 +37,11 @@ export function Sidenav({ routes }: SidenavProps) {
     transparent: "bg-transparent",
   };
 
+
   return (
     <aside
       className={`${sidenavTypes[sidenavType]} ${openSidenav ? "translate-x-0" : "-translate-x-80"
-        } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100`}
+        } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-200`}
     >
       <div
         className={`relative`}
@@ -52,6 +54,7 @@ export function Sidenav({ routes }: SidenavProps) {
           >
             VitaLink
           </Typography>
+          <br />
           <div className="flex justify-center items-center h-full">
             <img src="/logo-rbg.png" alt="VitaLink" className="max-w-[50%] max-h-[50%]" />
           </div>
@@ -65,7 +68,7 @@ export function Sidenav({ routes }: SidenavProps) {
           className="absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden"
           onClick={() => setOpenSidenav(dispatch, false)}
         >
-          <XMarkIcon strokeWidth={2.5} className="h-5 w-5 text-white" />
+          <X strokeWidth={1.5} className="h-5 w-5 text-black" />
         </IconButton>
       </div>
       <div className="m-4">
