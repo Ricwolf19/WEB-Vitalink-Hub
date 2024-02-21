@@ -32,11 +32,11 @@ export function Dashboard() {
 
 
   //{/*Mensaje logeando*/}
-  if (loading) return <h1>Loading</h1>
+  if (loading) return <h1>Loading...</h1>
 
 
   return (
-    <div className="min-h-screen bg-blue-50">
+    <div className="min-h-screen bg-blue-50/50">
       <Sidenav
         routes={routes}
         brandImg={
@@ -44,19 +44,19 @@ export function Dashboard() {
         }
       />
       <div className="p-4 xl:ml-80">
-        <DashboardNavbar />
+        <DashboardNavbar /> 
         {/* <Configurator /> */}
         <Typography as="a" href="#" placeholder=""> {/* arrow to up in all sites */}
-          <IconButton
-            placeholder=""
-            size="lg"
-            color="red"
-            className="fixed bottom-12 right-4 z-40 shadow-blue-gray-900/10"
-            ripple={false}
+        <IconButton
+          placeholder=""
+          size="lg"
+          color="red"
+          className="fixed bottom-12 right-4 z-40 shadow-blue-gray-900/10"
+          ripple={false}
           // onClick={() => setOpenConfigurator(dispatch, true)}
-          >
-            <MoveUpIcon className="h-5 w-5" href="#" />
-          </IconButton>
+        >
+          <MoveUpIcon className="h-5 w-5" href="#" />
+        </IconButton>
         </Typography>
         <Routes>
           {routes.map(

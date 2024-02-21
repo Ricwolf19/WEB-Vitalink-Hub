@@ -69,6 +69,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
 
     const logOut = async (): Promise<void> => {
         await signOut(auth);
+        navigate("/")
     };
 
 

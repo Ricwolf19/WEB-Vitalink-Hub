@@ -1,12 +1,13 @@
 import {
-  HomeIcon,
-  UserCircleIcon,
-  TableCellsIcon,
-  InformationCircleIcon,
-  // ServerStackIcon,
-  // RectangleStackIcon,
-} from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications } from "./src/Pages/Modules";
+  LayoutPanelLeftIcon,
+  BarChart3Icon,
+  UsersIcon,
+  CalendarHeartIcon,
+  KanbanSquareIcon,
+  Cog,
+} from 'lucide-react'
+
+import { Home, Analytics , Patients , Calendar, Kanban, Settings , Profile, Notifications } from "./src/Pages/Modules";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -17,38 +18,50 @@ export const routes = [
     layout: "dashboard",
     pages: [
       {
-        icon: <HomeIcon {...icon} />,
+        icon: <LayoutPanelLeftIcon {...icon} />,
         name: "Dashboard",
         path: "/home",
         element: <Home />,
       },
       {
-        icon: <TableCellsIcon {...icon} />,
-        name: "tables",
-        path: "/tables",
-        element: <Tables />,
+        icon: <BarChart3Icon {...icon} />,
+        name: "Analytics",
+        path: "/analytics",
+        element: <Analytics />,
       },
       {
-        icon: <InformationCircleIcon {...icon} />,
+        icon: <UsersIcon {...icon} />,
+        name: "Patients",
+        path: "/patients",
+        element: <Patients />,
+      },
+      {
+        icon: <CalendarHeartIcon {...icon} />,
+        name: "Calendar",
+        path: "/calendar",
+        element: <Calendar />,
+      },
+      {
+        icon: <KanbanSquareIcon {...icon} />,
+        name: "Kanban board",
+        path: "/kanban",
+        element: <Kanban />,
+      },
+      {
+        icon: <Cog {...icon} />,
+        name: "Settings",
+        path: "/settings",
+        element: <Settings />,
+      },
+      {
+        icon: <Cog {...icon} />,
         name: "notifications",
         path: "/notifications",
         element: <Notifications />,
       },
       {
-        icon: <InformationCircleIcon {...icon} />,
-        name: "notifications",
-        path: "/notifications",
-        element: <Notifications />,
-      },
-      {
-        icon: <InformationCircleIcon {...icon} />,
-        name: "notifications",
-        path: "/notifications",
-        element: <Notifications />,
-      },
-      {
-        icon: <UserCircleIcon {...icon} />,
-        name: "profile",
+        icon: <Cog {...icon} />,
+        name: "Profile - test",
         path: "/profile",
         element: <Profile />,
       },
