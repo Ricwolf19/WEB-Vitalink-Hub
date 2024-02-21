@@ -7,10 +7,10 @@ import {
     sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth, db } from "../Firebase";
-import { 
-    doc, 
+import {
+    doc,
     // setDoc, 
-    getDoc 
+    getDoc
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
@@ -38,7 +38,7 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
     const navigate = useNavigate();
-    const [user, setUser] = useState<any>(null); 
+    const [user, setUser] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
     // const signUp = (email: string, password: string): void => {
@@ -59,7 +59,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
                                 navigate("/AdminView");
                                 break;
                             case "user":
-                                navigate("/dashboard");
+                                navigate("/dashboard/home");
                                 break;
                         }
                     }

@@ -4,7 +4,7 @@ import { Image } from "@nextui-org/react";
 export function ContactUs() {
     return (
         <section id="ContactUs">
-            <div className="bg-blue-100">
+            <div className="bg-blue-50">
                 <div className="max-w-[1200px] py-10 h-auto mx-auto flex flex-col items-start md:h-[400px] md:flex-row min-[1090px]:h-[320px]">
                     <Image
                         width={1600}

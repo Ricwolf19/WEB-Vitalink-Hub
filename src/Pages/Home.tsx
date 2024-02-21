@@ -8,7 +8,7 @@ import { Services } from "../Components/HomePage/Services";
 
 export function Home() {
     return (
-        <div className=" bg-blue-100">
+        <div className=" bg-blue-50">
             <NavbarHome></NavbarHome>
             <Hero></Hero>
             <Objective></Objective>
