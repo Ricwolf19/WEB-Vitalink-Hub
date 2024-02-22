@@ -109,7 +109,7 @@ export function Login() {
         backdrop="opaque"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        placement="top-center"
+        placement="center"
         scrollBehavior={'inside'}
         classNames={{
           backdrop: "bg-gradient-to-t from-blue-900 to-blue-900/10 backdrop-opacity-900",

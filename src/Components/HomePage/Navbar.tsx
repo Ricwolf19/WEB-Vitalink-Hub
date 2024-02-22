@@ -76,7 +76,7 @@ export function NavbarHome() {
             <Modal
               backdrop="opaque"
               isOpen={isOpen}
-              placement="top-center"
+              placement="center"
               onOpenChange={onOpenChange}
               scrollBehavior={'inside'}
               classNames={{
@@ -166,7 +166,7 @@ export function NavbarHome() {
                 backdrop="opaque"
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
-                placement="top-center"
+                placement="center"
                 scrollBehavior={'inside'}
                 classNames={{
                   backdrop: "bg-gradient-to-t from-red-900 to-blue-900/10 backdrop-opacity-900",
