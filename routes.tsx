@@ -10,7 +10,7 @@ import {
 import { Home, Analytics , Patients , Calendar, Kanban, Settings , Profile, Notifications } from "./src/Pages/Modules";
 
 const icon = {
-  className: "w-5 h-5 text-inherit",
+  className: "text-inherit",
 };
 
 export const routes = [
