@@ -48,7 +48,7 @@ export function Sidenav({ routes }: SidenavProps) {
       >
         <Link to="/" className="py-6 px-8 text-center">
           <div className="flex justify-center items-center h-full">
-            <img src="/logo-rbg.png" alt="VitaLink" className="max-w-[40%] max-h-[40%]" />
+            <img src="/img/logo-rbg.png" alt="VitaLink" className="max-w-[40%] max-h-[40%]" />
           </div>
           <Typography
             placeholder=""

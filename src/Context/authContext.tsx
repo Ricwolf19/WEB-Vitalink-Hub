@@ -52,13 +52,13 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
     const login = async (email: string, password: string): Promise<void> => {
         signInWithEmailAndPassword(auth, email, password)
             .then((creds) => {
-                getDoc(doc(db, "users", creds.user.uid)).then((docSnap) => {
+                getDoc(doc(db, "accounts", creds.user.uid)).then((docSnap) => {
                     if (docSnap.exists()) {
                         switch (docSnap.data().rol) {
-                            case "admin":
+                            case "personal":
                                 navigate("/AdminView");
                                 break;
-                            case "user":
+                            case "hospital":
                                 navigate("/dashboard/home");
                                 break;
                         }
