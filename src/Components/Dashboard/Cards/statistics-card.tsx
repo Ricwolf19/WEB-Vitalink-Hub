@@ -2,7 +2,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Typography,
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
@@ -15,7 +14,7 @@ import PropTypes from "prop-types";
 //   footer: string | React.ReactNode; // Specify the type for footer, it could be a string or a React component
 // }
 
-export function StatisticsCard({ color, icon, title, value, footer }: any) {
+export function StatisticsCard({ color, icon, title, value}: any) {
   return (
     <Card className="border border-blue-gray-100 shadow-sm" placeholder="">
       <CardHeader
@@ -36,11 +35,7 @@ export function StatisticsCard({ color, icon, title, value, footer }: any) {
           {value}
         </Typography>
       </CardBody>
-      {footer && (
-        <CardFooter placeholder="" className="border-t border-blue-gray-50 p-4">
-          {footer}
-        </CardFooter>
-      )}
+      
     </Card>
   );
 }

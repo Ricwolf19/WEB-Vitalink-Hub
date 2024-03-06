@@ -55,10 +55,10 @@ Footer.defaultProps = {
   brandName: "Vita Link",
   brandLink: "/home",
   routes: [
-    { name: "....", path: "" },
-    { name: "....", path: "" },
-    { name: "....", path: "" },
-    { name: "....", path: "" },
+    { name: "", path: "" },
+    { name: "", path: "" },
+    { name: "", path: "" },
+    { name: "", path: "" },
   ],
 };
 
