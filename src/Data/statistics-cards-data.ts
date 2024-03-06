@@ -1,53 +1,55 @@
 import {
-  BanknotesIcon,
-  UserPlusIcon,
-  UsersIcon,
-  ChartBarIcon,
-} from "@heroicons/react/24/solid";
+  ClipboardPlusIcon,
+  Contact2,
+  AlertTriangleIcon,
+  ScanFaceIcon
+} from "lucide-react"
+
+const array: string[] = ['20','40','10','100']
 
 export const statisticsCardsData = [
   {
-    color: "gray",
-    icon: BanknotesIcon,
-    title: "Today's Money",
-    value: "$53k",
+    color: "green",
+    icon: ClipboardPlusIcon,
+    title: "Total Doctors",
+    value: `${array[0]}`,
     footer: {
       color: "text-green-500",
-      value: "+55%",
-      label: "than last week",
+      value: "+ 1",
+      label: "doctors",
     },
   },
   {
-    color: "gray",
-    icon: UsersIcon,
-    title: "Today's Users",
-    value: "2,300",
+    color: "blue",
+    icon: Contact2,
+    title: "Total Patients",
+    value: `${array[1]}`,
     footer: {
       color: "text-green-500",
-      value: "+3%",
-      label: "than last month",
+      value: "+ 3",
+      label: "patients",
     },
   },
   {
-    color: "gray",
-    icon: UserPlusIcon,
-    title: "New Clients",
-    value: "3,462",
+    color: "red",
+    icon: AlertTriangleIcon,
+    title: "Incidents",
+    value: `${array[2]}`,
     footer: {
       color: "text-red-500",
-      value: "-2%",
-      label: "than yesterday",
+      value: "+ 10",
+      label: "incidents",
     },
   },
   {
-    color: "gray",
-    icon: ChartBarIcon,
-    title: "Sales",
-    value: "$103,430",
+    color: "blue",
+    icon: ScanFaceIcon,
+    title: "Vitalink Total Scans",
+    value: `${array[3]}`,
     footer: {
       color: "text-green-500",
-      value: "+5%",
-      label: "than yesterday",
+      value: "+5",
+      label: "successful scans",
     },
   },
 ];
