@@ -1,21 +1,21 @@
 export const chartsConfig = {
   chart: {
     toolbar: {
-      show: false,
+      show: true,
     },
   },
   title: {
     show: "",
   },
   dataLabels: {
-    enabled: false,
+    enabled: true,
   },
   xaxis: {
     axisTicks: {
       show: false,
     },
     axisBorder: {
-      show: false,
+      show: true,
     },
     labels: {
       style: {

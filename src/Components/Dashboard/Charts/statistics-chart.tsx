@@ -2,7 +2,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Typography,
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
@@ -16,7 +15,7 @@ import Chart from "react-apexcharts";
 //   chart: any;
 // }
 
-export function StatisticsChart({ color, chart, title, description, footer }: any) {
+export function StatisticsChart({ color, chart, title, description}: any) {
   return (
     <Card className="border border-blue-gray-100 shadow-sm" placeholder="">
       <CardHeader variant="gradient" placeholder="" color={color} floated={false} shadow={false}>
@@ -30,11 +29,6 @@ export function StatisticsChart({ color, chart, title, description, footer }: an
           {description}
         </Typography>
       </CardBody>
-      {footer && (
-        <CardFooter placeholder="" className="border-t border-blue-gray-50 px-6 py-5">
-          {footer}
-        </CardFooter>
-      )}
     </Card>
   );
 }
