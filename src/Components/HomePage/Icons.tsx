@@ -1,7 +1,7 @@
 import { SVGProps, FC } from "react";
 
 export const Logo = () => (
- <img src="/img/favicon-rbg.png" alt="Logo" className="h-10 w-auto object-contain"/>
+ <img src="https://i.ibb.co/zHDB2x1/logo-rbg.png" alt="Logo" className="h-10 w-auto object-contain"/>
 );
 
 export const MailIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
