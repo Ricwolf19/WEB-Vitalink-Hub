@@ -19,7 +19,6 @@ import {
   SelectItem,
 } from "@nextui-org/react";
 
-import { Logo } from "./Icons";
 import { Link as ScrollLink } from "react-scroll"; //Se puede adaptar nombre a lo que se agarre de el paquete
 import { useForm, ValidationError } from '@formspree/react';
 import { Login } from "../SignIn/Login";
@@ -44,7 +43,7 @@ export function NavbarHome() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Logo />
+        <img src="/img/favicon-rbg.png" alt="Logo" className="h-10 w-auto object-contain"/>
         </NavbarBrand>
       </NavbarContent>
 
@@ -177,7 +176,7 @@ export function NavbarHome() {
                     <>
                       <ModalHeader className="flex flex-col gap-1 text-red-600">Create an Account</ModalHeader>
                       <ModalBody>
-                        <Logo />
+                      <img src="/img/favicon-rbg.png" alt="Logo" className="h-10 w-auto object-contain"/>
                         <p className="text-center">
                           If you want to create an account to access VitaLink's technology, please
                           contact us and provide the following information for better interaction
