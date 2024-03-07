@@ -12,11 +12,7 @@ import {
   MenuItem,
   Avatar,
 } from "@material-tailwind/react";
-import {
-  CreditCardIcon,
-  Cog6ToothIcon,
-  PowerIcon,
-} from "@heroicons/react/24/solid";
+
 import {
   useMaterialTailwindController,
   // setOpenConfigurator,
@@ -24,86 +20,96 @@ import {
 } from "../../../Context/MaterialController";
 import React from "react";
 import { useAuth } from "../../../Context/authContext";
-import { AlignJustifyIcon, BellDotIcon, ChevronDown, Clock, LogOutIcon} from "lucide-react";
+import { AlignJustifyIcon, BellDotIcon, ChevronDown, CircleUserIcon, Clock, LogOutIcon } from "lucide-react";
+import { doc, getDoc } from "firebase/firestore"
+import { db } from "../../../Firebase";
 
-// profile menu component
-const profileMenuItems = [
-  {
-    label: "Sign Out",
-    icon: PowerIcon,
-  },
-  {
-    label: "Edit Profile",
-    icon: Cog6ToothIcon,
-  },
-];
+const docRef = doc(db, "accounts", "ax0jUGKOBFTyGKE0R3nsfwDONWc2");
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()){
+    console.log('Document exist: ', docSnap.data());
+  } else {
+    console.log("No such document!")
+  }
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { user } = useAuth();
+
+
+  // profile menu component
+  const profileMenuItems = [
+    {
+      label: `${ user.email }`,
+      icon: CircleUserIcon,
+    },
+  ];
 
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <div>
-    <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
-      <MenuHandler>
-        <Button
-          placeholder=""
-          variant="text"
-          color="blue-gray"
-          className="flex items-center gap-1 py-0.5 pr-2 pl-0.5 lg:ml-auto"
-        >
-          <Avatar
+      <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+        <MenuHandler>
+          <Button
             placeholder=""
-            variant="circular"
-            size="sm"
-            alt="tania andrew"
-            className="border border-gray-900 p-0.5"
-            src="/user-icon.jpg"
-          />
-          <ChevronDown
-            strokeWidth={2.5}
-            className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
-              }`}
-          />
-        </Button>
-      </MenuHandler>
-      <MenuList placeholder="" className="p-1">
-        <Link to={"/dashboard/settings"}>
-        {profileMenuItems.map(({ label, icon }, key) => {
-          const isLastItem = key === profileMenuItems.length - 1;
-          return (
-            <MenuItem
+            variant="text"
+            color="blue-gray"
+            className="flex items-center gap-1 py-0.5 pr-2 pl-0.5 lg:ml-auto"
+          >
+            <Avatar
               placeholder=""
-              key={label}
-              onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${isLastItem
-                ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                : ""
+              variant="circular"
+              size="sm"
+              alt="tania andrew"
+              className="border border-gray-900 p-0.5"
+              src="/img/user-icon.jpg"
+            />
+            <ChevronDown
+              strokeWidth={2.5}
+              className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
                 }`}
-            >
-              {React.createElement(icon, {
-                className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
-                strokeWidth: 2,
-              })}
-              <Typography
-                placeholder=""
-                as="span"
-                variant="small"
-                className="font-normal"
-                color={isLastItem ? "red" : "inherit"}
-              >
-                {label}
-              </Typography>
-            </MenuItem>
-          );
-        })}
-        </Link>
-      </MenuList>
-    </Menu>
+            />
+          </Button>
+        </MenuHandler>
+        <MenuList placeholder="" className="p-1">
+          <Link to={"/dashboard/settings"}>
+            {profileMenuItems.map(({ label, icon }, key) => {
+              const isLastItem = key === profileMenuItems.length - 1;
+              return (
+                <MenuItem
+                  placeholder=""
+                  key={label}
+                  onClick={closeMenu}
+                  className={`flex items-center gap-2 rounded ${isLastItem
+                    ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                    : ""
+                    }`}
+                >
+                  {React.createElement(icon, {
+                    className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
+                    strokeWidth: 2,
+                  })}
+                  <Typography
+                    placeholder=""
+                    as="span"
+                    variant="small"
+                    className="font-normal"
+                    color={isLastItem ? "red" : "inherit"}
+                  >
+                    {label}
+                  </Typography>
+                </MenuItem>
+              );
+            })}
+          </Link>
+        </MenuList>
+      </Menu>
     </div>
   );
 }
+
 
 export function DashboardNavbar() {
   const { logOut } = useAuth()
@@ -114,11 +120,11 @@ export function DashboardNavbar() {
 
   const handleLogout = async () => { //Se crea una funcion asyncrona para poder deslogearse
     try {
-        await logOut()
+      await logOut()
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
-}
+  }
 
   return (
     <Navbar
@@ -175,26 +181,7 @@ export function DashboardNavbar() {
           >
             <AlignJustifyIcon strokeWidth={3} className="h-6 w-6 text-blue-gray-500" />
           </IconButton>
-          
-            <Button
-              placeholder=""
-              variant="text"
-              color="blue-gray"
-              className="hidden items-center gap-1 px-4 xl:flex normal-case"
-              onClick={handleLogout}
-            >
-              <LogOutIcon className="h-5 w-5 text-blue-gray-500" />
-              Sign Out
-            </Button>
-            <IconButton
-              placeholder=""
-              variant="text"
-              color="blue-gray"
-              className="grid xl:hidden"
-              onClick={handleLogout}
-            >
-              <LogOutIcon className="h-5 w-5 text-blue-gray-500" />
-            </IconButton>
+
           <Menu>
             <MenuHandler>
               <IconButton placeholder="" variant="text" color="blue-gray">
@@ -205,7 +192,7 @@ export function DashboardNavbar() {
               <MenuItem placeholder="" className="flex items-center gap-3">
                 <Avatar
                   placeholder=""
-                  src=""
+                  src="/img/user-icon.jpg"
                   alt="item-1"
                   size="sm"
                   variant="circular"
@@ -232,11 +219,12 @@ export function DashboardNavbar() {
               <MenuItem placeholder="" className="flex items-center gap-4">
                 <Avatar
                   placeholder=""
-                  src="https://demos.creative-tim.com/material-dashboard/assets/img/small-logos/logo-spotify.svg"
-                  alt="item-1"
+                  src="/img/user-icon.jpg"
+                  alt="user"
                   size="sm"
                   variant="circular"
                 />
+
                 <div>
                   <Typography
                     placeholder=""
@@ -258,7 +246,7 @@ export function DashboardNavbar() {
               </MenuItem>
               <MenuItem placeholder="" className="flex items-center gap-4">
                 <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-tr from-blue-gray-800 to-blue-gray-900">
-                  <CreditCardIcon className="h-4 w-4 text-white" />
+                  {/* <CreditCardIcon className="h-4 w-4 text-white" /> */}
                 </div>
                 <div>
                   <Typography
@@ -290,6 +278,25 @@ export function DashboardNavbar() {
             <Cog6ToothIcon className="h-5 w-5 text-blue-gray-500" />
           </IconButton> */}
           <ProfileMenu />
+          <Button
+            placeholder=""
+            variant="text"
+            color="blue-gray"
+            className="hidden items-center gap-1 px-4 xl:flex normal-case text-red-600"
+            onClick={handleLogout}
+          >
+            <LogOutIcon className="h-5 w-5 text-red-600" />
+            Sign Out
+          </Button>
+          <IconButton
+            placeholder=""
+            variant="text"
+            color="blue-gray"
+            className="grid xl:hidden"
+            onClick={handleLogout}
+          >
+            <LogOutIcon className="h-5 w-5 text-red-600" />
+          </IconButton>
         </div>
       </div>
     </Navbar>
