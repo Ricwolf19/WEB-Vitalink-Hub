@@ -51,6 +51,10 @@ interface MaterialTailwindControllerProviderProps {
   children: ReactNode;
 }
 
+MaterialTailwindControllerProvider.defaultProps = {
+  children: null
+};
+
 export function MaterialTailwindControllerProvider({ children }: MaterialTailwindControllerProviderProps) {
     const initialState: State = {
       openSidenav: false,
