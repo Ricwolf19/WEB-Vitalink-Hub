@@ -56,9 +56,9 @@ Footer.defaultProps = {
   brandLink: "/home",
   routes: [
     { name: "", path: "" },
-    { name: "", path: "" },
-    { name: "", path: "" },
-    { name: "", path: "" },
+    { name: "  ", path: "" },
+    { name: " ", path: "" },
+    { name: "   ", path: "" },
   ],
 };
 

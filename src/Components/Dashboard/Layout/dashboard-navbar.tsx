@@ -18,30 +18,48 @@ import {
   // setOpenConfigurator,
   setOpenSidenav,
 } from "../../../Context/MaterialController";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../Context/authContext";
 import { AlignJustifyIcon, BellDotIcon, ChevronDown, CircleUserIcon, Clock, LogOutIcon } from "lucide-react";
-// import { doc, getDoc } from "firebase/firestore"
-// import { db } from "../../../Firebase";
+import { collection, doc, getDoc } from "firebase/firestore"
+import { db } from "../../../Firebase";
 
-// const docRef = doc(db, "accounts", "ax0jUGKOBFTyGKE0R3nsfwDONWc2");
-//   const docSnap = await getDoc(docRef);
 
-//   if (docSnap.exists()){
-//     console.log('Document exist: ', docSnap.data());
-//   } else {
-//     console.log("No such document!")
-//   }
 
 function ProfileMenu() {
+  const [accountData, setAccountData] = useState<any>('');
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { user } = useAuth();
+
+  const accountsCollectionRef = collection(db, "accounts");
+  const documentId = user.uid;
+
+  useEffect(() => {
+    const getAccountData = async () => {
+      try {
+        const docSnap = await getDoc(doc(accountsCollectionRef,documentId));
+        if (docSnap.exists()){
+          const accountInfo = docSnap.data();
+          setAccountData(accountInfo)
+          // console.log(accountInfo)
+        } else (
+          alert("No such Document")
+        )
+        // const filterData = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+        // console.log(filterData) si se tuvieran varios docs en la coleccion
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    getAccountData()
+  }, [])
 
 
   // profile menu component
   const profileMenuItems = [
     {
-      label: `${ user.email }`,
+      label: `Edit profile`,
       icon: CircleUserIcon,
     },
   ];
@@ -56,21 +74,26 @@ function ProfileMenu() {
             placeholder=""
             variant="text"
             color="blue-gray"
-            className="flex items-center gap-1 py-0.5 pr-2 pl-0.5 lg:ml-auto"
+            className="flex items-center gap-1 py-0.5 pr-3 pl-2 lg:ml-auto"
           >
+            <div className="pr-1 text-blue-800">
+            {accountData.userName}
+            </div>
             <Avatar
               placeholder=""
               variant="circular"
               size="sm"
               alt="tania andrew"
-              className="border border-gray-900 p-0.5"
+              className="border border-blue-900 p-0.5"
               src="/img/user-icon.jpg"
             />
+            
             <ChevronDown
               strokeWidth={2.5}
               className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
                 }`}
             />
+           
           </Button>
         </MenuHandler>
         <MenuList placeholder="" className="p-1">
@@ -179,13 +202,13 @@ export function DashboardNavbar() {
             className="grid xl:hidden"
             onClick={() => setOpenSidenav(dispatch, !openSidenav)}
           >
-            <AlignJustifyIcon strokeWidth={3} className="h-6 w-6 text-blue-gray-500" />
+            <AlignJustifyIcon strokeWidth={3} className="h-6 w-6 text-blue-900" />
           </IconButton>
 
           <Menu>
             <MenuHandler>
               <IconButton placeholder="" variant="text" color="blue-gray">
-                <BellDotIcon className="h-5 w-5 text-blue-gray-500 mr-2" />
+                <BellDotIcon className="h-5 w-5 text-blue-900 mr-2" />
               </IconButton>
             </MenuHandler>
             <MenuList placeholder="" className="w-max border-0">

@@ -88,7 +88,7 @@ export function NavbarHome() {
                   <>
                     <ModalHeader className="flex flex-col gap-1 text-red-600">Create an Account</ModalHeader>
                     <ModalBody>
-                    <img src="/img/favicon-rbg.png" alt="Logo" className="h-10 w-auto object-contain"/>
+                    <Logo />
                       <p className="text-center">
                         If you want to create an account to access VitaLink's technology, please
                         contact us and provide the following information for better interaction
