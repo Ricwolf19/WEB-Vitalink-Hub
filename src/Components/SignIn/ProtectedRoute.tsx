@@ -6,7 +6,7 @@ export function ProtectedRoute({ children }: any) { //funcion la cual comprueba 
 
     if (loading) return <h1>loading</h1> //Devuelve el texto loading en la carga
 
-    if (!user) return <Navigate to='/dashboard/home' /> //Si no hay un usuario logeado redireccion a el login
+    if (!user) return <Navigate to='/home' /> //Si no hay un usuario logeado redireccion a el login
 
     return <>{children}</>
 
