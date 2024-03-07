@@ -13,7 +13,7 @@ import { useMaterialTailwindController } from "../Context/MaterialController";
 
 
 export function Dashboard() {
-  const { loading } = useAuth() //Se exportan las propiedades necesarias para todo 
+  const { loading, user } = useAuth() //Se exportan las propiedades necesarias para todo 
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
   //Se quito user y LogOut de propiedades
@@ -45,6 +45,7 @@ export function Dashboard() {
       />
       <div className="p-4 xl:ml-80">
         <DashboardNavbar /> 
+        <div>{user.email}</div>
         {/* <Configurator /> */}
         <Typography as="a" href="#" placeholder=""> {/* arrow to up in all sites */}
         <IconButton
