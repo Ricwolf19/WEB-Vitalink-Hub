@@ -21,17 +21,17 @@ import {
 import React from "react";
 import { useAuth } from "../../../Context/authContext";
 import { AlignJustifyIcon, BellDotIcon, ChevronDown, CircleUserIcon, Clock, LogOutIcon } from "lucide-react";
-import { doc, getDoc } from "firebase/firestore"
-import { db } from "../../../Firebase";
+// import { doc, getDoc } from "firebase/firestore"
+// import { db } from "../../../Firebase";
 
-const docRef = doc(db, "accounts", "ax0jUGKOBFTyGKE0R3nsfwDONWc2");
-  const docSnap = await getDoc(docRef);
+// const docRef = doc(db, "accounts", "ax0jUGKOBFTyGKE0R3nsfwDONWc2");
+//   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()){
-    console.log('Document exist: ', docSnap.data());
-  } else {
-    console.log("No such document!")
-  }
+//   if (docSnap.exists()){
+//     console.log('Document exist: ', docSnap.data());
+//   } else {
+//     console.log("No such document!")
+//   }
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
