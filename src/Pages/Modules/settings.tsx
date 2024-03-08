@@ -1,5 +1,8 @@
+import { useAccountData } from "../../Context/authContext";
 
 export function Settings(){
+  const { accountData } = useAccountData()
+
     return (
        <>
        <br />
@@ -29,7 +32,6 @@ export function Settings(){
                           name="fullName"
                           id="fullName"
                           placeholder="Devid Jhon"
-                          defaultValue={"as"}
                         />
                       </div>
                     </div>
