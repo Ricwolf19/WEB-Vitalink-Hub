@@ -18,43 +18,14 @@ import {
   // setOpenConfigurator,
   setOpenSidenav,
 } from "../../../Context/MaterialController";
-import React, { useEffect, useState } from "react";
-import { useAuth } from "../../../Context/authContext";
+import React from "react";
+import { useAccountData, useAuth } from "../../../Context/authContext";
 import { AlignJustifyIcon, BellDotIcon, ChevronDown, CircleUserIcon, Clock, LogOutIcon } from "lucide-react";
-import { collection, doc, getDoc } from "firebase/firestore"
-import { db } from "../../../Firebase";
-
-
 
 function ProfileMenu() {
-  const [accountData, setAccountData] = useState<any>('');
+  const { accountData } = useAccountData()
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const { user } = useAuth();
-
-  const accountsCollectionRef = collection(db, "accounts");
-  const documentId = user.uid;
-
-  useEffect(() => {
-    const getAccountData = async () => {
-      try {
-        const docSnap = await getDoc(doc(accountsCollectionRef,documentId));
-        if (docSnap.exists()){
-          const accountInfo = docSnap.data();
-          setAccountData(accountInfo)
-          // console.log(accountInfo)
-        } else (
-          alert("No such Document")
-        )
-        // const filterData = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
-        // console.log(filterData) si se tuvieran varios docs en la coleccion
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    getAccountData()
-  }, [])
-
 
   // profile menu component
   const profileMenuItems = [
@@ -77,7 +48,7 @@ function ProfileMenu() {
             className="flex items-center gap-1 py-0.5 pr-3 pl-2 lg:ml-auto"
           >
             <div className="pr-1 text-blue-800">
-            {accountData.userName}
+              {accountData.userName}
             </div>
             <Avatar
               placeholder=""
@@ -87,13 +58,13 @@ function ProfileMenu() {
               className="border border-blue-900 p-0.5"
               src="/img/user-icon.jpg"
             />
-            
+
             <ChevronDown
               strokeWidth={2.5}
               className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
                 }`}
             />
-           
+
           </Button>
         </MenuHandler>
         <MenuList placeholder="" className="p-1">

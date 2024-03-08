@@ -8,11 +8,43 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../Firebase";
 import {
+    collection,
     doc,
     // setDoc, 
     getDoc
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+
+
+export const useAccountData = () => {
+    const { user } = useAuth(); 
+    const [accountData, setAccountData] = useState<any>('');
+  
+    useEffect(() => {
+      const getAccountData = async () => {
+        try {
+          // Assuming you have initialized your Firestore database connection
+          const accountsCollectionRef = collection(db, 'accounts');
+          const documentId = user.uid;
+  
+          const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
+          if (docSnap.exists()) {
+            const accountInfo = docSnap.data();
+            setAccountData(accountInfo);
+          } else {
+            alert('No such Document');
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      };
+  
+      getAccountData();
+    }, [user.uid]); 
+  
+    return { accountData };
+  };
+
 
 interface AuthContextProps {
     // signUp: (email: string, password: string) => void;
@@ -40,6 +72,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
     const navigate = useNavigate();
     const [user, setUser] = useState<any>();
     const [loading, setLoading] = useState(true);
+
 
     // const signUp = (email: string, password: string): void => {
     //     createUserWithEmailAndPassword(auth, email, password)
@@ -91,7 +124,6 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
         }
     };
 
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -108,6 +140,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
         resetPassword,
         user,
         loading,
+
     };
 
     return (
