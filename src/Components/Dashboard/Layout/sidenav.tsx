@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 //import { XMarkIcon } from "@heroicons/react/24/outline";
-import { ArrowLeftToLineIcon } from 'lucide-react'
+import { X } from 'lucide-react'
 import {
   // Avatar,
   Button,
@@ -69,7 +69,7 @@ export function Sidenav({ routes }: SidenavProps) {
           className="absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden"
           onClick={() => setOpenSidenav(dispatch, false)}
         >
-          <ArrowLeftToLineIcon strokeWidth={1.5} className="h-5 w-5 text-blue-900" />
+          <X strokeWidth={1.5} className="h-5 w-5 text-blue-900" />
         </IconButton>
       </div>
       <div className="m-4">
