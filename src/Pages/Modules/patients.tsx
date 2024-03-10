@@ -265,7 +265,6 @@ export function Patients() {
                             name={name}
                             lastName={lastName}
                             numCedula={numCedula}
-                            patients={patients}
                           />
                           <div className="pt-2">
                             <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold">

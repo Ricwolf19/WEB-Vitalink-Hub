@@ -13,9 +13,17 @@ import {
 import { selectOptionStatusPatients, selectOptionsAllergies, selectOptionsArea, selectOptionsBloodType, selectOptionsChronicDiseases } from "../../../Data";
 import { Logo } from "../../HomePage/Icons";
 import { UserCog } from "lucide-react";
+import { useDoctorData } from "../../../Context/authContext";
+import React from "react";
 
 export function EditPatient({ name, lastName, age, birthDate }: any) {
+  const { doctorData } = useDoctorData()
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [values, setValues] = React.useState(new Set([]));
+
+  const handleSelectionChange = (e: any) => {
+    setValues(new Set(e.target.value.split(",")));
+  };
 
   return (
     <div>
@@ -152,7 +160,6 @@ export function EditPatient({ name, lastName, age, birthDate }: any) {
                         <div className="flex gap-2 items-center">
                           <div className="flex flex-col">
                             <span className="text-small">{option.value}</span>
-
                           </div>
                         </div>
                       </SelectItem>
@@ -161,66 +168,22 @@ export function EditPatient({ name, lastName, age, birthDate }: any) {
                 </div>
 
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                  {/* <Select
-                                        items={users}
-                                        label="Assigned to"
-                                        className="max-w-xs"
-                                        variant="bordered"
-                                        classNames={{
-                                          label: "group-data-[filled=true]:-translate-y-5",
-                                          trigger: "min-h-unit-16",
-                                          listboxWrapper: "max-h-[400px]",
-                                        }}
-                                        listboxProps={{
-                                          itemClasses: {
-                                            base: [
-                                              "rounded-md",
-                                              "text-default-500",
-                                              "transition-opacity",
-                                              "data-[hover=true]:text-foreground",
-                                              "data-[hover=true]:bg-default-100",
-                                              "dark:data-[hover=true]:bg-default-50",
-                                              "data-[selectable=true]:focus:bg-default-50",
-                                              "data-[pressed=true]:opacity-70",
-                                              "data-[focus-visible=true]:ring-default-500",
-                                            ],
-                                          },
-                                        }}
-                                        popoverProps={{
-                                          classNames: {
-                                            base: "before:bg-default-200",
-                                            content: "p-0 border-small border-divider bg-background",
-                                          },
-                                        }}
-                                        renderValue={(items) => {
-                                          return items.map((item) => (
-                                            <div key={item.key} className="flex items-center gap-2">
-                                              <Avatar
-                                                alt={item.data.name}
-                                                className="flex-shrink-0"
-                                                size="sm"
-                                                src={item.data.avatar}
-                                              />
-                                              <div className="flex flex-col">
-                                                <span>{item.data.name}</span>
-                                                <span className="text-default-500 text-tiny">({item.data.email})</span>
-                                              </div>
-                                            </div>
-                                          ));
-                                        }}
-                                      >
-                                        {(user) => (
-                                          <SelectItem key={user.id} textValue={user.name}>
-                                            <div className="flex gap-2 items-center">
-                                              <Avatar alt={user.name} className="flex-shrink-0" size="sm" src={user.avatar} />
-                                              <div className="flex flex-col">
-                                                <span className="text-small">{user.name}</span>
-                                                <span className="text-tiny text-default-400">{user.email}</span>
-                                              </div>
-                                            </div>
-                                          </SelectItem>
-                                        )}
-                                      </Select> */}
+                  <Select
+                    label="Select Doctor"
+                    selectionMode="single"
+                    selectedKeys={values}
+                    color="primary"
+                    variant="bordered"
+                    placeholder=""
+                    onChange={handleSelectionChange}
+                  >
+                    {doctorData.map((doctor: any) => (
+                      <SelectItem key={doctor.name} value={doctor.name}>
+                        {`${doctor.name} ${doctor.lastName}`}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                  {/* <p className="text-small text-default-500">Selected: {Array.from(values).join(", ")}</p> */}
                 </div>
 
                 <div className="mt-4 text-right">
