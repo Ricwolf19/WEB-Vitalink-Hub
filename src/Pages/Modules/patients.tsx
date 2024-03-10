@@ -62,7 +62,7 @@ export function Patients() {
                   return (
                     <tr key={name}>
                       <td className={className}>
-                        <div className="flex items-center gap-4 text-center">
+                        <div className="items-center text-center">
                           <Avatar placeholder="" src={'/img/pacient-icon.jpeg'} alt={name} variant="rounded" />
                           <div>
                             <Typography
@@ -122,7 +122,7 @@ export function Patients() {
                         </Typography>
                       </td>
                       <td className={className}>
-                        <div className="flex items-center gap-4 text-center">
+                        <div className="items-centertext-center">
                           <Avatar placeholder="" src={'/img/doctor-icon.png'} alt={name} size="sm" variant="rounded" />
                           <div>
                             <Typography
