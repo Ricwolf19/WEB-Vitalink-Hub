@@ -31,7 +31,7 @@ export const routes = [
       },
       {
         icon: <UsersIcon {...icon} />,
-        name: "Patients",
+        name: "Personal",
         path: "/patients",
         element: <Patients />,
       },

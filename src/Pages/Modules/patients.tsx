@@ -63,7 +63,7 @@ export function Patients() {
                     <tr key={name}>
                       <td className={className}>
                         <div className="items-center text-center">
-                          <Avatar placeholder="" src={'/img/pacient-icon.jpeg'} alt={name} variant="rounded" />
+                          <Avatar placeholder="" src={'https://i.ibb.co/k1v2vgn/pacient-icon.jpg'} alt={name} variant="rounded" />
                           <div>
                             <Typography
                               placeholder=""
