@@ -11,39 +11,66 @@ import {
     collection,
     doc,
     // setDoc, 
-    getDoc
+    getDoc,
+    getDocs
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
+export const usePatientData = () => {
+    const { user } = useAuth();
+    const [patientData, setPatientData] = useState<any>([]);
+    const documentId = user.uid;
+    const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
+
+    useEffect(() => {
+        const getPatientData = async () => {
+            try {
+                const data = await getDocs(patientCollectionRef);
+                const filteredData = data.docs.map((doc) => ({...doc.data(), id:doc.id}))
+                setPatientData(filteredData)
+            } catch (err) {
+                alert(err)
+            }
+        }
+
+        getPatientData();
+    }, [])
+
+    return { patientData }
+}
+
+export const useDoctorData = () => {
+
+}
 
 export const useAccountData = () => {
-    const { user } = useAuth(); 
+    const { user } = useAuth();
     const [accountData, setAccountData] = useState<any>('');
-  
+
     useEffect(() => {
-      const getAccountData = async () => {
-        try {
-          // Assuming you have initialized your Firestore database connection
-          const accountsCollectionRef = collection(db, 'accounts');
-          const documentId = user.uid;
-  
-          const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
-          if (docSnap.exists()) {
-            const accountInfo = docSnap.data();
-            setAccountData(accountInfo);
-          } else {
-            alert('No such Document');
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      };
-  
-      getAccountData();
-    }, [user.uid]); 
-  
+        const getAccountData = async () => {
+            try {
+                // Assuming you have initialized your Firestore database connection
+                const accountsCollectionRef = collection(db, 'accounts');
+                const documentId = user.uid;
+
+                const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
+                if (docSnap.exists()) {
+                    const accountInfo = docSnap.data();
+                    setAccountData(accountInfo);
+                } else {
+                    alert('No such Document');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        getAccountData();
+    }, [user.uid]);
+
     return { accountData };
-  };
+};
 
 
 interface AuthContextProps {
