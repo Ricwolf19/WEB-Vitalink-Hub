@@ -40,7 +40,24 @@ export const usePatientData = () => {
 }
 
 export const useDoctorData = () => {
+    const { user } = useAuth();
+    const [doctorData, setDoctorData] = useState<any>([]); 
+    const documentId = user.uid;
+    const doctorCollectionRef = collection(db, "accounts", documentId, "doctors");
 
+    useEffect(() => {
+        const getDoctorData = async () => {
+            try {
+                const data = await getDocs(doctorCollectionRef);
+                const filteredData = data.docs.map((doc) => ({...doc.data(), id:doc.id}));
+                setDoctorData(filteredData)
+            } catch (err) {
+               alert(err) 
+            }
+        }
+        getDoctorData()
+    }, [])
+    return {doctorData}
 }
 
 export const useAccountData = () => {
