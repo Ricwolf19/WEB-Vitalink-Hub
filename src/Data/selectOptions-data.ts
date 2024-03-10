@@ -1,6 +1,11 @@
-  export const selectOptionStatus = [
+  export const selectOptionStatusPatients = [
     { value: "Stable" },
     { value: "Unstable" },
+  ]
+
+  export const selectOptionStatusDoctors = [
+    { value: "Availiable" },
+    { value: "Not available" },
   ]
 
   export const selectOptionsArea = [
