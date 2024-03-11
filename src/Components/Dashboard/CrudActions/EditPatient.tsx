@@ -25,9 +25,6 @@ export function EditPatient({ name, lastName, age, birthDate }: any) {
     setValues(new Set(e.target.value.split(",")));
   };
 
-  const handleConsoleLog = () => {
-    console.log()
-  }
 
   return (
     <div>

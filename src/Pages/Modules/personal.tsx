@@ -9,15 +9,15 @@ import {
 import {
   Button,
 } from "@nextui-org/react";
-import { useDoctorData, usePatientData } from "../../Context/authContext";
+import { handleDeleteDoctor, handleDeletePatient, useDoctorData, usePatientData } from "../../Context/authContext";
 import { EditPatient } from "../../Components/Dashboard/CrudActions/EditPatient";
 import { EditDoctor } from "../../Components/Dashboard/CrudActions/EditDoctor";
 import { UserMinus, UserPlus } from "lucide-react";
+import { AddPatient } from "../../Components/Dashboard/CrudActions/AddPatient";
 
 export function Personal() {
   const { patientData } = usePatientData();
   const { doctorData } = useDoctorData();
-
   
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
@@ -46,7 +46,7 @@ export function Personal() {
                   </th>
                 ))}
                 <th>
-                  <Button color="success" variant="shadow" className="text-black" startContent={<UserPlus />}>Add</Button>
+                  <AddPatient />
                 </th>
               </tr>
             </thead>
@@ -57,10 +57,6 @@ export function Personal() {
                     ? ""
                     : "border-b border-blue-gray-50"
                     }`;
-
-                  function handleDeletePatient(id: any): void {
-                    throw new Error("Function not implemented.");
-                  }
 
                   return (
                     <tr key={id}>
@@ -148,7 +144,7 @@ export function Personal() {
                             age={age}
                             birthDate={birthDate}
                           />
-                          <Button color="danger" variant="shadow" startContent={<UserMinus />} onClick={() => handleDeletePatient(id)} className="font-semibold">
+                          <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeletePatient(id)}>
                             Del
                           </Button>
                         </div>
@@ -193,14 +189,14 @@ export function Personal() {
             </thead>
             <tbody>
               {doctorData.map(
-                ({ name, lastName, area, numCedula, patients, status }: any, key: any) => {
+                ({ name, lastName, area, numCedula, patients, status, id }: any, key: any) => {
                   const className = `py-3 px-5 text-center ${key === doctorData.length - 1
                     ? ""
                     : "border-b border-blue-gray-50"
                     }`;
 
                   return (
-                    <tr key={name}>
+                    <tr key={id}>
                       <td className={className}>
                         <div className="items-center gap-4 text-center">
                           <Avatar placeholder="" src={'/img/doctor-icon.png'} alt={name} variant="rounded" />
@@ -270,7 +266,7 @@ export function Personal() {
                             numCedula={numCedula}
                           />
                           <div className="pt-2">
-                            <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold">
+                            <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeleteDoctor(id)}>
                               Del
                             </Button>
                           </div>

@@ -7,7 +7,7 @@ import {
   Cog,
 } from 'lucide-react'
 
-import { Home, Analytics , Personal , Calendar, Kanban, Settings , Profile, Notifications } from "./src/Pages/Modules";
+import { Home, Analytics, Personal, Calendar, Kanban, Settings, Profile, Notifications } from "./src/Pages/Modules";
 
 const icon = {
   className: "text-inherit",

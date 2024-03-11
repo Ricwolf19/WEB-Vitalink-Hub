@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../Firebase";
 import {
+    addDoc,
     collection,
     deleteDoc,
     doc,
@@ -17,13 +18,38 @@ import {
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-export const handleDeletePatient = async (id: any) => {
+
+export const handleCreatePatient = async () => {
     const { user } = useAuth();
     const documentId = user.uid;
-   
+    const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
+
+    await addDoc(patientCollectionRef, {})
+}
+
+export const handleCreateDoctor = async () => {
+    const { user } = useAuth();
+    const documentId = user.uid;
+    const patientCollectionRef = collection(db, 'accounts', documentId, 'doctors')
+
+    await addDoc(patientCollectionRef, {})
+}
+
+export const handleDeletePatient = async (id: string) => {
+    const { user } = useAuth();
+    const documentId = user.uid;
+
     const deletePatient = doc(db, 'accounts', documentId, 'patients', id)
     await deleteDoc(deletePatient)
-  }
+}
+
+export const handleDeleteDoctor = async (id: string) => {
+    const { user } = useAuth();
+    const documentId = user.uid;
+
+    const deletePatient = doc(db, 'accounts', documentId, 'doctors', id)
+    await deleteDoc(deletePatient)
+}
 
 export const usePatientData = () => {
     const { user } = useAuth();
@@ -35,7 +61,7 @@ export const usePatientData = () => {
         const getPatientData = async () => {
             try {
                 const data = await getDocs(patientCollectionRef);
-                const filteredData = data.docs.map((doc) => ({...doc.data(), id:doc.id}))
+                const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
                 setPatientData(filteredData)
             } catch (err) {
                 alert(err)
@@ -50,7 +76,7 @@ export const usePatientData = () => {
 
 export const useDoctorData = () => {
     const { user } = useAuth();
-    const [doctorData, setDoctorData] = useState<any>([]); 
+    const [doctorData, setDoctorData] = useState<any>([]);
     const documentId = user.uid;
     const doctorCollectionRef = collection(db, "accounts", documentId, "doctors");
 
@@ -58,15 +84,15 @@ export const useDoctorData = () => {
         const getDoctorData = async () => {
             try {
                 const data = await getDocs(doctorCollectionRef);
-                const filteredData = data.docs.map((doc) => ({...doc.data(), id:doc.id}));
+                const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
                 setDoctorData(filteredData)
             } catch (err) {
-               alert(err) 
+                alert(err)
             }
         }
         getDoctorData()
     }, [])
-    return {doctorData}
+    return { doctorData }
 }
 
 export const useAccountData = () => {
