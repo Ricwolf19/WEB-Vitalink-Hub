@@ -7,7 +7,7 @@ import {
   Cog,
 } from 'lucide-react'
 
-import { Home, Analytics , Patients , Calendar, Kanban, Settings , Profile, Notifications } from "./src/Pages/Modules";
+import { Home, Analytics , Personal , Calendar, Kanban, Settings , Profile, Notifications } from "./src/Pages/Modules";
 
 const icon = {
   className: "text-inherit",
@@ -32,8 +32,8 @@ export const routes = [
       {
         icon: <UsersIcon {...icon} />,
         name: "Personal",
-        path: "/patients",
-        element: <Patients />,
+        path: "/personal",
+        element: <Personal />,
       },
       {
         icon: <CalendarHeartIcon {...icon} />,

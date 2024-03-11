@@ -9,12 +9,21 @@ import {
 import { auth, db } from "../Firebase";
 import {
     collection,
+    deleteDoc,
     doc,
     // setDoc, 
     getDoc,
     getDocs
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+
+export const handleDeletePatient = async (id: any) => {
+    const { user } = useAuth();
+    const documentId = user.uid;
+   
+    const deletePatient = doc(db, 'accounts', documentId, 'patients', id)
+    await deleteDoc(deletePatient)
+  }
 
 export const usePatientData = () => {
     const { user } = useAuth();

@@ -14,12 +14,11 @@ import { EditPatient } from "../../Components/Dashboard/CrudActions/EditPatient"
 import { EditDoctor } from "../../Components/Dashboard/CrudActions/EditDoctor";
 import { UserMinus, UserPlus } from "lucide-react";
 
-
-
-export function Patients() {
+export function Personal() {
   const { patientData } = usePatientData();
   const { doctorData } = useDoctorData();
 
+  
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <Card placeholder="">
@@ -53,14 +52,18 @@ export function Patients() {
             </thead>
             <tbody>
               {patientData.map(
-                ({ age, allergies, area, birthDate, bloodType, chronicDiseases, lastName, name, status, doctorAssigned }: any, key: any) => {
+                ({ age, allergies, area, birthDate, bloodType, chronicDiseases, lastName, name, status, doctorAssigned, id }: any, key: any) => {
                   const className = `py-3 px-5 text-center ${key === patientData.length - 1
                     ? ""
                     : "border-b border-blue-gray-50"
                     }`;
 
+                  function handleDeletePatient(id: any): void {
+                    throw new Error("Function not implemented.");
+                  }
+
                   return (
-                    <tr key={name}>
+                    <tr key={id}>
                       <td className={className}>
                         <div className="items-center text-center">
                           <Avatar placeholder="" src={'https://i.ibb.co/k1v2vgn/pacient-icon.jpg'} alt={name} variant="rounded" />
@@ -145,7 +148,7 @@ export function Patients() {
                             age={age}
                             birthDate={birthDate}
                           />
-                          <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold">
+                          <Button color="danger" variant="shadow" startContent={<UserMinus />} onClick={() => handleDeletePatient(id)} className="font-semibold">
                             Del
                           </Button>
                         </div>

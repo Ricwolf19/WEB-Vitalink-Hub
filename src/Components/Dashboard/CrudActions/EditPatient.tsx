@@ -25,6 +25,10 @@ export function EditPatient({ name, lastName, age, birthDate }: any) {
     setValues(new Set(e.target.value.split(",")));
   };
 
+  const handleConsoleLog = () => {
+    console.log()
+  }
+
   return (
     <div>
       <Button onPress={onOpen} color="primary" variant="shadow" startContent={<UserCog />} className="font-semibold">Edit</Button>
@@ -44,12 +48,12 @@ export function EditPatient({ name, lastName, age, birthDate }: any) {
               <ModalHeader className="flex flex-col gap-1 text-red-600 text-center"><div className="pb-2 text-center flex-col flex gap-1"><Logo /></div>Edit Patient</ModalHeader>
               <ModalBody>
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                  <Input label="Name" color="primary" placeholder={name} variant="faded" />
-                  <Input label="Last Name" color="primary" placeholder={lastName} variant="faded" />
+                  <Input label="Name" color="primary" type="text" placeholder={name} variant="faded" />
+                  <Input label="Last Name" color="primary" type="text" placeholder={lastName} variant="faded" />
                 </div>
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                  <Input label="Age" color="primary" placeholder={age} variant="faded" />
-                  <Input label="Birth Day" color="primary" placeholder={birthDate} variant="faded" />
+                  <Input label="Age" color="primary" type="number" placeholder={age} variant="faded" />
+                  <Input label="Birth Day" color="primary" type="date" placeholder={birthDate} variant="faded" />
                 </div>
 
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
@@ -102,12 +106,12 @@ export function EditPatient({ name, lastName, age, birthDate }: any) {
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                   <Select
                     items={selectOptionsChronicDiseases}
+                    label="Chronic Diseases"
                     color="primary"
                     variant="bordered"
                     isMultiline={true}
                     selectionMode="multiple"
-                    placeholder="Chronic Diseases"
-                    labelPlacement="outside"
+                    labelPlacement="outside-left"
                     classNames={{
                       base: "max-w-xs",
                       trigger: "min-h-unit-12 py-2",
@@ -136,11 +140,11 @@ export function EditPatient({ name, lastName, age, birthDate }: any) {
                   <Select
                     items={selectOptionsAllergies}
                     color="primary"
+                    label="Allergies"
                     variant="bordered"
                     isMultiline={true}
                     selectionMode="multiple"
-                    placeholder="Allergies"
-                    labelPlacement="outside"
+                    labelPlacement="outside-left"
                     classNames={{
                       base: "max-w-xs",
                       trigger: "min-h-unit-12 py-2",
