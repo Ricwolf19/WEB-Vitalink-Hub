@@ -4,17 +4,10 @@ import {
   Card,
   CardHeader,
   CardBody,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
   Avatar,
-  Tooltip,
   Progress,
 } from "@material-tailwind/react";
 import {
-  EllipsisVerticalIcon,
   ArrowUpIcon,
 } from "@heroicons/react/24/outline";
 import { StatisticsCard } from "../../Components/Dashboard/Cards/statistics-card";
@@ -25,9 +18,13 @@ import {
   projectsTableData,
   ordersOverviewData,
 } from "../../Data";
-import { CheckCircleIcon} from "@heroicons/react/24/solid";
+
+import { Users } from "lucide-react";
+import { usePatientData } from "../../Context/authContext";
 
 export function Home() {
+  const { patientData } = usePatientData()
+
   return (
     <div className="mt-12">
       <div className="mb-10 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
@@ -66,40 +63,19 @@ export function Home() {
             className="m-0 flex items-center justify-between p-6"
           >
             <div>
+              
               <Typography placeholder="" variant="h6" color="blue-gray" className="mb-1">
-                Projects
-              </Typography>
-              <Typography
-                placeholder=""
-                variant="small"
-                className="flex items-center gap-1 font-normal text-blue-gray-600"
-              >
-                <CheckCircleIcon strokeWidth={3} className="h-4 w-4 text-blue-gray-200" />
-                <strong>30 done</strong> this month
+              <Users strokeWidth={3} className="h-4 w-4 text-blue-gray-200" />
+                {`Patients`}        
               </Typography>
             </div>
-            <Menu placement="left-start">
-              <MenuHandler>
-                <IconButton placeholder="" size="sm" variant="text" color="blue-gray">
-                  <EllipsisVerticalIcon
-                    strokeWidth={3}
-                    fill="currenColor"
-                    className="h-6 w-6"
-                  />
-                </IconButton>
-              </MenuHandler>
-              <MenuList placeholder="">
-                <MenuItem placeholder="">Action</MenuItem>
-                <MenuItem placeholder="">Another Action</MenuItem>
-                <MenuItem placeholder="">Something else here</MenuItem>
-              </MenuList>
-            </Menu>
+            
           </CardHeader>
           <CardBody placeholder="" className="overflow-x-scroll px-0 pt-0 pb-2">
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["companies", "members", "budget", "completion"].map(
+                  {["Name", "Status", "Area", "Chronic Diseases", "Allergies", "Blood Type", "Birth Date", "Age", "Doctor Assigned"].map(
                     (el) => (
                       <th
                         key={el}
@@ -118,42 +94,44 @@ export function Home() {
                 </tr>
               </thead>
               <tbody>
-                {projectsTableData.map(
-                  ({ img, name, members, budget, completion }, key) => {
+                {patientData.map(
+                  ({ age, allergies, area, birthDate, bloodType, chronicDiseases, lastName, name, status, doctorAssigned, id }: any, key: any) => {
                     const className = `py-3 px-5 ${key === projectsTableData.length - 1
                         ? ""
-                        : "border-b border-blue-gray-50"
+                        : "border-b border-blue-gray-50 text-center"
                       }`;
 
                     return (
-                      <tr key={name}>
+                      <tr key={id}>
                         <td className={className}>
-                          <div className="flex items-center gap-4">
-                            <Avatar placeholder="" src={img} alt={name} size="sm" />
+                          <div className="text-center">
+                            <Avatar placeholder="" src={"/img/user-icon.jpg"} alt={name} size="sm" className="text-center" />
                             <Typography
                               placeholder=""
                               variant="small"
                               color="blue-gray"
-                              className="font-bold"
+                              className="font-bold text-center"
                             >
                               {name}
                             </Typography>
+                           
                           </div>
-                        </td>
+                          <Typography
+                              placeholder=""
+                              variant="small"
+                              className="font-bold text-center text-blue-gray-600 text-xs"    
+                            >
+                              {lastName}
+                            </Typography>
+                        </td>                    
                         <td className={className}>
-                          {members.map(({ img, name }, key) => (
-                            <Tooltip key={name} content={name}>
-                              <Avatar
-                                placeholder=""
-                                src={img}
-                                alt={name}
-                                size="xs"
-                                variant="circular"
-                                className={`cursor-pointer border-2 border-white ${key === 0 ? "" : "-ml-2.5"
-                                  }`}
-                              />
-                            </Tooltip>
-                          ))}
+                          <Typography
+                            placeholder=""
+                            variant="small"
+                            className="text-xs font-medium text-blue-gray-600"
+                          >
+                            {status}
+                          </Typography>
                         </td>
                         <td className={className}>
                           <Typography
@@ -161,27 +139,72 @@ export function Home() {
                             variant="small"
                             className="text-xs font-medium text-blue-gray-600"
                           >
-                            {budget}
+                            {area}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <div className="w-10/12">
-                            <Typography
-                              placeholder=""
-                              variant="small"
-                              className="mb-1 block text-xs font-medium text-blue-gray-600"
-                            >
-                              {completion}%
-                            </Typography>
+                          <Typography
+                            placeholder=""
+                            variant="small"
+                            className="text-xs font-medium text-blue-gray-600"
+                          >
+                            {" " +chronicDiseases}
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography
+                            placeholder=""
+                            variant="small"
+                            className="text-xs font-medium text-blue-gray-600"
+                          >
+                            {" " + allergies}
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography
+                            placeholder=""
+                            variant="small"
+                            className="text-xs font-medium text-blue-gray-600"
+                          >
+                            {bloodType}
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography
+                            placeholder=""
+                            variant="small"
+                            className="text-xs font-medium text-blue-gray-600"
+                          >
+                            {birthDate}
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography
+                            placeholder=""
+                            variant="small"
+                            className="text-xs font-medium text-blue-gray-600"
+                          >
+                            {age}
+
                             <Progress
                               placeholder=""
-                              value={completion}
+                              value={age}
                               variant="gradient"
-                              color={completion === 100 ? "green" : "blue"}
-                              className="h-1"
+                              color="green"
+                              className="h-1 mt-2"
                             />
-                          </div>
+                          </Typography>
                         </td>
+                        <td className={className}>
+                          <Typography
+                            placeholder=""
+                            variant="small"
+                            className="text-xs font-medium text-blue-gray-600"
+                          >
+                            {doctorAssigned}
+                            
+                          </Typography>
+                        </td>                       
                       </tr>
                     );
                   }

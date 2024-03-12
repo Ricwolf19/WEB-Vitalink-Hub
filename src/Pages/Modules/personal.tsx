@@ -34,7 +34,7 @@ export function Personal() {
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["Name", "Status", "Area", "Chronic Diseases", "Allergies", "Blood Type", "Birth Date", "Age", "Doctor Assigned",].map((el) => (
+                {["Name", "Status", "Area", "Chronic Diseases", "Allergies", "Blood Type", "Birth Date", "Age", "Doctor Assigned"].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-center"

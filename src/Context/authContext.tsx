@@ -44,7 +44,7 @@ export const usePatientData = () => {
             const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
             setPatientData(filteredData)
         } catch (err) {
-            alert(err)
+            console.log(err)
         }
     }
 
@@ -98,7 +98,7 @@ export const useDoctorData = () => {
             const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             setDoctorData(filteredData)
         } catch (err) {
-            alert(err)
+            console.log(err)
         }
     }
 
@@ -135,24 +135,25 @@ export const useAccountData = () => {
     const { user } = useAuth();
     const [accountData, setAccountData] = useState<any>('');
 
-    useEffect(() => {
-        const getAccountData = async () => {
-            try {
-                // Assuming you have initialized your Firestore database connection
-                const accountsCollectionRef = collection(db, 'accounts');
-                const documentId = user.uid;
+    const getAccountData = async () => {
+        try {
+            // Assuming you have initialized your Firestore database connection
+            const accountsCollectionRef = collection(db, 'accounts');
+            const documentId = user.uid;
 
-                const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
-                if (docSnap.exists()) {
-                    const accountInfo = docSnap.data();
-                    setAccountData(accountInfo);
-                } else {
-                    alert('No such Document');
-                }
-            } catch (err) {
-                console.error(err);
+            const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
+            if (docSnap.exists()) {
+                const accountInfo = docSnap.data();
+                setAccountData(accountInfo);
+            } else {
+                console.log('No such Document');
             }
-        };
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    useEffect(() => {
         getAccountData();
     }, [user.uid]);
 
