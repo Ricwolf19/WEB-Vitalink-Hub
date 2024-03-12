@@ -117,14 +117,14 @@ export function EditPatient({ name, lastName, age, birthDate }: any) {
                       return (
                         <div className="flex flex-wrap gap-2">
                           {options.map((option) => (
-                            <ChipNextUi key={option.key}>{option.data?.value}</ChipNextUi>
+                            <ChipNextUi key={option.textValue}>{option.data?.value}</ChipNextUi>
                           ))}
                         </div>
                       );
                     }}
                   >
                     {(option) => (
-                      <SelectItem key={option.id} textValue={option.value}>
+                      <SelectItem key={option.value} textValue={option.value}>
                         <div className="flex gap-2 items-center">
                           <div className="flex flex-col">
                             <span className="text-small">{option.value}</span>
@@ -150,14 +150,14 @@ export function EditPatient({ name, lastName, age, birthDate }: any) {
                       return (
                         <div className="flex flex-wrap gap-2">
                           {options.map((option) => (
-                            <ChipNextUi key={option.key}>{option.data?.value}</ChipNextUi>
+                            <ChipNextUi key={option.textValue}>{option.data?.value}</ChipNextUi>
                           ))}
                         </div>
                       );
                     }}
                   >
                     {(option) => (
-                      <SelectItem key={option.id} textValue={option.value}>
+                      <SelectItem key={option.value} textValue={option.value}>
                         <div className="flex gap-2 items-center">
                           <div className="flex flex-col">
                             <span className="text-small">{option.value}</span>

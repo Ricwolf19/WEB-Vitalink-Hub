@@ -14,42 +14,23 @@ import {
     doc,
     // setDoc, 
     getDoc,
-    getDocs
+    getDocs,
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
+// interface createPatientProps {
+//     name: string,
+//     lastName: string,
+//     status: boolean,
+//     area: string,
+//     chronicDiseases: any,
+//     allergies: any,
+//     bloodType: string,
+//     birthDay: any,
+//     age: number,
+//     doctorAssigned: string
+// }
 
-export const handleCreatePatient = async () => {
-    const { user } = useAuth();
-    const documentId = user.uid;
-    const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
-
-    await addDoc(patientCollectionRef, {})
-}
-
-export const handleCreateDoctor = async () => {
-    const { user } = useAuth();
-    const documentId = user.uid;
-    const patientCollectionRef = collection(db, 'accounts', documentId, 'doctors')
-
-    await addDoc(patientCollectionRef, {})
-}
-
-export const handleDeletePatient = async (id: string) => {
-    const { user } = useAuth();
-    const documentId = user.uid;
-
-    const deletePatient = doc(db, 'accounts', documentId, 'patients', id)
-    await deleteDoc(deletePatient)
-}
-
-export const handleDeleteDoctor = async (id: string) => {
-    const { user } = useAuth();
-    const documentId = user.uid;
-
-    const deletePatient = doc(db, 'accounts', documentId, 'doctors', id)
-    await deleteDoc(deletePatient)
-}
 
 export const usePatientData = () => {
     const { user } = useAuth();
@@ -57,21 +38,52 @@ export const usePatientData = () => {
     const documentId = user.uid;
     const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
 
-    useEffect(() => {
-        const getPatientData = async () => {
-            try {
-                const data = await getDocs(patientCollectionRef);
-                const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-                setPatientData(filteredData)
-            } catch (err) {
-                alert(err)
-            }
+    const getPatientData = async () => {
+        try {
+            const data = await getDocs(patientCollectionRef);
+            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            setPatientData(filteredData)
+        } catch (err) {
+            alert(err)
         }
+    }
 
+     // ACCIONES PARA EL CRUD
+     const handleCreatePatient = async (newName: string, newLastName: string, newStatus: string, newArea: string, newChronicDiseases: string[], newAllergies: string[], newBloodType: string, newBirthDate: string, newAge: number, newDoctorAssigned: string) => {
+        try {
+            await addDoc(patientCollectionRef, {
+                name: newName,
+                lastName: newLastName,
+                status: newStatus,
+                area: newArea,
+                chronicDiseases: newChronicDiseases,
+                allergies: newAllergies,
+                bloodType: newBloodType,
+                birthDate: newBirthDate,
+                age: newAge,
+                doctorAssigned: newDoctorAssigned
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const handleDeletePatient = async (id: string) => {
+        const deletePatient = doc(db, 'accounts', documentId, 'patients', id);
+
+        try {
+            await deleteDoc(deletePatient)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
         getPatientData();
     }, [])
 
-    return { patientData }
+    getPatientData()
+    return { patientData, handleCreatePatient, handleDeletePatient }
 }
 
 export const useDoctorData = () => {
@@ -80,19 +92,43 @@ export const useDoctorData = () => {
     const documentId = user.uid;
     const doctorCollectionRef = collection(db, "accounts", documentId, "doctors");
 
-    useEffect(() => {
-        const getDoctorData = async () => {
-            try {
-                const data = await getDocs(doctorCollectionRef);
-                const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-                setDoctorData(filteredData)
-            } catch (err) {
-                alert(err)
-            }
+    const getDoctorData = async () => {
+        try {
+            const data = await getDocs(doctorCollectionRef);
+            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            setDoctorData(filteredData)
+        } catch (err) {
+            alert(err)
         }
+    }
+
+    const handleCreateDoctor = async (newName: string, newLastName: string, newArea: string, newNumCedula: number, newPatients: string[] ,newStatus: string) => {
+        await addDoc(doctorCollectionRef, {
+            name: newName,
+            lastName: newLastName,
+            area: newArea,
+            numCedula: newNumCedula,
+            patients: newPatients,
+            status: newStatus
+        })
+    }
+
+    const handleDeleteDoctor = async (id: string) => {
+        const deleteDoctor = doc(db, 'accounts', documentId, 'doctors', id)
+        
+        try {
+            await deleteDoc(deleteDoctor)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
         getDoctorData()
     }, [])
-    return { doctorData }
+
+    getDoctorData()
+    return { doctorData, handleCreateDoctor, handleDeleteDoctor }
 }
 
 export const useAccountData = () => {
@@ -117,13 +153,11 @@ export const useAccountData = () => {
                 console.error(err);
             }
         };
-
         getAccountData();
     }, [user.uid]);
 
     return { accountData };
 };
-
 
 interface AuthContextProps {
     // signUp: (email: string, password: string) => void;
@@ -207,8 +241,9 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
+            // console.log(currentUser?.uid)
         });
-
+        
         return () => unsubscribe();
     }, []);
 
@@ -219,10 +254,10 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
         resetPassword,
         user,
         loading,
-
     };
 
     return (
         <authContext.Provider value={contextValue}>{children}</authContext.Provider>
     );
+
 }

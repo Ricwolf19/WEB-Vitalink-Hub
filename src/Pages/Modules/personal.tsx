@@ -9,16 +9,19 @@ import {
 import {
   Button,
 } from "@nextui-org/react";
-import { handleDeleteDoctor, handleDeletePatient, useDoctorData, usePatientData } from "../../Context/authContext";
+import { useDoctorData, usePatientData, } from "../../Context/authContext";
 import { EditPatient } from "../../Components/Dashboard/CrudActions/EditPatient";
 import { EditDoctor } from "../../Components/Dashboard/CrudActions/EditDoctor";
-import { UserMinus, UserPlus } from "lucide-react";
+import { UserMinus } from "lucide-react";
 import { AddPatient } from "../../Components/Dashboard/CrudActions/AddPatient";
+import { AddDoctor } from "../../Components/Dashboard/CrudActions/AddDoctor";
 
 export function Personal() {
-  const { patientData } = usePatientData();
-  const { doctorData } = useDoctorData();
-  
+
+  const { patientData, handleDeletePatient } = usePatientData();
+  const { handleDeleteDoctor, doctorData } = useDoctorData()
+
+
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <Card placeholder="">
@@ -58,6 +61,12 @@ export function Personal() {
                     : "border-b border-blue-gray-50"
                     }`;
 
+                    // const formattedBirthDate = birthDate ? format(birthDate.toDate(), 'MMMM do, yyyy') : ''; // Converting the timestamp to a human-readable date format
+
+                  // function handleDeletePatient(id: any): void {
+                  //   throw new Error("Function not implemented.");
+                  // }
+
                   return (
                     <tr key={id}>
                       <td className={className}>
@@ -82,8 +91,8 @@ export function Personal() {
                       <td className={className}>
                         <Chip
                           variant="gradient"
-                          color={status ? "blue" : "red"}
-                          value={status ? "Stable" : "Unstable"}
+                          color="blue"
+                          value={status}
                           className="py-0.5 px-2 text-[14px] font-semibold"
                         />
                       </td>
@@ -97,12 +106,12 @@ export function Personal() {
                       </td>
                       <td className={className}>
                         <Typography placeholder="" className="font-semibold text-black text-center">
-                          {chronicDiseases}
+                          { `${chronicDiseases}`}
                         </Typography>
                       </td>
                       <td className={className}>
                         <Typography placeholder="" className="font-semibold text-black">
-                          {allergies}
+                          {" " + allergies +" " }
                         </Typography>
                       </td>
                       <td className={className}>
@@ -183,7 +192,7 @@ export function Personal() {
                   </th>
                 ))}
                 <th>
-                  <Button color="success" variant="shadow" className="text-black" startContent={<UserPlus />}>Add</Button>
+                  <AddDoctor />
                 </th>
               </tr>
             </thead>
@@ -219,8 +228,8 @@ export function Personal() {
                       <td className={className}>
                         <Chip
                           variant="gradient"
-                          color={status ? "blue" : "yellow"}
-                          value={status ? "Available" : "Not Available"}
+                          color="blue"
+                          value={status}
                           className="py-0.5 px-2 text-[14px] font-semibold"
                         />
                       </td>

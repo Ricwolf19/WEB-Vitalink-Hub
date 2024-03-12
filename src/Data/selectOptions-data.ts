@@ -1,11 +1,18 @@
   export const selectOptionStatusPatients = [
     { value: "Stable" },
     { value: "Unstable" },
+    { value: "Improving" },
+    { value: "Critical" },
+    { value: "Recovering" },
+    { value: "Serious" },
+    { value: "Guarded" },
   ]
 
   export const selectOptionStatusDoctors = [
-    { value: "Availiable" },
+    { value: "Available" },
     { value: "Not available" },
+    { value: "On Call" },
+    { value: "Away" },
   ]
 
   export const selectOptionsArea = [
@@ -36,29 +43,29 @@
   ];
 
   export const selectOptionsChronicDiseases = [
-    { id: 1, value: "Diabetes" },
-    { id: 2, value: "Hertension" },
-    { id: 3, value: "Asthma" },
-    { id: 4, value: "Arthritis" },
-    { id: 5, value: "Cancer" },
-    { id: 6, value: "Epilepsy" },
-    { id: 7, value: "Parkinson's Disease" },
-    { id: 8, value: "Alzheimer's" },
-    { id: 9, value: "Chronic Kidney Disease" },
-    { id: 10, value: "Chronic Obstructive Pulmonary Disease (COPD)" }
+    { value: "Diabetes" },
+    { value: "Hertension" },
+    { value: "Asthma" },
+    { value: "Arthritis" },
+    { value: "Cancer" },
+    { value: "Epilepsy" },
+    { value: "Parkinson's Disease" },
+    { value: "Alzheimer's" },
+    { value: "Chronic Kidney Disease" },
+    { value: "Chronic Obstructive Pulmonary Disease (COPD)" }
   ];
 
 
   export const selectOptionsAllergies = [
-    { id: 1, value: "Pollen" },
-    { id: 2, value: "Dust mites" },
-    { id: 3, value: "Pet dander" },
-    { id: 4, value: "Penicillin" },
-    { id: 5, value: "Peanuts" },
-    { id: 6, value: "Shellfish" },
-    { id: 7, value: "Eggs" },
-    { id: 8, value: "Soy" },
-    { id: 9, value: "Milk" },
-    { id: 10, value: "Gluten" },
-    { id: 11, value: "Latex" }
+    { value: "Pollen" },
+    { value: "Dust mites" },
+    { value: "Pet dander" },
+    { value: "Penicillin" },
+    { value: "Peanuts" },
+    { value: "Shellfish" },
+    { value: "Eggs" },
+    { value: "Soy" },
+    { value: "Milk" },
+    { value: "Gluten" },
+    { value: "Latex" }
   ];
