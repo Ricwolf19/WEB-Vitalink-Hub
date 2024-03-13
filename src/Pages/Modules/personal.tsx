@@ -171,10 +171,12 @@ export function Personal() {
                             id={id}
                           />
 
-                          <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeletePatient(id)}>
-                            Del
-                          </Button>
-
+                          <div className="pt-2">
+                            <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeletePatient(id)}>
+                              Del
+                            </Button>
+                          </div>
+                          
                         </div>
                       </td>
                     </tr>
