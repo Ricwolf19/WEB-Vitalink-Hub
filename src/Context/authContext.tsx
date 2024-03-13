@@ -101,7 +101,7 @@ export const usePatientData = () => {
                 age: newAge,
                 doctorAssigned: newDoctorAssigned
             })
-            // getPatientData()
+            getPatientData()
         } catch (err) {
             console.log(err)
         }
