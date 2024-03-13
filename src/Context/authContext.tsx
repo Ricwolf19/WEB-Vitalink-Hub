@@ -19,6 +19,7 @@ import {
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { func } from "prop-types";
 
 // interface createPatientProps {
 //     name: string,
@@ -40,6 +41,8 @@ export const usePatientData = () => {
     const documentId = user.uid;
     const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
     const [patientData, setPatientData] = useState<any>([]);
+
+  
 
     const getVitaLinkSigns = async (id: any) => {
         const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', id, 'vitaLinkSigns')
@@ -84,7 +87,7 @@ export const usePatientData = () => {
                 age: newAge,
                 doctorAssigned: newDoctorAssigned
             })
-            getPatientData()
+            secureDelay()
         } catch (err) {
             console.log(err)
         }
@@ -95,7 +98,7 @@ export const usePatientData = () => {
 
         try {
             await deleteDoc(deletePatientRef)
-            getPatientData()
+            secureDelay()
         } catch (err) {
             console.log(err)
         }
@@ -117,7 +120,7 @@ export const usePatientData = () => {
             doctorAssigned: newDoctorAssigned
         })
         //   console.log(id)
-        getPatientData()
+        secureDelay()
     }
 
     const getPatientData = async () => {
@@ -137,6 +140,16 @@ export const usePatientData = () => {
     useEffect(() => {
         getPatientData()
     }, [])
+
+    const secureDelay = async () => {
+        // function hola() {
+        //     console.log('work?')
+        // }
+
+        // setTimeout(hola,1000)
+
+        await getPatientData()
+    }
 
     return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient }
 }
