@@ -105,7 +105,7 @@ export function Home() {
                       <tr key={id}>
                         <td className={className}>
                           <div className="text-center">
-                            <Avatar placeholder="" src={"/img/user-icon.jpg"} alt={name} size="sm" className="text-center" />
+                            <Avatar placeholder="" src={"https://i.ibb.co/k1v2vgn/pacient-icon.jpg"} alt={name} size="sm" className="text-center" />
                             <Typography
                               placeholder=""
                               variant="small"
