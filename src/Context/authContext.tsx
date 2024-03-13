@@ -35,21 +35,39 @@ import swal from "sweetalert";
 
 export const usePatientData = () => {
     const { user } = useAuth();
-    const [patientData, setPatientData] = useState<any>([]);
-    // const [signsId, setSignsId] = useState<any>()
+    // const [patientData, setPatientData] = useState<any>([]);
     const documentId = user.uid;
     const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
+    const [patientData, setPatientData] = useState<any>([]);
+
+    const getPatientData = async () => {
+        const documentId = user.uid;
+        const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
+
+        try {
+            const data = await getDocs(patientCollectionRef);
+            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            setPatientData(filteredData)
+            console.log('patients data')
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        getPatientData()
+    }, [])
 
     const getVitaLinkSigns = async (id: any) => {
-        const vitaLinkSignsCollectionRef =  collection(db, 'accounts', documentId, 'patients', id, 'vitaLinkSigns' )
-       
+        const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', id, 'vitaLinkSigns')
+
         try {
             const data = await getDocs(vitaLinkSignsCollectionRef)
             const filtereData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             const filterSigns = filtereData[0]
-            console.log(filterSigns)
-            
-            function sweetAlert({...filterSigns}) {
+            // console.log(filterSigns)
+
+            function sweetAlert({ ...filterSigns }) {
                 swal({
                     title: "VitaLink last scan ",
                     text: `
@@ -58,18 +76,18 @@ export const usePatientData = () => {
                        PATIENT TEMPERATURE: ${filterSigns.temp} \n
                        `,
                     icon: "success"
-                  });
+                });
             }
 
-            sweetAlert({...filterSigns})
+            sweetAlert({ ...filterSigns })
 
         } catch (error) {
             console.log(error)
         }
     }
 
-     // ACCIONES PARA EL CRUD
-     const handleCreatePatient = async (newName: string, newLastName: string, newStatus: string, newArea: string, newChronicDiseases: string[], newAllergies: string[], newBloodType: string, newBirthDate: string, newAge: number, newDoctorAssigned: string) => {
+    // ACCIONES PARA EL CRUD
+    const handleCreatePatient = async (newName: string, newLastName: string, newStatus: string, newArea: string, newChronicDiseases: string[], newAllergies: string[], newBloodType: string, newBirthDate: string, newAge: number, newDoctorAssigned: string) => {
         try {
             await addDoc(patientCollectionRef, {
                 name: newName,
@@ -83,6 +101,7 @@ export const usePatientData = () => {
                 age: newAge,
                 doctorAssigned: newDoctorAssigned
             })
+            // getPatientData()
         } catch (err) {
             console.log(err)
         }
@@ -93,27 +112,16 @@ export const usePatientData = () => {
 
         try {
             await deleteDoc(deletePatient)
+            getPatientData()
         } catch (err) {
             console.log(err)
         }
     }
 
-    useEffect(() => {
-        const getPatientData = async () => {
-            try {
-                const data = await getDocs(patientCollectionRef);
-                const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-                setPatientData(filteredData)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-
-        getPatientData()
-    }, [])
-
     return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns }
 }
+
+
 
 export const useDoctorData = () => {
     const { user } = useAuth();
@@ -121,39 +129,50 @@ export const useDoctorData = () => {
     const documentId = user.uid;
     const doctorCollectionRef = collection(db, "accounts", documentId, "doctors");
 
-    const handleCreateDoctor = async (newName: string, newLastName: string, newArea: string, newNumCedula: number, newPatients: string[] ,newStatus: string) => {
-        await addDoc(doctorCollectionRef, {
-            name: newName,
-            lastName: newLastName,
-            area: newArea,
-            numCedula: newNumCedula,
-            patients: newPatients,
-            status: newStatus
-        })
-    }
-
-    const handleDeleteDoctor = async (id: string) => {
-        const deleteDoctor = doc(db, 'accounts', documentId, 'doctors', id)
-        
+    const getDoctorData = async () => {
         try {
-            await deleteDoc(deleteDoctor)
+            const data = await getDocs(doctorCollectionRef);
+            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            setDoctorData(filteredData)
+            console.log('doctors data')
         } catch (err) {
             console.log(err)
         }
     }
 
     useEffect(() => {
-        const getDoctorData = async () => {
-            try {
-                const data = await getDocs(doctorCollectionRef);
-                const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-                setDoctorData(filteredData)
-            } catch (err) {
-                console.log(err)
-            }
-        }
         getDoctorData()
     }, [])
+
+    const handleCreateDoctor = async (newName: string, newLastName: string, newArea: string, newNumCedula: number, newPatients: string[], newStatus: string) => {
+        try {
+            await addDoc(doctorCollectionRef, {
+                name: newName,
+                lastName: newLastName,
+                area: newArea,
+                numCedula: newNumCedula,
+                patients: newPatients,
+                status: newStatus
+            })
+            // window.location.reload()
+            getDoctorData()
+        } catch (err) {
+            console.log(err)
+        }
+        // } finally {
+        //     getDoctorData()
+        // }
+    }
+
+    const handleDeleteDoctor = async (id: string) => {
+        const deleteDoctor = doc(db, 'accounts', documentId, 'doctors', id)
+        try {
+            await deleteDoc(deleteDoctor)
+            getDoctorData()
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return { doctorData, handleCreateDoctor, handleDeleteDoctor }
 }
@@ -162,25 +181,25 @@ export const useAccountData = () => {
     const { user } = useAuth();
     const [accountData, setAccountData] = useState<any>('');
 
-    useEffect(() => {
-        const getAccountData = async () => {
-            try {
-                // Assuming you have initialized your Firestore database connection
-                const accountsCollectionRef = collection(db, 'accounts');
-                const documentId = user.uid;
-    
-                const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
-                if (docSnap.exists()) {
-                    const accountInfo = docSnap.data();
-                    setAccountData(accountInfo);
-                } else {
-                    console.log('No such Document');
-                }
-            } catch (err) {
-                console.error(err);
-            }
-        };
+    const getAccountData = async () => {
+        try {
+            // Assuming you have initialized your Firestore database connection
+            const accountsCollectionRef = collection(db, 'accounts');
+            const documentId = user.uid;
 
+            const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
+            if (docSnap.exists()) {
+                const accountInfo = docSnap.data();
+                setAccountData(accountInfo);
+            } else {
+                console.log('No such Document');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    useEffect(() => {
         getAccountData();
     }, [user.uid]);
 
@@ -271,7 +290,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
             setLoading(false);
             // console.log(currentUser?.uid)
         });
-        
+
         return () => unsubscribe();
     }, []);
 

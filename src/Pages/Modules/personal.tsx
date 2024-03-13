@@ -17,13 +17,9 @@ import { AddPatient } from "../../Components/Dashboard/CrudActions/AddPatient";
 import { AddDoctor } from "../../Components/Dashboard/CrudActions/AddDoctor";
 
 export function Personal() {
-
   const { patientData, handleDeletePatient } = usePatientData();
   const { handleDeleteDoctor, doctorData } = useDoctorData()
   const { getVitaLinkSigns } = usePatientData()
-
-  // console.log(...vitaLinkSigns)
-
 
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
