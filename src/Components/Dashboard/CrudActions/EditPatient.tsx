@@ -16,21 +16,21 @@ import { UserCog } from "lucide-react";
 import { useDoctorData, usePatientData } from "../../../Context/authContext";
 import { useState } from "react";
 
-export function EditPatient({ name, lastName, age, birthDate, area, status, doctorAssigned, bloodType, id }: any) {
+export function EditPatient({ name, lastName, age, birthDate, area, status, doctorAssigned, bloodType, id, chronicDiseases, allergies }: any) {
   const { doctorData } = useDoctorData()
   const { handleUpdatePatient } = usePatientData()
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const [newPtName, setNewPtName] = useState('');
-  const [newPtlastName, setNewPtlastName] = useState('');
-  const [newPtStatus, setNewPtStatus] = useState('');
-  const [newPtArea, setNewPtArea] = useState('');
-  const [newPtChronicDiseases, setNewPtChronicDiseases] = useState([]);
-  const [newPtAllergies, setNewPtAllergies] = useState([]);
-  const [newPtBloodType, setNewPtBloodType] = useState('');
-  const [newPtBirthDate, setNewPtBirthDate] = useState<any>();
-  const [newPtAge, setNewPtAge] = useState(0);
-  const [newPtDoctorAssigned, setNewPtDoctorAssigned] = useState('');
+  const [newPtName, setNewPtName] = useState(name);
+  const [newPtlastName, setNewPtlastName] = useState(lastName);
+  const [newPtStatus, setNewPtStatus] = useState(status);
+  const [newPtArea, setNewPtArea] = useState(area);
+  const [newPtChronicDiseases, setNewPtChronicDiseases] = useState(chronicDiseases);
+  const [newPtAllergies, setNewPtAllergies] = useState(allergies);
+  const [newPtBloodType, setNewPtBloodType] = useState(bloodType);
+  const [newPtBirthDate, setNewPtBirthDate] = useState<any>(birthDate);
+  const [newPtAge, setNewPtAge] = useState(age);
+  const [newPtDoctorAssigned, setNewPtDoctorAssigned] = useState(doctorAssigned);
 
   const handleSelectionChronicDiseases = (e: any) => {
     setNewPtChronicDiseases(e.target.value.split(","));
@@ -163,6 +163,7 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
                     placeholder="Allergies"
                     variant="bordered"
                     isMultiline={true}
+                    selectedKeys={newPtAllergies}
                     onChange={handleSelectionAllergies}
                     selectionMode="multiple"
                     labelPlacement="outside-left"

@@ -44,7 +44,7 @@ export const usePatientData = () => {
 
 
     const getVitaLinkSigns = async (id: any) => {
-        const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', id, 'vitaLinkSigns')
+        const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', id, 'vitalSigns')
 
         try {
             const data = await getDocs(vitaLinkSignsCollectionRef)

@@ -16,17 +16,17 @@ import { useDoctorData, usePatientData } from "../../../Context/authContext";
 import { useState } from "react";
 
 
-export function EditDoctor({ name, lastName, area, numCedula, status, id  }: any) {
+export function EditDoctor({ name, lastName, area, numCedula, status, id, patients  }: any) {
     const { patientData } = usePatientData();
     const { handleUpdateDoctor } = useDoctorData()
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-    const [newDcName, setNewDcName] = useState('');
-    const [newDclastName, setNewDclastName] = useState('');
-    const [newDcStatus, setNewDcStatus] = useState('');
-    const [newDcArea, setNewDcArea] = useState('');
-    const [newDcNumCedula, setNewDcNumCedula] = useState(0);
-    const [newDcPatients, setNewDcPatients] = useState(['']);
+    const [newDcName, setNewDcName] = useState(name);
+    const [newDclastName, setNewDclastName] = useState(lastName);
+    const [newDcStatus, setNewDcStatus] = useState(status);
+    const [newDcArea, setNewDcArea] = useState(area);
+    const [newDcNumCedula, setNewDcNumCedula] = useState(numCedula);
+    const [newDcPatients, setNewDcPatients] = useState(patients);
 
     const handleSelectionPatients = (e: any) => {
         setNewDcPatients(e.target.value.split(","));
@@ -51,8 +51,8 @@ export function EditDoctor({ name, lastName, area, numCedula, status, id  }: any
                             <ModalHeader className="flex flex-col gap-1 text-red-600 text-center"><div className="pb-2 text-center flex-col flex gap-1"><Logo /></div>Edit Doctor</ModalHeader>
                             <ModalBody>
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                                    <Input label="Name" color="primary" placeholder={name} onChange={(e) => setNewDcName(e.target.value)} variant="faded" />
-                                    <Input label="Last Name" color="primary" placeholder={lastName} onChange={(e) => setNewDclastName(e.target.value)} variant="faded" />
+                                    <Input label="Name" color="primary" placeholder={name} defaultValue={name} onChange={(e) => setNewDcName(e.target.value)} variant="faded" />
+                                    <Input label="Last Name" color="primary" placeholder={lastName} defaultValue={lastName} onChange={(e) => setNewDclastName(e.target.value)} variant="faded" />
                                 </div>
                                 {/* <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                       <Input label="Age" color="primary" placeholder={age} variant="faded" />
@@ -92,7 +92,7 @@ export function EditDoctor({ name, lastName, area, numCedula, status, id  }: any
                                 </div>
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                                    <Input label="Num. Cedula" color="primary" type="number" placeholder={numCedula} onChange={(e) => setNewDcNumCedula(e.target.valueAsNumber)} variant="faded" />
+                                    <Input label="Num. Cedula" color="primary" type="number" placeholder={numCedula} defaultValue={numCedula} onChange={(e) => setNewDcNumCedula(e.target.valueAsNumber)} variant="faded" />
                                 </div>
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">

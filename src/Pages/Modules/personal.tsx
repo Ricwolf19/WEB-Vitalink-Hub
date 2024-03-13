@@ -12,7 +12,7 @@ import {
 import { useDoctorData, usePatientData, } from "../../Context/authContext";
 import { EditPatient } from "../../Components/Dashboard/CrudActions/EditPatient";
 import { EditDoctor } from "../../Components/Dashboard/CrudActions/EditDoctor";
-import { UserMinus } from "lucide-react";
+import { ActivityIcon, UserMinus } from "lucide-react";
 import { AddPatient } from "../../Components/Dashboard/CrudActions/AddPatient";
 import { AddDoctor } from "../../Components/Dashboard/CrudActions/AddDoctor";
 
@@ -153,6 +153,10 @@ export function Personal() {
 
                       <td className={className}>
                         <div className="flex flex-col gap-2 ">
+                          <Button onClick={() => getVitaLinkSigns(id)} color="secondary" variant="light">
+                            <ActivityIcon />
+                          </Button>
+
                           <EditPatient
                             name={name}
                             lastName={lastName}
@@ -160,16 +164,17 @@ export function Personal() {
                             birthDate={birthDate}
                             area={area}
                             status={status}
+                            allergies={allergies}
+                            chronicDiseases={chronicDiseases}
                             doctorAssigned={doctorAssigned}
                             bloodType={bloodType}
                             id={id}
                           />
+
                           <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeletePatient(id)}>
                             Del
                           </Button>
-                          <Button onClick={() => getVitaLinkSigns(id)}>
-                            Scan
-                          </Button>
+
                         </div>
                       </td>
                     </tr>
@@ -286,16 +291,16 @@ export function Personal() {
                           <EditDoctor
                             name={name}
                             lastName={lastName}
-                            area={area}                      
+                            area={area}
                             numCedula={numCedula}
                             status={status}
                             id={id}
+                            patients={patients}
                           />
                           <div className="pt-2">
                             <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeleteDoctor(id)} >
                               Del
                             </Button>
-
                           </div>
                         </div>
                       </td>
