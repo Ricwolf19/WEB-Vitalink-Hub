@@ -115,7 +115,7 @@ export function EditDoctor({ name, lastName, area, numCedula, status, id  }: any
                                         Close
                                     </Button>
                                     <Button color="primary" onPress={onClose} onClick={() => handleUpdateDoctor(id, newDcName, newDclastName, newDcArea, newDcNumCedula, newDcPatients, newDcStatus)}>
-                                        Submit
+                                        Edit Doctor
                                     </Button>
                                 </div>
 

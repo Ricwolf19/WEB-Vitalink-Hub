@@ -215,7 +215,7 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
                     Close
                   </Button>
                   <Button color="primary" onPress={onClose} onClick={() => handleUpdatePatient(id, newPtName, newPtlastName, newPtStatus, newPtArea, newPtChronicDiseases, newPtAllergies, newPtBloodType, newPtBirthDate, newPtAge, newPtDoctorAssigned)}>
-                    Submit
+                    Edit patient
                   </Button>
                 </div>
 

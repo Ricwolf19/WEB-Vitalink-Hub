@@ -19,7 +19,6 @@ import {
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import { func } from "prop-types";
 
 // interface createPatientProps {
 //     name: string,
@@ -42,7 +41,7 @@ export const usePatientData = () => {
     const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
     const [patientData, setPatientData] = useState<any>([]);
 
-  
+
 
     const getVitaLinkSigns = async (id: any) => {
         const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', id, 'vitaLinkSigns')
@@ -98,7 +97,7 @@ export const usePatientData = () => {
 
         try {
             await deleteDoc(deletePatientRef)
-            secureDelay()
+            getPatientData()
         } catch (err) {
             console.log(err)
         }
@@ -131,7 +130,7 @@ export const usePatientData = () => {
             const data = await getDocs(patientCollectionRef);
             const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
             setPatientData(filteredData)
-            console.log('patients data')
+            // console.log('patients data')
         } catch (err) {
             console.log(err)
         }
@@ -142,13 +141,11 @@ export const usePatientData = () => {
     }, [])
 
     const secureDelay = async () => {
-        // function hola() {
-        //     console.log('work?')
-        // }
-
-        // setTimeout(hola,1000)
-
-        await getPatientData()
+        setTimeout(() => {
+            // getPatientData()
+            // console.log('asd')
+            window.location.reload()
+        }, 0)
     }
 
     return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient }
@@ -162,21 +159,6 @@ export const useDoctorData = () => {
     const documentId = user.uid;
     const doctorCollectionRef = collection(db, "accounts", documentId, "doctors");
 
-    const getDoctorData = async () => {
-        try {
-            const data = await getDocs(doctorCollectionRef);
-            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-            setDoctorData(filteredData)
-            console.log('doctors data')
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    useEffect(() => {
-        getDoctorData()
-    }, [])
-
     const handleCreateDoctor = async (newName: string, newLastName: string, newArea: string, newNumCedula: number, newPatients: string[], newStatus: string) => {
         try {
             await addDoc(doctorCollectionRef, {
@@ -187,8 +169,7 @@ export const useDoctorData = () => {
                 patients: newPatients,
                 status: newStatus
             })
-            // window.location.reload()
-            getDoctorData()
+            secureDelay()
         } catch (err) {
             console.log(err)
         }
@@ -219,11 +200,33 @@ export const useDoctorData = () => {
                 patients: newPatients,
                 status: newStatus
             })
-            // window.location.reload()
-            getDoctorData()
+            secureDelay()
         } catch (err) {
             console.log(err)
         }
+    }
+
+    const getDoctorData = async () => {
+        try {
+            const data = await getDocs(doctorCollectionRef);
+            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            setDoctorData(filteredData)
+            // console.log('doctors data')
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        getDoctorData()
+    }, [])
+
+    const secureDelay = async () => {
+        setTimeout(() => {
+            // getDoctorData()
+            // console.log('asd')
+            window.location.reload()
+        }, 0)
     }
 
     return { doctorData, handleCreateDoctor, handleDeleteDoctor, handleUpdateDoctor }
