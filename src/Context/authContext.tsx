@@ -194,7 +194,26 @@ export const useDoctorData = () => {
         }
     }
 
-    return { doctorData, handleCreateDoctor, handleDeleteDoctor }
+    const handleUpdateDoctor = async (id: string, newName: string, newLastName: string, newArea: string, newNumCedula: number, newPatients: string[], newStatus: string) => {
+        const updateDoctorRef = doc(db, 'accounts', documentId, 'doctors', id);
+
+        try {
+            await updateDoc(updateDoctorRef, {
+                name: newName,
+                lastName: newLastName,
+                area: newArea,
+                numCedula: newNumCedula,
+                patients: newPatients,
+                status: newStatus
+            })
+            // window.location.reload()
+            getDoctorData()
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    return { doctorData, handleCreateDoctor, handleDeleteDoctor, handleUpdateDoctor }
 }
 
 export const useAccountData = () => {

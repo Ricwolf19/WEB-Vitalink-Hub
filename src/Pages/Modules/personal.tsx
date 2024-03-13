@@ -286,7 +286,10 @@ export function Personal() {
                           <EditDoctor
                             name={name}
                             lastName={lastName}
+                            area={area}                      
                             numCedula={numCedula}
+                            status={status}
+                            id={id}
                           />
                           <div className="pt-2">
                             <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeleteDoctor(id)} >
