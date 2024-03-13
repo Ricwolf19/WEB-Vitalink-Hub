@@ -20,6 +20,9 @@ export function Personal() {
 
   const { patientData, handleDeletePatient } = usePatientData();
   const { handleDeleteDoctor, doctorData } = useDoctorData()
+  const { getVitaLinkSigns } = usePatientData()
+
+  // console.log(...vitaLinkSigns)
 
 
   return (
@@ -79,7 +82,7 @@ export function Personal() {
                               color="blue-gray"
                               className="font-semibold"
                             >
-                              {name}
+                              {name}                              
                             </Typography>
                             <Typography placeholder="" className="text-sm font-normal text-black">
                               {lastName}
@@ -129,6 +132,7 @@ export function Personal() {
                           {age}
                         </Typography>
                       </td>
+                      
                       <td className={className}>
                         <div className="items-centertext-center">
                           <Avatar placeholder="" src={'/img/doctor-icon.png'} alt={name} size="sm" variant="rounded" />
@@ -145,6 +149,12 @@ export function Personal() {
                         </div>
                       </td>
 
+                      {/* <td className={className}>
+                        <Typography placeholder="" className="font-semibold text-black">
+                          {vitaLinkSigns}
+                        </Typography>
+                      </td> */}
+
                       <td className={className}>
                         <div className="flex flex-col gap-2 ">
                           <EditPatient
@@ -156,6 +166,9 @@ export function Personal() {
                           <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeletePatient(id)}>
                             Del
                           </Button>
+                          <Button onClick={() => getVitaLinkSigns(id)}>
+                              Scan
+                            </Button>
                         </div>
                       </td>
                     </tr>
@@ -275,9 +288,10 @@ export function Personal() {
                             numCedula={numCedula}
                           />
                           <div className="pt-2">
-                            <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeleteDoctor(id)}>
+                            <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeleteDoctor(id)} >
                               Del
                             </Button>
+                           
                           </div>
                         </div>
                       </td>

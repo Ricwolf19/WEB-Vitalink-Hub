@@ -17,6 +17,7 @@ import {
     getDocs,
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 // interface createPatientProps {
 //     name: string,
@@ -35,16 +36,35 @@ import { useNavigate } from "react-router-dom";
 export const usePatientData = () => {
     const { user } = useAuth();
     const [patientData, setPatientData] = useState<any>([]);
+    // const [signsId, setSignsId] = useState<any>()
     const documentId = user.uid;
     const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
 
-    const getPatientData = async () => {
+    const getVitaLinkSigns = async (id: any) => {
+        const vitaLinkSignsCollectionRef =  collection(db, 'accounts', documentId, 'patients', id, 'vitaLinkSigns' )
+       
         try {
-            const data = await getDocs(patientCollectionRef);
-            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            setPatientData(filteredData)
-        } catch (err) {
-            console.log(err)
+            const data = await getDocs(vitaLinkSignsCollectionRef)
+            const filtereData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            const filterSigns = filtereData[0]
+            console.log(filterSigns)
+            
+            function sweetAlert({...filterSigns}) {
+                swal({
+                    title: "VitaLink last scan ",
+                    text: `
+                       PATIENT FC: ${filterSigns.fc} \n
+                       PATIENT SA02: ${filterSigns.sa02} \n
+                       PATIENT TEMPERATURE: ${filterSigns.temp} \n
+                       `,
+                    icon: "success"
+                  });
+            }
+
+            sweetAlert({...filterSigns})
+
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -79,11 +99,20 @@ export const usePatientData = () => {
     }
 
     useEffect(() => {
-        getPatientData();
+        const getPatientData = async () => {
+            try {
+                const data = await getDocs(patientCollectionRef);
+                const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+                setPatientData(filteredData)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        getPatientData()
     }, [])
 
-    getPatientData()
-    return { patientData, handleCreatePatient, handleDeletePatient }
+    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns }
 }
 
 export const useDoctorData = () => {
@@ -91,16 +120,6 @@ export const useDoctorData = () => {
     const [doctorData, setDoctorData] = useState<any>([]);
     const documentId = user.uid;
     const doctorCollectionRef = collection(db, "accounts", documentId, "doctors");
-
-    const getDoctorData = async () => {
-        try {
-            const data = await getDocs(doctorCollectionRef);
-            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-            setDoctorData(filteredData)
-        } catch (err) {
-            console.log(err)
-        }
-    }
 
     const handleCreateDoctor = async (newName: string, newLastName: string, newArea: string, newNumCedula: number, newPatients: string[] ,newStatus: string) => {
         await addDoc(doctorCollectionRef, {
@@ -124,10 +143,18 @@ export const useDoctorData = () => {
     }
 
     useEffect(() => {
+        const getDoctorData = async () => {
+            try {
+                const data = await getDocs(doctorCollectionRef);
+                const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+                setDoctorData(filteredData)
+            } catch (err) {
+                console.log(err)
+            }
+        }
         getDoctorData()
     }, [])
 
-    getDoctorData()
     return { doctorData, handleCreateDoctor, handleDeleteDoctor }
 }
 
@@ -135,25 +162,25 @@ export const useAccountData = () => {
     const { user } = useAuth();
     const [accountData, setAccountData] = useState<any>('');
 
-    const getAccountData = async () => {
-        try {
-            // Assuming you have initialized your Firestore database connection
-            const accountsCollectionRef = collection(db, 'accounts');
-            const documentId = user.uid;
-
-            const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
-            if (docSnap.exists()) {
-                const accountInfo = docSnap.data();
-                setAccountData(accountInfo);
-            } else {
-                console.log('No such Document');
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
     useEffect(() => {
+        const getAccountData = async () => {
+            try {
+                // Assuming you have initialized your Firestore database connection
+                const accountsCollectionRef = collection(db, 'accounts');
+                const documentId = user.uid;
+    
+                const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
+                if (docSnap.exists()) {
+                    const accountInfo = docSnap.data();
+                    setAccountData(accountInfo);
+                } else {
+                    console.log('No such Document');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
         getAccountData();
     }, [user.uid]);
 
