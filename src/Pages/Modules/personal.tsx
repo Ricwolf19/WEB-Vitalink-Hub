@@ -60,7 +60,7 @@ export function Personal() {
                     : "border-b border-blue-gray-50"
                     }`;
 
-                    // const formattedBirthDate = birthDate ? format(birthDate.toDate(), 'MMMM do, yyyy') : ''; // Converting the timestamp to a human-readable date format
+                  // const formattedBirthDate = birthDate ? format(birthDate.toDate(), 'MMMM do, yyyy') : ''; // Converting the timestamp to a human-readable date format
 
                   // function handleDeletePatient(id: any): void {
                   //   throw new Error("Function not implemented.");
@@ -78,7 +78,7 @@ export function Personal() {
                               color="blue-gray"
                               className="font-semibold"
                             >
-                              {name}                              
+                              {name}
                             </Typography>
                             <Typography placeholder="" className="text-sm font-normal text-black">
                               {lastName}
@@ -105,12 +105,12 @@ export function Personal() {
                       </td>
                       <td className={className}>
                         <Typography placeholder="" className="font-semibold text-black text-center">
-                          { `${chronicDiseases}`}
+                          {`${chronicDiseases}`}
                         </Typography>
                       </td>
                       <td className={className}>
                         <Typography placeholder="" className="font-semibold text-black">
-                          {" " + allergies +" " }
+                          {" " + allergies + " "}
                         </Typography>
                       </td>
                       <td className={className}>
@@ -128,7 +128,7 @@ export function Personal() {
                           {age}
                         </Typography>
                       </td>
-                      
+
                       <td className={className}>
                         <div className="items-centertext-center">
                           <Avatar placeholder="" src={'/img/doctor-icon.png'} alt={name} size="sm" variant="rounded" />
@@ -158,13 +158,18 @@ export function Personal() {
                             lastName={lastName}
                             age={age}
                             birthDate={birthDate}
+                            area={area}
+                            status={status}
+                            doctorAssigned={doctorAssigned}
+                            bloodType={bloodType}
+                            id={id}
                           />
                           <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeletePatient(id)}>
                             Del
                           </Button>
                           <Button onClick={() => getVitaLinkSigns(id)}>
-                              Scan
-                            </Button>
+                            Scan
+                          </Button>
                         </div>
                       </td>
                     </tr>
@@ -287,7 +292,7 @@ export function Personal() {
                             <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeleteDoctor(id)} >
                               Del
                             </Button>
-                           
+
                           </div>
                         </div>
                       </td>

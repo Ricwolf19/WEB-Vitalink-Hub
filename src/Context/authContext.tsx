@@ -15,6 +15,7 @@ import {
     // setDoc, 
     getDoc,
     getDocs,
+    updateDoc,
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -39,24 +40,6 @@ export const usePatientData = () => {
     const documentId = user.uid;
     const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
     const [patientData, setPatientData] = useState<any>([]);
-
-    const getPatientData = async () => {
-        const documentId = user.uid;
-        const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
-
-        try {
-            const data = await getDocs(patientCollectionRef);
-            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            setPatientData(filteredData)
-            console.log('patients data')
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    useEffect(() => {
-        getPatientData()
-    }, [])
 
     const getVitaLinkSigns = async (id: any) => {
         const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', id, 'vitaLinkSigns')
@@ -108,17 +91,54 @@ export const usePatientData = () => {
     }
 
     const handleDeletePatient = async (id: string) => {
-        const deletePatient = doc(db, 'accounts', documentId, 'patients', id);
+        const deletePatientRef = doc(db, 'accounts', documentId, 'patients', id);
 
         try {
-            await deleteDoc(deletePatient)
+            await deleteDoc(deletePatientRef)
             getPatientData()
         } catch (err) {
             console.log(err)
         }
     }
 
-    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns }
+    const handleUpdatePatient = async (id: string, newName: string, newLastName: string, newStatus: string, newArea: string, newChronicDiseases: string[], newAllergies: string[], newBloodType: string, newBirthDate: string, newAge: number, newDoctorAssigned: string) => {
+        const updatePatientRef = doc(db, 'accounts', documentId, 'patients', id);
+
+        await updateDoc(updatePatientRef, {
+            name: newName,
+            lastName: newLastName,
+            status: newStatus,
+            area: newArea,
+            chronicDiseases: newChronicDiseases,
+            allergies: newAllergies,
+            bloodType: newBloodType,
+            birthDate: newBirthDate,
+            age: newAge,
+            doctorAssigned: newDoctorAssigned
+        })
+        //   console.log(id)
+        getPatientData()
+    }
+
+    const getPatientData = async () => {
+        const documentId = user.uid;
+        const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
+
+        try {
+            const data = await getDocs(patientCollectionRef);
+            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            setPatientData(filteredData)
+            console.log('patients data')
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        getPatientData()
+    }, [])
+
+    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient }
 }
 
 

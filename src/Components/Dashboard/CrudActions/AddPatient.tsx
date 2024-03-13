@@ -104,7 +104,6 @@ export function AddPatient() {
                                 </div>
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-
                                     <Select
                                         label="Blood Type"
                                         variant="underlined"
@@ -119,7 +118,6 @@ export function AddPatient() {
                                             </SelectItem>
                                         ))}
                                     </Select>
-
                                 </div>
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
@@ -161,8 +159,6 @@ export function AddPatient() {
                                 </div>
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-
-
                                     <Select
                                         items={selectOptionsAllergies}
                                         color="primary"
