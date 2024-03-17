@@ -27,7 +27,7 @@ export function MessageCard({ img, name, message, action }: MessageCardProps) {
           >
             {name}
           </Typography>
-          <Typography placeholder="">{message}</Typography> // Make placeholder optional
+          <Typography placeholder="">{message}</Typography>
         </div>
       </div>
       {action}

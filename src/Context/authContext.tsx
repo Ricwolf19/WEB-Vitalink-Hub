@@ -38,10 +38,24 @@ export const usePatientData = () => {
     const { user } = useAuth();
     // const [patientData, setPatientData] = useState<any>([]);
     const documentId = user.uid;
-    const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
+    const patientCollectionRef = collection(db, 'accounts', documentId, 'patients');
+    // const alertsRef = collection()
     const [patientData, setPatientData] = useState<any>([]);
 
+    const alerts = () => {
+        let countCriticals = 0;
+        for (let i = 0; i < patientData.length; i++) {
+            if (patientData[i].status === 'Critical') {
+                countCriticals++
+            }
+        }
+        return countCriticals
+    }
 
+    const vitalinkScans = () => {
+        const totalScans = 23
+        return totalScans
+    }
 
     const getVitaLinkSigns = async (id: any) => {
         const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', id, 'vitalSigns')
@@ -148,9 +162,8 @@ export const usePatientData = () => {
         }, 0)
     }
 
-    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient }
+    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient, alerts, vitalinkScans }
 }
-
 
 
 export const useDoctorData = () => {

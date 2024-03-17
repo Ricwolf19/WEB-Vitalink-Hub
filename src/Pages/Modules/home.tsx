@@ -13,17 +13,66 @@ import {
 import { StatisticsCard } from "../../Components/Dashboard/Cards/statistics-card";
 import { StatisticsChart } from "../../Components/Dashboard/Charts/statistics-chart";
 import {
-  statisticsCardsData,
   statisticsChartsData,
   projectsTableData,
   ordersOverviewData,
 } from "../../Data";
 
-import { Users } from "lucide-react";
-import { usePatientData } from "../../Context/authContext";
+import { AlertTriangleIcon, ClipboardPlusIcon, Contact2, ScanFaceIcon, Users } from "lucide-react";
+import { useDoctorData, usePatientData } from "../../Context/authContext";
 
 export function Home() {
-  const { patientData } = usePatientData()
+  const { patientData, alerts, vitalinkScans } = usePatientData()
+  const { doctorData } = useDoctorData()
+
+ 
+
+  const statisticsCardsData = [
+    {
+      color: "green",
+      icon: ClipboardPlusIcon,
+      title: "Total Doctors",
+      value: `${doctorData.length}`,
+      footer: {
+        color: "text-green-500",
+        value: "+ 1",
+        label: "doctors",
+      },
+    },
+    {
+      color: "blue",
+      icon: Contact2,
+      title: "Total Patients",
+      value: `${patientData.length}`,
+      footer: {
+        color: "text-green-500",
+        value: "+ 3",
+        label: "patients",
+      },
+    },
+    {
+      color: "red",
+      icon: AlertTriangleIcon,
+      title: "Critical Patients",
+      value: `${alerts()}`,
+      footer: {
+        color: "text-red-500",
+        value: "+ 10",
+        label: "incidents",
+      },
+    },
+    {
+      color: "blue",
+      icon: ScanFaceIcon,
+      title: "Vitalink Total Scans",
+      value: `${vitalinkScans()}`,
+      footer: {
+        color: "text-green-500",
+        value: "+5",
+        label: "successful scans",
+      },
+    },
+  ];
 
   return (
     <div className="mt-12">
@@ -63,13 +112,13 @@ export function Home() {
             className="m-0 flex items-center justify-between p-6"
           >
             <div>
-              
+
               <Typography placeholder="" variant="h6" color="blue-gray" className="mb-1">
-              <Users strokeWidth={3} className="h-4 w-4 text-blue-gray-200" />
-                {`Patients`}        
+                <Users strokeWidth={3} className="h-4 w-4 text-blue-gray-200" />
+                {`Patients`}
               </Typography>
             </div>
-            
+
           </CardHeader>
           <CardBody placeholder="" className="overflow-x-scroll px-0 pt-0 pb-2">
             <table className="w-full min-w-[640px] table-auto">
@@ -97,8 +146,8 @@ export function Home() {
                 {patientData.map(
                   ({ age, allergies, area, birthDate, bloodType, chronicDiseases, lastName, name, status, doctorAssigned, id }: any, key: any) => {
                     const className = `py-3 px-5 ${key === projectsTableData.length - 1
-                        ? ""
-                        : "border-b border-blue-gray-50 text-center"
+                      ? ""
+                      : "border-b border-blue-gray-50 text-center"
                       }`;
 
                     return (
@@ -114,16 +163,16 @@ export function Home() {
                             >
                               {name}
                             </Typography>
-                           
+
                           </div>
                           <Typography
-                              placeholder=""
-                              variant="small"
-                              className="font-bold text-center text-blue-gray-600 text-xs"    
-                            >
-                              {lastName}
-                            </Typography>
-                        </td>                    
+                            placeholder=""
+                            variant="small"
+                            className="font-bold text-center text-blue-gray-600 text-xs"
+                          >
+                            {lastName}
+                          </Typography>
+                        </td>
                         <td className={className}>
                           <Typography
                             placeholder=""
@@ -148,7 +197,7 @@ export function Home() {
                             variant="small"
                             className="text-xs font-medium text-blue-gray-600"
                           >
-                            {" " +chronicDiseases}
+                            {" " + chronicDiseases}
                           </Typography>
                         </td>
                         <td className={className}>
@@ -202,9 +251,9 @@ export function Home() {
                             className="text-xs font-medium text-blue-gray-600"
                           >
                             {doctorAssigned}
-                            
+
                           </Typography>
-                        </td>                       
+                        </td>
                       </tr>
                     );
                   }
@@ -242,8 +291,8 @@ export function Home() {
                 <div key={title} className="flex items-start gap-4 py-3">
                   <div
                     className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${key === ordersOverviewData.length - 1
-                        ? "after:h-0"
-                        : "after:h-4/6"
+                      ? "after:h-0"
+                      : "after:h-4/6"
                       }`}
                   >
                     {React.createElement(icon, {
