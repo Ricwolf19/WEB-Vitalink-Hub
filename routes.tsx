@@ -1,13 +1,12 @@
 import {
   LayoutPanelLeftIcon,
-  BarChart3Icon,
   UsersIcon,
   CalendarHeartIcon,
   KanbanSquareIcon,
   Cog,
 } from 'lucide-react'
 
-import { Home, Analytics, Personal, Calendar, Kanban, Settings, Profile, Notifications } from "./src/Pages/Modules";
+import { Home, Personal, Calendar, Kanban, Settings } from "./src/Pages/Modules";
 
 const icon = {
   className: "text-inherit",
@@ -22,12 +21,6 @@ export const routes = [
         name: "Dashboard",
         path: "/home",
         element: <Home />,
-      },
-      {
-        icon: <BarChart3Icon {...icon} />,
-        name: "Analytics",
-        path: "/analytics",
-        element: <Analytics />,
       },
       {
         icon: <UsersIcon {...icon} />,
@@ -53,18 +46,18 @@ export const routes = [
         path: "/settings",
         element: <Settings />,
       },
-      {
-        icon: <Cog {...icon} />,
-        name: "notifications",
-        path: "/notifications",
-        element: <Notifications />,
-      },
-      {
-        icon: <Cog {...icon} />,
-        name: "Profile - test",
-        path: "/profile",
-        element: <Profile />,
-      },
+      // {
+      //   icon: <Cog {...icon} />,
+      //   name: "notifications",
+      //   path: "/notifications",
+      //   element: <Notifications />,
+      // },
+      // {
+      //   icon: <Cog {...icon} />,
+      //   name: "Profile - test",
+      //   path: "/profile",
+      //   element: <Profile />,
+      // },
     ],
   },
   // {

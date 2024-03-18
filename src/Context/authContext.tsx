@@ -41,6 +41,7 @@ export const usePatientData = () => {
     const patientCollectionRef = collection(db, 'accounts', documentId, 'patients');
     // const alertsRef = collection()
     const [patientData, setPatientData] = useState<any>([]);
+    const [scansData, setScansData] = useState<any>([])
 
     const alerts = () => {
         let countCriticals = 0;
@@ -52,9 +53,64 @@ export const usePatientData = () => {
         return countCriticals
     }
 
+    const statusChartPatient = () => {
+        let arrFinal = []
+        let countStable = 0
+        let countUnstable = 0
+        let countImproving = 0
+        let countCritical = 0
+        let countRecovering = 0
+        let countSerious = 0
+        let countGuarded = 0
+        for (let i = 0; i < patientData.length; i++) {
+            switch (patientData[i].status) {
+                case 'Stable':
+                    countStable++
+                    break;
+                case 'Unstable':
+                    countUnstable++
+                    break;
+                case 'Improving':
+                    countImproving++
+                    break;
+                case 'Critical':
+                    countCritical++
+                    break;
+                case 'Recovering':
+                    countRecovering++
+                    break;
+                case 'Serious':
+                    countSerious++
+                    break;
+                case 'Guarded':
+                    countGuarded++
+                    break;
+                default:
+                    break;
+            }
+        }
+        arrFinal = [countStable, countUnstable, countImproving, countCritical, countRecovering, countSerious, countGuarded]
+        return arrFinal 
+    }
+
     const vitalinkScans = () => {
-        const totalScans = 23
-        return totalScans
+        let i = 0
+        while (i < scansData.length) {
+            i++
+        }
+        return i
+    }
+
+    const getVitalinkScans = async () => {
+        const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', '8MVgcYw7Zv7oZfQVkLF9', 'vitalSigns')
+
+        try {
+            const totalScansData = await getDocs(vitaLinkSignsCollectionRef)
+            const filteredData = totalScansData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            setScansData(filteredData)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     const getVitaLinkSigns = async (id: any) => {
@@ -62,8 +118,8 @@ export const usePatientData = () => {
 
         try {
             const data = await getDocs(vitaLinkSignsCollectionRef)
-            const filtereData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-            const filterSigns = filtereData[0]
+            const filterData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            const filterSigns = filterData[0]
             // console.log(filterSigns)
 
             function sweetAlert({ ...filterSigns }) {
@@ -152,6 +208,7 @@ export const usePatientData = () => {
 
     useEffect(() => {
         getPatientData()
+        getVitalinkScans()
     }, [])
 
     const secureDelay = async () => {
@@ -162,7 +219,7 @@ export const usePatientData = () => {
         }, 0)
     }
 
-    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient, alerts, vitalinkScans }
+    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient, alerts, vitalinkScans, statusChartPatient }
 }
 
 
@@ -172,6 +229,34 @@ export const useDoctorData = () => {
     const documentId = user.uid;
     const doctorCollectionRef = collection(db, "accounts", documentId, "doctors");
 
+    const statusChartDoctor = () => {
+        let arrFinal = []
+        let countOnCall = 0
+        let countAway = 0
+        let countAvailable = 0
+        let countNotAvailable = 0
+        for (let i = 0; i < doctorData.length; i++) {
+            switch (doctorData[i].status) {
+                case 'On Call':
+                    countOnCall++
+                    break;
+                case 'Away':
+                    countAway++
+                    break;
+                case 'Available':
+                    countAvailable++
+                    break;
+                case 'Not Available':
+                    countNotAvailable++
+                    break;
+                default:
+                    break;
+            }
+        }
+        arrFinal = [countOnCall, countAway, countAvailable, countNotAvailable]
+        return arrFinal 
+    }
+    
     const handleCreateDoctor = async (newName: string, newLastName: string, newArea: string, newNumCedula: number, newPatients: string[], newStatus: string) => {
         try {
             await addDoc(doctorCollectionRef, {
@@ -242,7 +327,7 @@ export const useDoctorData = () => {
         }, 0)
     }
 
-    return { doctorData, handleCreateDoctor, handleDeleteDoctor, handleUpdateDoctor }
+    return { doctorData, handleCreateDoctor, handleDeleteDoctor, handleUpdateDoctor, statusChartDoctor }
 }
 
 export const useAccountData = () => {

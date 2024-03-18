@@ -13,19 +13,278 @@ import {
 import { StatisticsCard } from "../../Components/Dashboard/Cards/statistics-card";
 import { StatisticsChart } from "../../Components/Dashboard/Charts/statistics-chart";
 import {
-  statisticsChartsData,
   projectsTableData,
   ordersOverviewData,
 } from "../../Data";
 
 import { AlertTriangleIcon, ClipboardPlusIcon, Contact2, ScanFaceIcon, Users } from "lucide-react";
 import { useDoctorData, usePatientData } from "../../Context/authContext";
+import { chartsConfig } from "../../Configs";
 
 export function Home() {
-  const { patientData, alerts, vitalinkScans } = usePatientData()
-  const { doctorData } = useDoctorData()
+  const { patientData, alerts, vitalinkScans, statusChartPatient } = usePatientData()
+  const { doctorData, statusChartDoctor } = useDoctorData()
 
- 
+  const crowdedArea = () => {
+    let arrFinal = []
+
+    let countSurgeryD = 0
+    let countEmergencyD = 0
+    let countIntensiveD = 0
+    let countPediatricD = 0
+    let countMaternityD = 0
+    let countOrthopedicD = 0
+    let countOncologyD = 0
+    let countCardiologyD = 0
+    let countNeurologyD = 0
+    let countPsychiatricD = 0
+    let countRadiologyD = 0
+    let countLaboratoryD = 0
+
+    let countSurgeryP = 0
+    let countEmergencyP = 0
+    let countIntensiveP = 0
+    let countPediatricP = 0
+    let countMaternityP = 0
+    let countOrthopedicP = 0
+    let countOncologyP = 0
+    let countCardiologyP = 0
+    let countNeurologyP = 0
+    let countPsychiatricP = 0
+    let countRadiologyP = 0
+    let countLaboratoryP = 0
+
+
+    for (let i = 0; i < doctorData.length; i++) {
+      switch (doctorData[i].area) {
+        case 'Surgery Area':
+          countSurgeryD++
+          break;
+        case 'Emergency Room':
+          countEmergencyD++
+          break;
+        case 'Intensive Care Unit':
+          countIntensiveD++
+          break;
+        case 'Pediatric Ward':
+          countPediatricD++
+          break;
+        case 'Maternity Ward':
+          countMaternityD++
+          break;
+        case 'Orthopedic Ward':
+          countOrthopedicD++
+          break;
+        case 'Oncology Ward':
+          countOncologyD++
+          break;
+        case 'Cardiology Department':
+          countCardiologyD++
+          break;
+        case 'Neurology Department':
+          countNeurologyD++
+          break;
+        case 'Psychiatric Ward':
+          countPsychiatricD++
+          break;
+        case 'Radiology Department':
+          countRadiologyD++
+          break;
+        case 'Laboratory':
+          countLaboratoryD++
+          break;
+        default:
+          break;
+      }
+    }
+
+    for (let i = 0; i < patientData.length; i++) {
+      switch (patientData[i].area) {
+        case 'Surgery Area':
+          countSurgeryP++
+          break;
+        case 'Emergency Room':
+          countEmergencyP++
+          break;
+        case 'Intensive Care Unit':
+          countIntensiveP++
+          break;
+        case 'Pediatric Ward':
+          countPediatricP++
+          break;
+        case 'Maternity Ward':
+          countMaternityP++
+          break;
+        case 'Orthopedic Ward':
+          countOrthopedicP++
+          break;
+        case 'Oncology Ward':
+          countOncologyP++
+          break;
+        case 'Cardiology Department':
+          countCardiologyP++
+          break;
+        case 'Neurology Department':
+          countNeurologyP++
+          break;
+        case 'Psychiatric Ward':
+          countPsychiatricP++
+          break;
+        case 'Radiology Department':
+          countRadiologyP++
+          break;
+        case 'Laboratory':
+          countLaboratoryP++
+          break;
+        default:
+          break;
+      }
+    }
+
+    let countTotalSurgery = countSurgeryD + countSurgeryP
+    let countTotalEmergency = countEmergencyD + countEmergencyP
+    let countTotalIntensive = countIntensiveD + countIntensiveP
+    let countTotalPediatric = countPediatricD + countPediatricP
+    let countTotalMaternity = countMaternityD + countMaternityP
+    let countTotalOrthopedic = countOrthopedicD + countOrthopedicP
+    let countTotalOncology = countOncologyD + countOncologyP
+    let countTotalCardiology = countCardiologyD + countCardiologyP
+    let countTotalNeurology = countNeurologyD + countNeurologyP
+    let countTotalPsychiatric = countPsychiatricD + countPsychiatricP
+    let countTotalRadiology = countRadiologyD + countRadiologyP
+    let countTotalLaboratory = countLaboratoryD +  countLaboratoryP
+
+    arrFinal = [
+      countTotalSurgery, 
+      countTotalEmergency, 
+      countTotalIntensive, 
+      countTotalPediatric, 
+      countTotalMaternity,
+      countTotalOrthopedic,
+      countTotalOncology,
+      countTotalCardiology,
+      countTotalNeurology,
+      countTotalPsychiatric,
+      countTotalRadiology,
+      countTotalLaboratory
+    ]
+    return arrFinal
+  }
+
+  const statusPatientsChart = {
+    type: "bar",
+    height: 220,
+    series: [
+      {
+        name: "Views",
+        data: statusChartPatient(),
+      },
+    ],
+    options: {
+      ...chartsConfig,
+      colors: "#FF9900",
+      plotOptions: {
+        bar: {
+          columnWidth: "75%",
+          borderRadius: 5,
+        },
+      },
+      xaxis: {
+        ...chartsConfig.xaxis,
+        categories: ["Stable", "Unstable", "Improving", "Critical", "Recovering", "Serious", "Guarded"],
+      },
+    },
+  };
+
+  const crowdedAreasChart = {
+    type: 'area',
+    height: 220,
+    series: [
+      {
+        name: 'Personal in area',
+        data: crowdedArea(),
+      },
+    ],
+    options: {
+      xaxis: {
+        ...chartsConfig.xaxis,
+        categories: [
+          'Surgery',
+          'Emergency',
+          'Intensive',
+          'Pediatric',
+          'Maternity',
+          'Orthopedic',
+          'Oncology',
+          'Cardiology',
+          'Neurology',
+          'Psychiatric',
+          'Radiology',
+          'Laboratory',
+        ]
+      },
+    },
+  };
+
+
+  const statusDoctorChartConf = {
+    type: "line",
+    height: 220,
+    series: [
+      {
+        name: "Sales",
+        data: statusChartDoctor(),
+      },
+    ],
+    options: {
+      ...chartsConfig,
+      colors: ["#cc0000"],
+      stroke: {
+        lineCap: "round",
+      },
+      markers: {
+        size: 5,
+      },
+      xaxis: {
+        ...chartsConfig.xaxis,
+        categories: ['On Call', 'Away', 'Available', 'Not Available'],
+      },
+    },
+  };
+  const statusDoctorChart = {
+    ...statusDoctorChartConf,
+    series: [
+      {
+        name: "Doctor Status",
+        data: statusChartDoctor(),
+      },
+    ],
+  };
+
+
+  const statisticsChartsData = [
+    {
+      color: "white",
+      title: "Patients Status",
+      description: "@vitalink",
+      chart: statusPatientsChart,
+    },
+    {
+      color: "white",
+      title: "Crowded Areas",
+      description: "@vitalink",
+      chart: crowdedAreasChart,
+    },
+    {
+      color: "white",
+      title: "Doctors Status",
+      description: "@vitalink",
+      chart: statusDoctorChart,
+
+    },
+  ];
+
+
 
   const statisticsCardsData = [
     {
