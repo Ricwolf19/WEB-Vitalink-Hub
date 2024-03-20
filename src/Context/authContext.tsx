@@ -119,16 +119,15 @@ export const usePatientData = () => {
         try {
             const data = await getDocs(vitaLinkSignsCollectionRef)
             const filterData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-            const filterSigns = filterData[0]
-            // console.log(filterSigns)
+            const filterSigns = filterData[filterData.length - 1]
 
             function sweetAlert({ ...filterSigns }) {
                 swal({
-                    title: "VitaLink last scan ",
+                    title: "VitaLink last scan",
                     text: `
-                       PATIENT FC: ${filterSigns.fc} \n
-                       PATIENT SA02: ${filterSigns.sa02} \n
-                       PATIENT TEMPERATURE: ${filterSigns.temp} \n
+                       PATIENT FC: ${filterSigns.fc ? filterSigns.fc : "NO DETECTADA"} \n
+                       PATIENT SA02: ${filterSigns.spo2 ? filterSigns.spo2 : 'NO DETECTADA'} \n
+                       PATIENT TEMPERATURE: ${filterSigns.temp ? filterSigns.temp : 'NO DETECTADA'} \n
                        `,
                     icon: "success"
                 });
