@@ -9,12 +9,17 @@ import {
 } from "@material-tailwind/react";
 import {
   ArrowUpIcon,
+  BellIcon,
+  PlusCircleIcon,
+  ShoppingCartIcon,
+  CreditCardIcon,
+  LockOpenIcon,
+  BanknotesIcon,
 } from "@heroicons/react/24/outline";
 import { StatisticsCard } from "../../Components/Dashboard/Cards/statistics-card";
 import { StatisticsChart } from "../../Components/Dashboard/Charts/statistics-chart";
 import {
   projectsTableData,
-  ordersOverviewData,
 } from "../../Data";
 
 import { AlertTriangleIcon, ClipboardPlusIcon, Contact2, ScanFaceIcon, Users } from "lucide-react";
@@ -285,7 +290,6 @@ export function Home() {
   ];
 
 
-
   const statisticsCardsData = [
     {
       color: "green",
@@ -333,6 +337,47 @@ export function Home() {
     },
   ];
 
+
+ const ordersOverviewData = [
+    {
+      icon: BellIcon,
+      color: "text-blue-gray-300",
+      title: `Last patient: ${'fg'}`,
+      description: "22 DEC 7:20 PM",
+    },
+    {
+      icon: PlusCircleIcon,
+      color: "text-blue-gray-300",
+      title: "New order #1832412",
+      description: "21 DEC 11 PM",
+    },
+    {
+      icon: ShoppingCartIcon,
+      color: "text-blue-gray-300",
+      title: "Server payments for April",
+      description: "21 DEC 9:34 PM",
+    },
+    {
+      icon: CreditCardIcon,
+      color: "text-blue-gray-300",
+      title: "New card added for order #4395133",
+      description: "20 DEC 2:20 AM",
+    },
+    {
+      icon: LockOpenIcon,
+      color: "text-blue-gray-300",
+      title: "Unlock packages for development",
+      description: "18 DEC 4:54 AM",
+    },
+    {
+      icon: BanknotesIcon,
+      color: "text-blue-gray-300",
+      title: "New order #9583120",
+      description: "17 DEC",
+    },
+  ];
+  
+  
   return (
     <div className="mt-12">
       <div className="mb-10 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
@@ -530,7 +575,7 @@ export function Home() {
             className="m-0 p-6"
           >
             <Typography placeholder="" variant="h6" color="blue-gray" className="mb-2">
-              Orders Overview
+                  Last important
             </Typography>
             <Typography
               placeholder=""
@@ -541,7 +586,7 @@ export function Home() {
                 strokeWidth={3}
                 className="h-3.5 w-3.5 text-green-500"
               />
-              <strong>24%</strong> this month
+              <strong>information</strong>
             </Typography>
           </CardHeader>
           <CardBody placeholder="" className="pt-0">

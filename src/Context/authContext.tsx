@@ -191,24 +191,46 @@ export const usePatientData = () => {
         secureDelay()
     }
 
+
     const getPatientData = async () => {
         const documentId = user.uid;
-        const patientCollectionRef = collection(db, 'accounts', documentId, 'patients')
+        const patientCollectionRef = collection(db, 'accounts', documentId, 'patients');
 
         try {
             const data = await getDocs(patientCollectionRef);
             const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
             setPatientData(filteredData)
-            // console.log('patients data')
         } catch (err) {
             console.log(err)
         }
     }
 
+    // const getLastPatient = async (patientId: string) => {
+    //     const documentId = user.uid;
+    //     const patientDocRef = doc(db, 'accounts', documentId, 'patients', patientId);
+    
+    //     try {
+    //         const docSnap = await getDoc(patientDocRef);
+    //         if (docSnap.exists()) {
+    //             const specificPatientData = { ...docSnap.data(), id: docSnap.id };
+    //             console.log('Specific patient data:', specificPatientData);
+    //         } else {
+    //             console.log('No such document!');
+    //         }
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
+
+    // console.log(patientData)
+    // console.log(getLastPatient(patientData))
+
     useEffect(() => {
         getPatientData()
         getVitalinkScans()
     }, [])
+
 
     const secureDelay = async () => {
         setTimeout(() => {
@@ -218,7 +240,7 @@ export const usePatientData = () => {
         }, 0)
     }
 
-    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient, alerts, vitalinkScans, statusChartPatient }
+    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient, alerts, vitalinkScans, statusChartPatient}
 }
 
 
