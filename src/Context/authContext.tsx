@@ -49,6 +49,54 @@ export const usePatientData = () => {
         id: string
         name: string
         lastName: string
+        createdAt: any
+    }
+
+    const getElderlyPatients = () => {
+        let i = 0
+        let countElderlyPatients = 0
+        while (i < patientData.length) {
+            if (patientData[i].age > 18) {
+                countElderlyPatients++
+            }
+            i++
+        }
+        return countElderlyPatients
+    }
+
+    const getMostCommonBloodType = () => {
+        const bloodTypeCounts: any = {}; // Object to store blood type counts
+    
+        // Iterate through patient data to count blood types
+        for (let i = 0; i < patientData.length; i++) {
+            const bloodType = patientData[i].bloodType;
+            bloodTypeCounts[bloodType] = (bloodTypeCounts[bloodType] || 0) + 1;
+        }
+    
+        let mostCommonBloodType = '';
+        let maxCount = 0;
+    
+        // Find the most common blood type
+        for (const bloodType in bloodTypeCounts) {
+            if (bloodTypeCounts[bloodType] > maxCount) {
+                mostCommonBloodType = bloodType;
+                maxCount = bloodTypeCounts[bloodType];
+            }
+        }
+    
+        return mostCommonBloodType;
+    }
+
+    const getUnderAgePatients = () => {
+        let i = 0
+        let countUnderagePatients = 0
+        while (i < patientData.length) {
+            if (patientData[i].age < 18) {
+                countUnderagePatients++
+            }
+            i++
+        }
+        return countUnderagePatients
     }
 
     const alerts = () => {
@@ -239,7 +287,21 @@ export const usePatientData = () => {
         }, 0)
     }
 
-    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient, alerts, vitalinkScans, statusChartPatient, lastPatientLastName, lastPatientName }
+    return { 
+        patientData, 
+        handleCreatePatient, 
+        handleDeletePatient, 
+        getVitaLinkSigns, 
+        handleUpdatePatient, 
+        alerts, 
+        vitalinkScans, 
+        statusChartPatient, 
+        lastPatientLastName, 
+        lastPatientName,
+        getElderlyPatients,
+        getUnderAgePatients,
+        getMostCommonBloodType,
+    }
 }
 
 

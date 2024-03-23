@@ -9,12 +9,6 @@ import {
 } from "@material-tailwind/react";
 import {
   ArrowUpIcon,
-  BellIcon,
-  PlusCircleIcon,
-  ShoppingCartIcon,
-  CreditCardIcon,
-  LockOpenIcon,
-  BanknotesIcon,
 } from "@heroicons/react/24/outline";
 import { StatisticsCard } from "../../Components/Dashboard/Cards/statistics-card";
 import { StatisticsChart } from "../../Components/Dashboard/Charts/statistics-chart";
@@ -22,12 +16,15 @@ import {
   projectsTableData,
 } from "../../Data";
 
-import { AlertTriangleIcon, ClipboardPlusIcon, Contact2, ScanFaceIcon, Users } from "lucide-react";
+import { AlertTriangleIcon, ClipboardPlusIcon, Contact2, PlusCircle, ScanFaceIcon, Users } from "lucide-react";
 import { useDoctorData, usePatientData } from "../../Context/authContext";
 import { chartsConfig } from "../../Configs";
+import { MdBloodtype } from "react-icons/md";
+import { TbMoodBoy } from "react-icons/tb";
+import { SlPeople } from "react-icons/sl";
 
 export function Home() {
-  const { patientData, alerts, vitalinkScans, statusChartPatient, lastPatientLastName, lastPatientName } = usePatientData()
+  const { patientData, alerts, vitalinkScans, statusChartPatient, lastPatientLastName, lastPatientName, getElderlyPatients, getUnderAgePatients, getMostCommonBloodType } = usePatientData()
   const { doctorData, statusChartDoctor, lastDoctorName, lastDoctorLastName } = useDoctorData()
 
   const crowdedArea = () => {
@@ -175,6 +172,7 @@ export function Home() {
     ]
     return arrFinal
   }
+
 
   const statusPatientsChart = {
     type: "bar",
@@ -338,42 +336,36 @@ export function Home() {
   ];
 
 
-  const ordersOverviewData = [
+  const extraInformationData = [
     {
-      icon: BellIcon,
+      icon: PlusCircle,
       color: "text-blue-gray-300",
-      title: `Last Patient: ${lastPatientName} ${lastPatientLastName}`,
-      description: "22 DEC 7:20 PM",
+      title: `Last Patient Added:  ${lastPatientName} ${lastPatientLastName}`,
+      description: <Avatar placeholder="" src={"https://i.ibb.co/k1v2vgn/pacient-icon.jpg"} size="sm" className="text-center" />,
     },
     {
-      icon: PlusCircleIcon,
+      icon: PlusCircle,
       color: "text-blue-gray-300",
-      title: `Last Doctor: ${lastDoctorName} ${lastDoctorLastName}`,
-      description: "21 DEC 11 PM",
+      title: `Last Doctor Added:  ${lastDoctorName} ${lastDoctorLastName}`,
+      description: <Avatar placeholder="" src={'/img/doctor-icon.png'} size="sm" variant="rounded" />,
     },
     {
-      icon: ShoppingCartIcon,
+      icon: SlPeople,
       color: "text-blue-gray-300",
-      title: "Server payments for April",
-      description: "21 DEC 9:34 PM",
+      title: `Elderly Patients:  ${getElderlyPatients()}`,
+      description: <Avatar placeholder="" src={'https://i.ibb.co/0cd85H9/older-Patients-Icon.png'} size="sm" variant="rounded" />,
     },
     {
-      icon: CreditCardIcon,
+      icon: TbMoodBoy,
       color: "text-blue-gray-300",
-      title: "New card added for order #4395133",
-      description: "20 DEC 2:20 AM",
+      title: `Underage Patients:  ${getUnderAgePatients()}`,
+      description: <Avatar placeholder="" src={'https://i.ibb.co/CsxFJBy/adolescents-icons.png'} size="sm" variant="rounded" />,
     },
     {
-      icon: LockOpenIcon,
+      icon: MdBloodtype,
       color: "text-blue-gray-300",
-      title: "Unlock packages for development",
-      description: "18 DEC 4:54 AM",
-    },
-    {
-      icon: BanknotesIcon,
-      color: "text-blue-gray-300",
-      title: "New order #9583120",
-      description: "17 DEC",
+      title: `Most Common Blood Type: ${getMostCommonBloodType()}`,
+      description: <Avatar placeholder="" src={'https://i.ibb.co/ZJz1vZP/blood-Type-icon.png'} size="sm" variant="rounded" />,
     },
   ];
 
@@ -575,7 +567,7 @@ export function Home() {
             className="m-0 p-6"
           >
             <Typography placeholder="" variant="h6" color="blue-gray" className="mb-2">
-              Last important
+              Extra important
             </Typography>
             <Typography
               placeholder=""
@@ -590,11 +582,11 @@ export function Home() {
             </Typography>
           </CardHeader>
           <CardBody placeholder="" className="pt-0">
-            {ordersOverviewData.map(
+            {extraInformationData.map(
               ({ icon, color, title, description }, key) => (
                 <div key={title} className="flex items-start gap-4 py-3">
                   <div
-                    className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${key === ordersOverviewData.length - 1
+                    className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${key === extraInformationData.length - 1
                       ? "after:h-0"
                       : "after:h-4/6"
                       }`}
