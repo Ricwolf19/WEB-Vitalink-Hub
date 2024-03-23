@@ -42,6 +42,14 @@ export const usePatientData = () => {
     // const alertsRef = collection()
     const [patientData, setPatientData] = useState<any>([]);
     const [scansData, setScansData] = useState<any>([])
+    const [lastPatientName, setLastPatientName] = useState('')
+    const [lastPatientLastName, setLastPatientLastName] = useState('')
+
+    interface lastPatient {
+        id: string
+        name: string
+        lastName: string
+    }
 
     const alerts = () => {
         let countCriticals = 0;
@@ -90,7 +98,7 @@ export const usePatientData = () => {
             }
         }
         arrFinal = [countStable, countUnstable, countImproving, countCritical, countRecovering, countSerious, countGuarded]
-        return arrFinal 
+        return arrFinal
     }
 
     const vitalinkScans = () => {
@@ -199,6 +207,18 @@ export const usePatientData = () => {
         try {
             const data = await getDocs(patientCollectionRef);
             const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            const lastLength = filteredData.length - 1
+            const lastPatientId = (filteredData[lastLength].id)
+            const lastPatientDocRef = doc(db, 'accounts', documentId, 'patients', lastPatientId);
+            const docSnap = await getDoc(lastPatientDocRef);
+
+            if (docSnap.exists()) {
+                const specificPatientData = { ...docSnap.data(), id: docSnap.id } as lastPatient;
+                setLastPatientName(specificPatientData.name)
+                setLastPatientLastName(specificPatientData.lastName)
+            } else {
+                console.log('No such document!');
+            }
 
             setPatientData(filteredData)
         } catch (err) {
@@ -206,31 +226,10 @@ export const usePatientData = () => {
         }
     }
 
-    // const getLastPatient = async (patientId: string) => {
-    //     const documentId = user.uid;
-    //     const patientDocRef = doc(db, 'accounts', documentId, 'patients', patientId);
-    
-    //     try {
-    //         const docSnap = await getDoc(patientDocRef);
-    //         if (docSnap.exists()) {
-    //             const specificPatientData = { ...docSnap.data(), id: docSnap.id };
-    //             console.log('Specific patient data:', specificPatientData);
-    //         } else {
-    //             console.log('No such document!');
-    //         }
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // }
-
-    // console.log(patientData)
-    // console.log(getLastPatient(patientData))
-
     useEffect(() => {
         getPatientData()
         getVitalinkScans()
     }, [])
-
 
     const secureDelay = async () => {
         setTimeout(() => {
@@ -240,7 +239,7 @@ export const usePatientData = () => {
         }, 0)
     }
 
-    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient, alerts, vitalinkScans, statusChartPatient}
+    return { patientData, handleCreatePatient, handleDeletePatient, getVitaLinkSigns, handleUpdatePatient, alerts, vitalinkScans, statusChartPatient, lastPatientLastName, lastPatientName }
 }
 
 
@@ -249,6 +248,14 @@ export const useDoctorData = () => {
     const [doctorData, setDoctorData] = useState<any>([]);
     const documentId = user.uid;
     const doctorCollectionRef = collection(db, "accounts", documentId, "doctors");
+    const [lastDoctorName, setLastDoctorName] = useState('')
+    const [lastDoctorLastName, setLastDoctorLastName] = useState('')
+
+    interface lastDoctor {
+        id: string
+        name: string
+        lastName: string
+    }
 
     const statusChartDoctor = () => {
         let arrFinal = []
@@ -275,9 +282,9 @@ export const useDoctorData = () => {
             }
         }
         arrFinal = [countOnCall, countAway, countAvailable, countNotAvailable]
-        return arrFinal 
+        return arrFinal
     }
-    
+
     const handleCreateDoctor = async (newName: string, newLastName: string, newArea: string, newNumCedula: number, newPatients: string[], newStatus: string) => {
         try {
             await addDoc(doctorCollectionRef, {
@@ -326,15 +333,30 @@ export const useDoctorData = () => {
     }
 
     const getDoctorData = async () => {
+
         try {
             const data = await getDocs(doctorCollectionRef);
             const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+
+            const lastLength = filteredData.length - 1
+            const lastDoctorId = (filteredData[lastLength].id)
+            const lastPatientDocRef = doc(db, "accounts", documentId, "doctors", lastDoctorId);
+            const docSnap = await getDoc(lastPatientDocRef);
+
+            if (docSnap.exists()) {
+                const specificPatientData = { ...docSnap.data(), id: docSnap.id } as lastDoctor;
+                setLastDoctorName(specificPatientData.name)
+                setLastDoctorLastName(specificPatientData.lastName)
+            } else {
+                console.log('No such document!');
+            }
+
             setDoctorData(filteredData)
-            // console.log('doctors data')
         } catch (err) {
             console.log(err)
         }
     }
+
 
     useEffect(() => {
         getDoctorData()
@@ -348,7 +370,7 @@ export const useDoctorData = () => {
         }, 0)
     }
 
-    return { doctorData, handleCreateDoctor, handleDeleteDoctor, handleUpdateDoctor, statusChartDoctor }
+    return { doctorData, handleCreateDoctor, handleDeleteDoctor, handleUpdateDoctor, statusChartDoctor, lastDoctorName, lastDoctorLastName }
 }
 
 export const useAccountData = () => {

@@ -27,8 +27,8 @@ import { useDoctorData, usePatientData } from "../../Context/authContext";
 import { chartsConfig } from "../../Configs";
 
 export function Home() {
-  const { patientData, alerts, vitalinkScans, statusChartPatient } = usePatientData()
-  const { doctorData, statusChartDoctor } = useDoctorData()
+  const { patientData, alerts, vitalinkScans, statusChartPatient, lastPatientLastName, lastPatientName } = usePatientData()
+  const { doctorData, statusChartDoctor, lastDoctorName, lastDoctorLastName } = useDoctorData()
 
   const crowdedArea = () => {
     let arrFinal = []
@@ -157,13 +157,13 @@ export function Home() {
     let countTotalNeurology = countNeurologyD + countNeurologyP
     let countTotalPsychiatric = countPsychiatricD + countPsychiatricP
     let countTotalRadiology = countRadiologyD + countRadiologyP
-    let countTotalLaboratory = countLaboratoryD +  countLaboratoryP
+    let countTotalLaboratory = countLaboratoryD + countLaboratoryP
 
     arrFinal = [
-      countTotalSurgery, 
-      countTotalEmergency, 
-      countTotalIntensive, 
-      countTotalPediatric, 
+      countTotalSurgery,
+      countTotalEmergency,
+      countTotalIntensive,
+      countTotalPediatric,
       countTotalMaternity,
       countTotalOrthopedic,
       countTotalOncology,
@@ -338,17 +338,17 @@ export function Home() {
   ];
 
 
- const ordersOverviewData = [
+  const ordersOverviewData = [
     {
       icon: BellIcon,
       color: "text-blue-gray-300",
-      title: `Last patient: ${'fg'}`,
+      title: `Last Patient: ${lastPatientName} ${lastPatientLastName}`,
       description: "22 DEC 7:20 PM",
     },
     {
       icon: PlusCircleIcon,
       color: "text-blue-gray-300",
-      title: "New order #1832412",
+      title: `Last Doctor: ${lastDoctorName} ${lastDoctorLastName}`,
       description: "21 DEC 11 PM",
     },
     {
@@ -376,8 +376,8 @@ export function Home() {
       description: "17 DEC",
     },
   ];
-  
-  
+
+
   return (
     <div className="mt-12">
       <div className="mb-10 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
@@ -575,7 +575,7 @@ export function Home() {
             className="m-0 p-6"
           >
             <Typography placeholder="" variant="h6" color="blue-gray" className="mb-2">
-                  Last important
+              Last important
             </Typography>
             <Typography
               placeholder=""
