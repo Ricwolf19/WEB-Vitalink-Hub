@@ -33,6 +33,38 @@ import swal from "sweetalert";
 //     doctorAssigned: string
 // }
 
+export const useEventCalendar = () => {
+    const { user } = useAuth()
+    const documentId = user.uid;
+    const eventsCollectionRef = collection(db, 'accounts', documentId, 'events')
+    const [calendarEvents, setCalendarEvents] = useState<any>('')
+
+    const getEvents = async () => {
+
+        try {
+            const data = await getDocs(eventsCollectionRef);
+            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            setCalendarEvents(filteredData)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        getEvents()
+    }, [])
+
+    const handleCreateEvent = (start: string, end: string, title: string) => {
+        console.log(start)
+        console.log(end)
+        console.log(title)
+    }
+
+    return {
+        calendarEvents,
+        handleCreateEvent
+    }
+}
 
 export const usePatientData = () => {
     const { user } = useAuth();
