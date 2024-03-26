@@ -19,6 +19,7 @@ import {
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import dayjs from "dayjs";
 
 // interface createPatientProps {
 //     name: string,
@@ -40,7 +41,6 @@ export const useEventCalendar = () => {
     const [calendarEvents, setCalendarEvents] = useState<any>('')
 
     const getEvents = async () => {
-
         try {
             const data = await getDocs(eventsCollectionRef);
             const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -54,17 +54,54 @@ export const useEventCalendar = () => {
         getEvents()
     }, [])
 
-    const handleCreateEvent = (start: string, end: string, title: string) => {
-        console.log(start)
-        console.log(end)
-        console.log(title)
+    const handleCreateEvent = async (addStart: string, addEnd: string, addTitle: string) => {
+        try {
+            await addDoc(eventsCollectionRef, {
+                start: addStart,
+                end: addEnd,
+                title: addTitle
+            })
+            getEvents()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleDeleteEvent = async (id: string) => {
+        const eventRef = doc(db, 'accounts', documentId, 'events', id)
+        try {
+            await deleteDoc(eventRef)
+            getEvents()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleUpdateEvent = async (id: string, newStart: string, newEnd: string, newTitle: string) => {
+        const eventRef = doc(db, 'accounts', documentId, 'events', id)
+
+        try {
+            await updateDoc(eventRef, {
+                start: newStart,
+                end: newEnd,
+                title: newTitle
+            })
+            getEvents()
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return {
         calendarEvents,
-        handleCreateEvent
+        handleCreateEvent,
+        handleDeleteEvent,
+        handleUpdateEvent
     }
 }
+
+
+
 
 export const usePatientData = () => {
     const { user } = useAuth();
@@ -98,16 +135,16 @@ export const usePatientData = () => {
 
     const getMostCommonBloodType = () => {
         const bloodTypeCounts: any = {}; // Object to store blood type counts
-    
+
         // Iterate through patient data to count blood types
         for (let i = 0; i < patientData.length; i++) {
             const bloodType = patientData[i].bloodType;
             bloodTypeCounts[bloodType] = (bloodTypeCounts[bloodType] || 0) + 1;
         }
-    
+
         let mostCommonBloodType = '';
         let maxCount = 0;
-    
+
         // Find the most common blood type
         for (const bloodType in bloodTypeCounts) {
             if (bloodTypeCounts[bloodType] > maxCount) {
@@ -115,7 +152,7 @@ export const usePatientData = () => {
                 maxCount = bloodTypeCounts[bloodType];
             }
         }
-    
+
         return mostCommonBloodType;
     }
 
@@ -319,16 +356,16 @@ export const usePatientData = () => {
         }, 0)
     }
 
-    return { 
-        patientData, 
-        handleCreatePatient, 
-        handleDeletePatient, 
-        getVitaLinkSigns, 
-        handleUpdatePatient, 
-        alerts, 
-        vitalinkScans, 
-        statusChartPatient, 
-        lastPatientLastName, 
+    return {
+        patientData,
+        handleCreatePatient,
+        handleDeletePatient,
+        getVitaLinkSigns,
+        handleUpdatePatient,
+        alerts,
+        vitalinkScans,
+        statusChartPatient,
+        lastPatientLastName,
         lastPatientName,
         getElderlyPatients,
         getUnderAgePatients,
