@@ -551,13 +551,12 @@ export const useDoctorData = () => {
 export const useAccountData = () => {
     const { user } = useAuth();
     const [accountData, setAccountData] = useState<any>('');
+    const accountsCollectionRef = collection(db, 'accounts');
+    const documentId = user.uid;
+    const updateaccountRef = doc(db, 'accounts', documentId)
 
     const getAccountData = async () => {
-        try {
-            // Assuming you have initialized your Firestore database connection
-            const accountsCollectionRef = collection(db, 'accounts');
-            const documentId = user.uid;
-
+        try {         
             const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
             if (docSnap.exists()) {
                 const accountInfo = docSnap.data();
@@ -570,11 +569,37 @@ export const useAccountData = () => {
         }
     };
 
+    const handleUpdateEmail = async (newEmail: string) => {
+        try {
+            await updateDoc(updateaccountRef, {
+                email: newEmail
+            })
+            getAccountData();
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleUpdateUserName = async (newUserName: string) => {        
+        try {
+            await updateDoc(updateaccountRef, {
+                userName: newUserName
+            })
+            getAccountData();
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         getAccountData();
     }, [user.uid]);
 
-    return { accountData };
+    return { 
+        accountData,
+        handleUpdateEmail,
+        handleUpdateUserName 
+    };
 };
 
 interface AuthContextProps {

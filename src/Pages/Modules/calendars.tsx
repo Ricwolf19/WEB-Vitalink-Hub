@@ -2,7 +2,7 @@ import { Calendar as BigCalendar, dayjsLocalizer } from 'react-big-calendar';
 import dayjs from 'dayjs';
 import "react-big-calendar/lib/css/react-big-calendar.css"; // Keep the base styles
 import { CalendarPlus2Icon } from 'lucide-react';
-import { Popover, PopoverTrigger, PopoverContent, Button, Input, Tooltip, Select, SelectItem } from "@nextui-org/react";
+import { Popover, PopoverTrigger, PopoverContent, Button, Input, Tooltip, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { useState } from 'react';
 import { useEventCalendar } from '../../Context/authContext';
 
@@ -114,7 +114,7 @@ export function Calendars() {
     //     )
     //     r++
     // }
-    
+
 
     // for (let i = 0; i < patientData.length; i++) {
     //     // for(let r = 0; i < ; r++) {
@@ -152,7 +152,15 @@ export function Calendars() {
                                     <div className="mt-2 flex flex-col gap-2 w-full">
                                         <Input placeholder='mm/dd/yyyy' label="Start date" size="md" type='datetime-local' variant="underlined" onChange={(e) => setStartDate(e.target.value)} />
                                         <Input placeholder='mm/dd/yyyy' label="End date" size="md" type='datetime-local' variant="underlined" onChange={(e) => setEndDate(e.target.value)} />
-                                        <Input placeholder='Event title' label="Title" size="md" type='text' variant="underlined" onChange={(e) => setTitle(e.target.value)} />
+                                        {/* <Input placeholder='Event title' label="Title" size="md" type='text' variant="underlined" onChange={(e) => setTitle(e.target.value)} /> */}
+                                        <Textarea                                            
+                                            label="Title"
+                                            variant="bordered"
+                                            labelPlacement="outside"
+                                            placeholder="Event title"
+                                            className="max-w-xs"
+                                            onChange={(e: any) => setTitle(e.target.value)}
+                                        />
                                         <Button color='danger' variant='shadow' onClick={() => handleCreateEvent(startDate, endDate, title)}>Add New Event</Button>
                                     </div>
                                 </div>
@@ -192,7 +200,15 @@ export function Calendars() {
                                     <div className='mt-2 flex flex-col gap-2 w-full'>
                                         <Input placeholder='mm/dd/yyyy' label="New start date" size="md" type='datetime-local' variant="underlined" onChange={(e) => setNewStartDate(e.target.value)} />
                                         <Input placeholder='mm/dd/yyyy' label="New end date" size="md" type='datetime-local' variant="underlined" onChange={(e) => setNewEndDate(e.target.value)} />
-                                        <Input placeholder='New event title' label="New title" size="md" type='text' variant="underlined" onChange={(e) => setNewTitle(e.target.value)} />
+                                        {/* <Input placeholder='New event title' label="New title" size="md" type='text' variant="underlined" onChange={(e) => setNewTitle(e.target.value)} /> */}
+                                        <Textarea                                            
+                                            label="Title"
+                                            variant="bordered"
+                                            labelPlacement="outside"
+                                            placeholder="Event title"
+                                            className="max-w-xs"
+                                            onChange={(e) => setNewTitle(e.target.value)}
+                                        />
                                         <Button color='danger' variant='shadow' onClick={() => handleUpdateEvent(updateEvent, newStartDate, newEndDate, newTitle)}>Update Event</Button>
                                     </div>
                                 </div>

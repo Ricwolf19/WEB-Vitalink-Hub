@@ -6,7 +6,7 @@ import {
   Cog,
 } from 'lucide-react'
 
-import { Home, Personal, Calendars, Kanban, Settings } from "./src/Pages/Modules";
+import { Home, Personal, Calendars, Kanban, Notifications, Settings } from "./src/Pages/Modules";
 
 const icon = {
   className: "text-inherit",
@@ -42,22 +42,16 @@ export const routes = [
       },
       {
         icon: <Cog {...icon} />,
+        name: "notifications",
+        path: "/notifications",
+        element: <Notifications />,
+      },
+      {
+        icon: <Cog {...icon} />,
         name: "Settings",
         path: "/settings",
         element: <Settings />,
       },
-      // {
-      //   icon: <Cog {...icon} />,
-      //   name: "notifications",
-      //   path: "/notifications",
-      //   element: <Notifications />,
-      // },
-      // {
-      //   icon: <Cog {...icon} />,
-      //   name: "Profile - test",
-      //   path: "/profile",
-      //   element: <Profile />,
-      // },
     ],
   },
   // {
