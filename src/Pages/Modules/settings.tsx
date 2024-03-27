@@ -13,21 +13,21 @@ import {
   HomeIcon,
 } from "@heroicons/react/24/solid";
 import { MessageCard } from "../../Components/Dashboard/Cards";
-import { useAccountData, useDoctorData } from "../../Context/authContext";
+import { useAccountData, useDoctorData, useFileStorage } from "../../Context/authContext";
 import { useState } from "react";
 
 export function Settings() {
-  const { accountData, handleUpdateEmail, handleUpdateUserName } = useAccountData()
-  const [imgPhoto, setImgPhoto] = useState<any>()
-  const { doctorData } = useDoctorData()
+  const { accountData, handleUpdateEmail, handleUpdateUserName } = useAccountData();
+  const { doctorData } = useDoctorData();
+  const { uploadImageToProfile,  uploadImageToBackGround } = useFileStorage();
+
+  const [imgProfile, setImgProfile] = useState<any>(null);
+  const [imgBg, setImgBg] = useState<any>(null);
   const [newEmail, setNewEmail] = useState("");
   const [newUserName, setNewUserName] = useState("");
+
   const onChangeEmail = ({ target }: any) => setNewEmail(target.value);
   const onChangeUser = ({ target }: any) => setNewUserName(target.value);
-
-  const handleTest = () => {
-    console.log(imgPhoto)
-  }
 
   return (
     <>
@@ -97,8 +97,7 @@ export function Settings() {
               >
                 <input
                   type="file"
-                  accept="image/*"
-                  onChange={(e) => setImgPhoto(e.target.value)}
+                  onChange={(e) => setImgProfile(e.target.files)}
                   className="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none"
                 />
                 <div className="flex flex-col items-center justify-center space-y-3">
@@ -140,7 +139,7 @@ export function Settings() {
               </div>
               <br />
               <div className="flex justify-center gap-5">
-                <Button placeholder="" onClick={() => handleTest()} variant="outlined" size="sm" className=" bg-white text-black border-black">
+                <Button placeholder="" onClick={() => uploadImageToProfile(imgProfile)} variant="outlined" size="sm" className=" bg-white text-black border-black">
                   Update Photo
                 </Button>
                 {/* <Button placeholder="" variant="outlined" size="sm" className=" bg-blue-800 text-white border-white">
@@ -161,8 +160,7 @@ export function Settings() {
                 >
                   <input
                     type="file"
-                    accept="image/*"
-                    onChange={(e) => setImgPhoto(e.target.value)}
+                    onChange={(e) => setImgBg(e.target.files)}
                     className="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none"
                   />
                   <div className="flex flex-col items-center justify-center space-y-3">
@@ -202,7 +200,7 @@ export function Settings() {
                 </div>
                 <br />
                 <div className="flex justify-center gap-5">
-                  <Button placeholder="" onClick={() => handleTest()} variant="outlined" size="sm" className=" bg-white text-black border-black">
+                  <Button placeholder="" onClick={() => uploadImageToBackGround(imgBg)} variant="outlined" size="sm" className=" bg-white text-black border-black">
                     Update Photo
                   </Button>
                 </div>

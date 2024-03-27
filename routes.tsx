@@ -4,9 +4,11 @@ import {
   CalendarHeartIcon,
   KanbanSquareIcon,
   Cog,
+  Files,
 } from 'lucide-react'
 
-import { Home, Personal, Calendars, Kanban, Notifications, Settings } from "./src/Pages/Modules";
+import { Home, Personal, Calendars, Kanban, Notifications, Settings, Documents } from "./src/Pages/Modules";
+import { GrDocumentStore } from 'react-icons/gr';
 
 const icon = {
   className: "text-inherit",
@@ -39,6 +41,12 @@ export const routes = [
         name: "Kanban board",
         path: "/kanban",
         element: <Kanban />,
+      },
+      {
+        icon: <Files {...icon} />,
+        name: "Documents Storage",
+        path: "/documents",
+        element: <Documents/>,
       },
       {
         icon: <Cog {...icon} />,

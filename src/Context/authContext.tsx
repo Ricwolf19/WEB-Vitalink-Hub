@@ -6,7 +6,7 @@ import {
     signOut,
     sendPasswordResetEmail,
 } from "firebase/auth";
-import { auth, db } from "../Firebase";
+import { auth, db, storage } from "../Firebase";
 import {
     addDoc,
     collection,
@@ -19,6 +19,8 @@ import {
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
+import { v4 } from 'uuid'
 
 // interface createPatientProps {
 //     name: string,
@@ -32,6 +34,82 @@ import swal from "sweetalert";
 //     age: number,
 //     doctorAssigned: string
 // }
+
+export const useFileStorage = () => {
+    const [imgBgList, setImgBgList] = useState<any>([])
+    const [imgProfileList, setImgProfileList] = useState<any>([])
+    const imgRefBg = ref(storage, `backGround/`)
+    const imgRefProfile = ref(storage, `profile/`)
+
+    const uploadImageToBackGround = async (imgToUpload: any) => {
+        if (imgToUpload == null) return;
+        const imgRef = ref(storage, `backGround/${imgToUpload[0].name + v4()}`)
+
+        try {
+            await uploadBytes(imgRef, imgToUpload[0])
+            // getBgFiles()
+            // alert('Img for Background succesfully uploaded')
+            // console.log(imgToUpload[0].name)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const uploadImageToProfile = async (imgToUpload: any) => {
+        const imgRef = ref(storage, `profile/${imgToUpload[0].name + v4()}`)
+
+        try {
+            await uploadBytes(imgRef, imgToUpload[0])
+            // getProfileFiles()
+            // alert('Img for Profile succesfully uploaded')
+            // console.log(imgToUpload[0].name)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getBgFiles = async () => {
+        try {
+            const data = await listAll(imgRefBg);
+            
+            const urls = await Promise.all(data.items.map(async (item) => {
+                return await getDownloadURL(item);
+            }));
+            
+            setImgBgList(urls);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    const getProfileFiles = async () => {
+        try {
+            const data = await listAll(imgRefProfile);
+            
+            const urls = await Promise.all(data.items.map(async (item) => {
+                return await getDownloadURL(item);
+            }));
+            
+            setImgProfileList(urls);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getBgFiles()
+        getProfileFiles()
+    }, [])
+
+    return {
+        uploadImageToBackGround,
+        uploadImageToProfile,
+        imgBgList,
+        imgProfileList
+    }
+}
 
 export const useEventCalendar = () => {
     const { user } = useAuth()
@@ -50,25 +128,25 @@ export const useEventCalendar = () => {
     // }
 
     // const getVitalinkSignsEvents = async () => {
-        // let testeo = [{start: dayjs('2024-03-26T22:37').toDate(), end: dayjs('2024-03-26T22:37').toDate(), title: 'Hola',}]
-        // let test = []
-        // const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', testUser, 'vitalSigns')
-        // const data = await getDocs(vitaLinkSignsCollectionRef)
-        // const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id } as eventsProps))
-        // setSignsEvents(filteredData)
+    // let testeo = [{start: dayjs('2024-03-26T22:37').toDate(), end: dayjs('2024-03-26T22:37').toDate(), title: 'Hola',}]
+    // let test = []
+    // const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', testUser, 'vitalSigns')
+    // const data = await getDocs(vitaLinkSignsCollectionRef)
+    // const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id } as eventsProps))
+    // setSignsEvents(filteredData)
 
-        // let r = 0
-        // while (r < filteredData.length) {
-        //     test.push(
-        //         {
-        //             start: filteredData[r].dateTime,
-        //             end: filteredData[r].dateTime,
-        //             title: filteredData[r].dateTime
-        //         }
-        //     )
+    // let r = 0
+    // while (r < filteredData.length) {
+    //     test.push(
+    //         {
+    //             start: filteredData[r].dateTime,
+    //             end: filteredData[r].dateTime,
+    //             title: filteredData[r].dateTime
+    //         }
+    //     )
 
-        //     r++
-        // }
+    //     r++
+    // }
     // }
 
     // const loadEvents = async () => {
@@ -556,7 +634,7 @@ export const useAccountData = () => {
     const updateaccountRef = doc(db, 'accounts', documentId)
 
     const getAccountData = async () => {
-        try {         
+        try {
             const docSnap = await getDoc(doc(accountsCollectionRef, documentId));
             if (docSnap.exists()) {
                 const accountInfo = docSnap.data();
@@ -580,7 +658,7 @@ export const useAccountData = () => {
         }
     }
 
-    const handleUpdateUserName = async (newUserName: string) => {        
+    const handleUpdateUserName = async (newUserName: string) => {
         try {
             await updateDoc(updateaccountRef, {
                 userName: newUserName
@@ -595,10 +673,10 @@ export const useAccountData = () => {
         getAccountData();
     }, [user.uid]);
 
-    return { 
+    return {
         accountData,
         handleUpdateEmail,
-        handleUpdateUserName 
+        handleUpdateUserName
     };
 };
 
