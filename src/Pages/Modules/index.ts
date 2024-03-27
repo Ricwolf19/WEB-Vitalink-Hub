@@ -3,6 +3,6 @@ export * from "./profile";
 export * from "./notifications";
 export * from "./personal";
 export * from "./settings"
-export * from "./calendar"
+export * from "./calendars"
 export * from "./kanban"
 export * from "./personal"

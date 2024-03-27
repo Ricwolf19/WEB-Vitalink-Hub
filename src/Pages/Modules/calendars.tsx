@@ -7,8 +7,7 @@ import { useState } from 'react';
 import { useEventCalendar } from '../../Context/authContext';
 
 
-
-export function Calendar() {
+export function Calendars() {
     const { calendarEvents, handleCreateEvent, handleDeleteEvent, handleUpdateEvent } = useEventCalendar()
     const localizer = dayjsLocalizer(dayjs);
 
@@ -40,29 +39,88 @@ export function Calendar() {
                     }}
                 >
                     <Button variant="shadow" color='danger'>
-                        <CalendarPlus2Icon />{props.title}{props.id}
+                        <CalendarPlus2Icon />{props.title}
                     </Button>
                 </Tooltip>
             </div>
         </div>
     );
 
-    const components = {
+    // const SignsComponent = (props: any) => (
+    //     <div className="flex items-center">
+    //         <div className=" bg-red-900 text-white text-center text-xs">
+    //             <Tooltip
+    //                 content={props.title}
+    //                 delay={0}
+    //                 color='primary'
+    //                 closeDelay={0}
+    //                 motionProps={{
+    //                     variants: {
+    //                         exit: {
+    //                             opacity: 0,
+    //                             transition: {
+    //                                 duration: 0.1,
+    //                                 ease: "easeIn",
+    //                             }
+    //                         },
+    //                         enter: {
+    //                             opacity: 1,
+    //                             transition: {
+    //                                 duration: 0.15,
+    //                                 ease: "easeOut",
+    //                             }
+    //                         },
+    //                     },
+    //                 }}
+    //             >
+    //                 <Button variant="shadow" color='danger'>
+    //                     <IoMdQrScanner />{props.title}
+    //                 </Button>
+    //             </Tooltip>
+    //         </div>
+    //     </div>
+    // );
+
+    const EventsComponents = {
         event: EventComponent
     };
+
+    // const VitaSignsComponents = {
+    //     event: SignsComponent
+    // };
 
     let oficialEvents: any = []
 
     for (let i = 0; i < calendarEvents.length; i++) {
         oficialEvents.push(
             {
-                // id: calendarEvents[i].id,
                 start: dayjs(calendarEvents[i].start).toDate(),
                 end: dayjs(calendarEvents[i].end).toDate(),
                 title: calendarEvents[i].title
             }
         )
     }
+
+    // let oficialSignsEvents: any = []
+
+    // let r = 0
+    // while (r < signsEvents.length) {
+    //     oficialSignsEvents.push(
+    //         {
+    //             start: dayjs(signsEvents[r].dateTime).toDate(),
+    //             end: dayjs(signsEvents[r].dateTime).toDate(),
+    //             title: signsEvents[r].dateTime,
+    //         }
+    //     )
+    //     r++
+    // }
+    
+
+    // for (let i = 0; i < patientData.length; i++) {
+    //     // for(let r = 0; i < ; r++) {
+    //       getVitalinkSignsEvents(patientData[i].id)
+    //     // }
+    // }
 
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
@@ -74,11 +132,13 @@ export function Calendar() {
     const [newTitle, setNewTitle] = useState('')
 
     const [deletedEvent, setDeletedEvents] = useState('');
+    // const [testing, setTesting] = useState<any>([])
+    // setTesting(getVitalinkSignsEvents())
 
     return (
         <>
-            <div className='flex space-x-5'>
-                <div className=' pb-2.5 pt-2.5'>
+            <div className='flex space-x-5 mt-10'>
+                <div className=''>
                     <Popover placement="bottom" showArrow offset={10}>
                         <PopoverTrigger>
                             <Button color="primary" variant='shadow'>Add Event</Button>
@@ -101,7 +161,7 @@ export function Calendar() {
                     </Popover>
                 </div>
 
-                <div className=' pb-2.5 pt-2.5'>
+                <div className=''>
                     <Popover placement="bottom" showArrow offset={10}>
                         <PopoverTrigger>
                             <Button color="warning" variant='shadow'>Update Event</Button>
@@ -141,7 +201,7 @@ export function Calendar() {
                     </Popover>
                 </div>
 
-                <div className=' pb-2.5 pt-2.5'>
+                <div className=''>
                     <Popover placement="bottom" showArrow offset={10}>
                         <PopoverTrigger>
                             <Button color="warning" variant='shadow'>Delete Event</Button>
@@ -179,14 +239,33 @@ export function Calendar() {
                 </div>
             </div>
 
-            <div style={{ height: '80vh', maxWidth: '100%', overflow: 'hidden', backgroundColor: 'white' }}>
+            <div style={{ height: '125vh', maxWidth: '100%', overflow: 'hidden', backgroundColor: 'white' }} className=' mt-6 rounded-lg'>
+
+                <div className='text-center'>
+                    <h2 className="text-3xl font-bold text-gradient md:text-4xl md:leading-[3rem] lg:text-3xl lg:leading-[4rem]">Events Calendar</h2>
+                </div>
+
                 <BigCalendar
                     localizer={localizer}
                     events={oficialEvents}
                     views={["month", "week", "day"]}
-                    components={components}
+                    components={EventsComponents}
                 />
             </div>
+
+            {/* <div style={{ height: '100vh', maxWidth: '100%', overflow: 'hidden', backgroundColor: 'white' }} className='mt-10 rounded-lg'>
+
+                <div className='text-center pt-0'>
+                    <h2 className="text-3xl font-bold text-gradient md:text-4xl md:leading-[3rem] lg:text-3xl lg:leading-[4rem]">VitaLink Signs Calendar</h2>
+                </div>
+                <BigCalendar
+                    localizer={localizer}
+                    // events={[{start: dayjs('2024-03-26T22:37').toDate(), end: dayjs('2024-03-26T22:37').toDate(), title: 'Hola',}]}
+                    events={oficialSignsEvents}
+                    views={["month", "week", "day"]}
+                    components={VitaSignsComponents}
+                />
+            </div> */}
         </>
     );
 }

@@ -6,7 +6,7 @@ import {
   Cog,
 } from 'lucide-react'
 
-import { Home, Personal, Calendar, Kanban, Settings } from "./src/Pages/Modules";
+import { Home, Personal, Calendars, Kanban, Settings } from "./src/Pages/Modules";
 
 const icon = {
   className: "text-inherit",
@@ -30,9 +30,9 @@ export const routes = [
       },
       {
         icon: <CalendarHeartIcon {...icon} />,
-        name: "Calendar",
-        path: "/calendar",
-        element: <Calendar />,
+        name: "Calendars",
+        path: "/calendars",
+        element: <Calendars />,
       },
       {
         icon: <KanbanSquareIcon {...icon} />,

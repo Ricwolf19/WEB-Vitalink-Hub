@@ -19,7 +19,6 @@ import {
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import dayjs from "dayjs";
 
 // interface createPatientProps {
 //     name: string,
@@ -39,6 +38,49 @@ export const useEventCalendar = () => {
     const documentId = user.uid;
     const eventsCollectionRef = collection(db, 'accounts', documentId, 'events')
     const [calendarEvents, setCalendarEvents] = useState<any>('')
+    // const [signsEvents, setSignsEvents] = useState<any>('')
+    // const [events, setEvents] = useState<any>([]);
+
+    // interface eventsProps {
+    //     id: string,
+    //     dateTime: string,
+    //     temp: number,
+    //     spo2: number,
+    //     fc: number
+    // }
+
+    // const getVitalinkSignsEvents = async () => {
+        // let testeo = [{start: dayjs('2024-03-26T22:37').toDate(), end: dayjs('2024-03-26T22:37').toDate(), title: 'Hola',}]
+        // let test = []
+        // const vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', testUser, 'vitalSigns')
+        // const data = await getDocs(vitaLinkSignsCollectionRef)
+        // const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id } as eventsProps))
+        // setSignsEvents(filteredData)
+
+        // let r = 0
+        // while (r < filteredData.length) {
+        //     test.push(
+        //         {
+        //             start: filteredData[r].dateTime,
+        //             end: filteredData[r].dateTime,
+        //             title: filteredData[r].dateTime
+        //         }
+        //     )
+
+        //     r++
+        // }
+    // }
+
+    // const loadEvents = async () => {
+    //     try {
+    //         const obtainedEvents = await getVitalinkSignsEvents();
+    //         setEvents(obtainedEvents);
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    //   };
+
+    // console.log(getVitalinkSignsEvents())
 
     const getEvents = async () => {
         try {
@@ -52,6 +94,7 @@ export const useEventCalendar = () => {
 
     useEffect(() => {
         getEvents()
+        // getVitalinkSignsEvents()
     }, [])
 
     const handleCreateEvent = async (addStart: string, addEnd: string, addTitle: string) => {
@@ -96,10 +139,9 @@ export const useEventCalendar = () => {
         calendarEvents,
         handleCreateEvent,
         handleDeleteEvent,
-        handleUpdateEvent
+        handleUpdateEvent,
     }
 }
-
 
 
 
@@ -248,11 +290,13 @@ export const usePatientData = () => {
 
             function sweetAlert({ ...filterSigns }) {
                 swal({
-                    title: "VitaLink last scan",
+                    title: ` VITALINK LAST SCANN `,
                     text: `
-                       PATIENT FC: ${filterSigns.fc ? filterSigns.fc : "NO DETECTADA"} \n
-                       PATIENT SA02: ${filterSigns.spo2 ? filterSigns.spo2 : 'NO DETECTADA'} \n
-                       PATIENT TEMPERATURE: ${filterSigns.temp ? filterSigns.temp : 'NO DETECTADA'} \n
+                       SCANNER DATE: \xa0 ${filterSigns.dateTime ? filterSigns.dateTime : 'NO DETECTADA'} \n
+                       PATIENT FC: \xa0 ${filterSigns.fc ? filterSigns.fc : "NO DETECTADA"} \n
+                       PATIENT SA02: \xa0 ${filterSigns.spo2 ? filterSigns.spo2 : 'NO DETECTADA'} \n
+                       PATIENT TEMPERATURE: \xa0 ${filterSigns.temp ? filterSigns.temp : 'NO DETECTADA'} \n
+                               
                        `,
                     icon: "success"
                 });
