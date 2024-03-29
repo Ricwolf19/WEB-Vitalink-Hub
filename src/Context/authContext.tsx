@@ -56,27 +56,27 @@ export const useFileStorage = () => {
     // const getBgFiles = async () => {
     //     try {
     //         const data = await listAll(imgRefBg);
-            
+
     //         const urls = await Promise.all(data.items.map(async (item) => {
     //             return await getDownloadURL(item);
     //         }));
-            
+
     //         setImgBgList(urls);
 
     //     } catch (error) {
     //         console.log(error);
     //     }
     // }
-    
+
     const getProfileFiles = async () => {
         try {
             const data = await listAll(imgRefProfile);
-            
+
             const urls = await Promise.all(data.items.map(async (item) => {
                 const url = await getDownloadURL(item)
-                return {url: url, name: item.name}
+                return { url: url, name: item.name }
             }));
-            
+
             setImgProfileList(urls);
 
         } catch (error) {
@@ -232,7 +232,7 @@ export const usePatientData = () => {
         let i = 0
         let countElderlyPatients = 0
         while (i < patientData.length) {
-            if (patientData[i].age > 18) {
+            if (patientData[i].age >= 70) {
                 countElderlyPatients++
             }
             i++
@@ -267,7 +267,7 @@ export const usePatientData = () => {
         let i = 0
         let countUnderagePatients = 0
         while (i < patientData.length) {
-            if (patientData[i].age < 18) {
+            if (patientData[i].age <= 18) {
                 countUnderagePatients++
             }
             i++
@@ -353,13 +353,15 @@ export const usePatientData = () => {
             const filterData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             const filterSigns = filterData[filterData.length - 1]
 
+            console.log(filterSigns)
+
             function sweetAlert({ ...filterSigns }) {
                 swal({
                     title: ` VITALINK LAST SCANN `,
                     text: `
                        SCANNER DATE: \xa0 ${filterSigns.dateTime ? filterSigns.dateTime : 'NO DETECTADA'} \n
                        PATIENT FC: \xa0 ${filterSigns.fc ? filterSigns.fc : "NO DETECTADA"} \n
-                       PATIENT SA02: \xa0 ${filterSigns.spo2 ? filterSigns.spo2 : 'NO DETECTADA'} \n
+                       PATIENT SPO2: \xa0 ${filterSigns.spo2 ? filterSigns.spo2 : 'NO DETECTADA'} \n
                        PATIENT TEMPERATURE: \xa0 ${filterSigns.temp ? filterSigns.temp : 'NO DETECTADA'} \n
                                
                        `,
@@ -373,6 +375,91 @@ export const usePatientData = () => {
             console.log(error)
         }
     }
+
+    interface SignsProps {
+        id: string,
+        temp: number,
+        spo2: number,
+        fc: number
+    }
+
+
+    const getSignsAlert = async () => {
+        for (let i = 0; i < patientData.length; i++) {
+            let userID = await patientData[i].id;
+            let userName = await patientData[i].name
+            let lastName = await patientData[i].lastName
+            let area = await patientData[i].area
+            let docAssigned = await patientData[i].doctorAssigned
+
+            let vitaLinkSignsCollectionRef = collection(db, 'accounts', documentId, 'patients', userID, 'vitalSigns')
+
+            try {
+                let data = await getDocs(vitaLinkSignsCollectionRef)
+                let filterData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id } as SignsProps));
+                let filterSigns = filterData[filterData.length - 1]
+
+                let userFc = filterSigns.fc
+                let userTemp = filterSigns.temp
+                let userSpo2 = filterSigns.spo2
+
+                const sweetAlert = (type: string, res: number) => {
+                    swal({
+                        title: `${type} ${res}`,
+                        text: `
+                        PATIENT NAME: \xa0 ${userName} ${lastName} \n
+                        ACTUAL LOCATION: \xa0 ${area} \n   
+                        PATIENT FC: \xa0 ${userFc} \n
+                        PATIENT TEMP: \xa0 ${userTemp} \n 
+                        PATIENT SPO2: \xa0 ${userSpo2} \n                                                              
+                               DOCTOR ASSIGNED: \xa0 ${docAssigned}  \n                                                            
+                               `,
+                        icon: "warning"
+                    });
+                }
+
+                switch (true) {
+                    case (userFc < 60):
+                        sweetAlert('LOW FC: ', userFc)
+                        break;
+                    case (userFc > 100):
+                        sweetAlert('HIGH FC: ', userFc)
+                        break;
+                    default:
+                        // console.log('FC FINE')
+                        break;
+                }
+
+                switch (true) {
+                    case (userTemp < 24):
+                        sweetAlert('LOW TEMP: ', userTemp)
+                        break;
+                    case (userTemp > 36):
+                        sweetAlert('HIGH TEMP: ', userTemp)
+                        break;
+                    default:
+                        // console.log('TEMP FINE')
+                        break;
+                }
+
+                switch (true) {
+                    case (userSpo2 < 95):
+                        sweetAlert('LOW SPO2: ', userSpo2)
+                        break;
+
+                    default:
+                        // console.log('SPO2 FINE')
+                        break;
+                }
+
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
+
+    getSignsAlert()
 
     // ACCIONES PARA EL CRUD
     const handleCreatePatient = async (newName: string, newLastName: string, newStatus: string, newArea: string, newChronicDiseases: string[], newAllergies: string[], newBloodType: string, newBirthDate: string, newAge: number, newDoctorAssigned: string) => {
@@ -451,6 +538,7 @@ export const usePatientData = () => {
             console.log(err)
         }
     }
+
 
     useEffect(() => {
         getPatientData()

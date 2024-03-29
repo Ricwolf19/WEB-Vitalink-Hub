@@ -53,7 +53,7 @@ export function Settings() {
               <AvatarMT
                 placeholder=""
                 src={accountData.profilePhoto}
-                alt="bruce-mars"
+                alt="Profile Photo"
                 size="xxl"
                 variant="rounded"
                 className="rounded-lg shadow-lg shadow-blue-gray-500/40"

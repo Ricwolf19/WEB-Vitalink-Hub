@@ -16,6 +16,7 @@ export function Dashboard() {
   const { loading } = useAuth() //Se exportan las propiedades necesarias para todo 
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
+
   //Se quito user y LogOut de propiedades
 
   // const handleLogout = async () => { //Se crea una funcion asyncrona para poder deslogearse
@@ -44,20 +45,18 @@ export function Dashboard() {
         }
       />
       <div className="p-4 xl:ml-80">
-        <DashboardNavbar /> 
-        {/* <div>{user.email}</div> */}
-        {/* <Configurator /> */}
-        <Typography as="a" href="#" placeholder=""> {/* arrow to up in all sites */}
-        <IconButton
-          placeholder=""
-          size="lg"
-          color="red"
-          className="fixed bottom-12 right-4 z-40 shadow-blue-gray-900/10"
-          ripple={false}
-          // onClick={() => setOpenConfigurator(dispatch, true)}
-        >
-          <MoveUpIcon className="h-5 w-5" href="#" />
-        </IconButton>
+        <DashboardNavbar />
+
+        <Typography as="a" href="#" placeholder="">
+          <IconButton
+            placeholder=""
+            size="lg"
+            color="red"
+            className="fixed bottom-12 right-4 z-40 shadow-blue-gray-900/10"
+            ripple={false}
+          >
+            <MoveUpIcon className="h-5 w-5" href="#" />
+          </IconButton>
         </Typography>
         <Routes>
           {routes.map(

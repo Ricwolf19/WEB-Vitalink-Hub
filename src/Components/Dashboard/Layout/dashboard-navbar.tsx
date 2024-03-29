@@ -20,7 +20,7 @@ import {
 } from "../../../Context/MaterialController";
 import React from "react";
 import { useAccountData, useAuth } from "../../../Context/authContext";
-import { AlignJustifyIcon, BellDotIcon, ChevronDown, CircleUserIcon, Clock, LogOutIcon } from "lucide-react";
+import { AlignJustifyIcon, ChevronDown, CircleUserIcon, LogOutIcon } from "lucide-react";
 
 function ProfileMenu() {
   const { accountData } = useAccountData()
@@ -176,13 +176,15 @@ export function DashboardNavbar() {
             <AlignJustifyIcon strokeWidth={3} className="h-6 w-6 text-blue-900" />
           </IconButton>
 
-          <Menu>
+          {/* <Menu>
             <MenuHandler>
               <IconButton placeholder="" variant="text" color="blue-gray">
                 <BellDotIcon className="h-5 w-5 text-blue-900 mr-2" />
               </IconButton>
             </MenuHandler>
+
             <MenuList placeholder="" className="w-max border-0">
+
               <MenuItem placeholder="" className="flex items-center gap-3">
                 <Avatar
                   placeholder=""
@@ -210,59 +212,9 @@ export function DashboardNavbar() {
                   </Typography>
                 </div>
               </MenuItem>
-              <MenuItem placeholder="" className="flex items-center gap-4">
-                <Avatar
-                  placeholder=""
-                  src="/img/user-icon.jpg"
-                  alt="user"
-                  size="sm"
-                  variant="circular"
-                />
 
-                <div>
-                  <Typography
-                    placeholder=""
-                    variant="small"
-                    color="blue-gray"
-                    className="mb-1 font-normal"
-                  >
-                    <strong>New album</strong> by Travis Scott
-                  </Typography>
-                  <Typography
-                    placeholder=""
-                    variant="small"
-                    color="blue-gray"
-                    className="flex items-center gap-1 text-xs font-normal opacity-60"
-                  >
-                    <Clock className="h-3.5 w-3.5" /> 1 day ago
-                  </Typography>
-                </div>
-              </MenuItem>
-              <MenuItem placeholder="" className="flex items-center gap-4">
-                <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-tr from-blue-gray-800 to-blue-gray-900">
-                  {/* <CreditCardIcon className="h-4 w-4 text-white" /> */}
-                </div>
-                <div>
-                  <Typography
-                    placeholder=""
-                    variant="small"
-                    color="blue-gray"
-                    className="mb-1 font-normal"
-                  >
-                    Payment successfully completed
-                  </Typography>
-                  <Typography
-                    placeholder=""
-                    variant="small"
-                    color="blue-gray"
-                    className="flex items-center gap-1 text-xs font-normal opacity-60"
-                  >
-                    <Clock className="h-3.5 w-3.5" /> 2 days ago
-                  </Typography>
-                </div>
-              </MenuItem>
             </MenuList>
-          </Menu>
+          </Menu> */}
           {/* <IconButton
           placeholder=""
             variant="text"
