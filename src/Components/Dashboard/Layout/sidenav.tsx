@@ -56,7 +56,7 @@ export function Sidenav({ routes }: SidenavProps) {
             color={sidenavType === "dark" ? "white" : "blue-gray"}
             className="text-blue-900 pt-5"
           >
-            VitaLink
+            VITALINK
           </Typography>
           <br />
         </Link>

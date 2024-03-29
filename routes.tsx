@@ -7,8 +7,7 @@ import {
   Files,
 } from 'lucide-react'
 
-import { Home, Personal, Calendars, Kanban, Notifications, Settings, Documents } from "./src/Pages/Modules";
-import { GrDocumentStore } from 'react-icons/gr';
+import { Home, Personal, Calendars, Kanban,  Settings, Documents } from "./src/Pages/Modules";
 
 const icon = {
   className: "text-inherit",
@@ -47,12 +46,6 @@ export const routes = [
         name: "Documents Storage",
         path: "/documents",
         element: <Documents/>,
-      },
-      {
-        icon: <Cog {...icon} />,
-        name: "notifications",
-        path: "/notifications",
-        element: <Notifications />,
       },
       {
         icon: <Cog {...icon} />,

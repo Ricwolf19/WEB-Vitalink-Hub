@@ -14,6 +14,7 @@
     "@heroicons/react": "^2.1.1",
     "@material-tailwind/react": "^2.1.9",
     "@nextui-org/react": "^2.2.9",
+    "@nextui-org/use-infinite-scroll": "^2.1.2",
     "apexcharts": "^3.46.0",
     "date-fns": "^3.4.0",
     "dayjs": "^1.11.10",

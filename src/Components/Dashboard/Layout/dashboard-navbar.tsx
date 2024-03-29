@@ -56,7 +56,7 @@ function ProfileMenu() {
               size="sm"
               alt="tania andrew"
               className="border border-blue-900 p-0.5"
-              src="/img/user-icon.jpg"
+              src={accountData.profilePhoto}
             />
 
             <ChevronDown

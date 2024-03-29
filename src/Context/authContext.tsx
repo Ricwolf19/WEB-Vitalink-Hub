@@ -22,73 +22,59 @@ import swal from "sweetalert";
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { v4 } from 'uuid'
 
-// interface createPatientProps {
-//     name: string,
-//     lastName: string,
-//     status: boolean,
-//     area: string,
-//     chronicDiseases: any,
-//     allergies: any,
-//     bloodType: string,
-//     birthDay: any,
-//     age: number,
-//     doctorAssigned: string
-// }
-
 export const useFileStorage = () => {
-    const [imgBgList, setImgBgList] = useState<any>([])
+    // const [imgBgList, setImgBgList] = useState<any>([])
     const [imgProfileList, setImgProfileList] = useState<any>([])
-    const imgRefBg = ref(storage, `backGround/`)
+    // const imgRefBg = ref(storage, `backGround/`)
     const imgRefProfile = ref(storage, `profile/`)
 
-    const uploadImageToBackGround = async (imgToUpload: any) => {
-        if (imgToUpload == null) return;
-        const imgRef = ref(storage, `backGround/${imgToUpload[0].name + v4()}`)
+    // const uploadImageToBackGround = async (imgToUpload: any) => {
+    //     if (imgToUpload == null) return;
+    //     const imgRef = ref(storage, `backGround/${imgToUpload[0].name + v4()}`)
 
-        try {
-            await uploadBytes(imgRef, imgToUpload[0])
-            // getBgFiles()
-            // alert('Img for Background succesfully uploaded')
-            // console.log(imgToUpload[0].name)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    //     try {
+    //         await uploadBytes(imgRef, imgToUpload[0])
+    //         // getBgFiles()
+    //         // alert('Img for Background succesfully uploaded')
+    //         // console.log(imgToUpload[0].name)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     const uploadImageToProfile = async (imgToUpload: any) => {
         const imgRef = ref(storage, `profile/${imgToUpload[0].name + v4()}`)
 
         try {
             await uploadBytes(imgRef, imgToUpload[0])
-            // getProfileFiles()
-            // alert('Img for Profile succesfully uploaded')
-            // console.log(imgToUpload[0].name)
+            getProfileFiles()
         } catch (error) {
             console.log(error)
         }
     }
 
-    const getBgFiles = async () => {
-        try {
-            const data = await listAll(imgRefBg);
+    // const getBgFiles = async () => {
+    //     try {
+    //         const data = await listAll(imgRefBg);
             
-            const urls = await Promise.all(data.items.map(async (item) => {
-                return await getDownloadURL(item);
-            }));
+    //         const urls = await Promise.all(data.items.map(async (item) => {
+    //             return await getDownloadURL(item);
+    //         }));
             
-            setImgBgList(urls);
+    //         setImgBgList(urls);
 
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
     
     const getProfileFiles = async () => {
         try {
             const data = await listAll(imgRefProfile);
             
             const urls = await Promise.all(data.items.map(async (item) => {
-                return await getDownloadURL(item);
+                const url = await getDownloadURL(item)
+                return {url: url, name: item.name}
             }));
             
             setImgProfileList(urls);
@@ -99,14 +85,15 @@ export const useFileStorage = () => {
     }
 
     useEffect(() => {
-        getBgFiles()
+        // getBgFiles()
         getProfileFiles()
     }, [])
 
+
     return {
-        uploadImageToBackGround,
+        // uploadImageToBackGround,
         uploadImageToProfile,
-        imgBgList,
+        // imgBgList,
         imgProfileList
     }
 }
@@ -652,7 +639,7 @@ export const useAccountData = () => {
             await updateDoc(updateaccountRef, {
                 email: newEmail
             })
-            getAccountData();
+            secureDelay();
         } catch (error) {
             console.log(error)
         }
@@ -663,7 +650,18 @@ export const useAccountData = () => {
             await updateDoc(updateaccountRef, {
                 userName: newUserName
             })
-            getAccountData();
+            secureDelay();
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleUpdatePhotoProfile = async (newProfilePhoto: string) => {
+        try {
+            await updateDoc(updateaccountRef, {
+                profilePhoto: newProfilePhoto
+            })
+            secureDelay();
         } catch (error) {
             console.log(error)
         }
@@ -673,10 +671,19 @@ export const useAccountData = () => {
         getAccountData();
     }, [user.uid]);
 
+    const secureDelay = async () => {
+        setTimeout(() => {
+            // getDoctorData()
+            // console.log('asd')
+            window.location.reload()
+        }, 0)
+    }
+
     return {
         accountData,
         handleUpdateEmail,
-        handleUpdateUserName
+        handleUpdateUserName,
+        handleUpdatePhotoProfile
     };
 };
 
