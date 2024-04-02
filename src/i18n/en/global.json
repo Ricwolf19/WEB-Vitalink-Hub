@@ -1,0 +1,24 @@
+{
+    "s-navbar": {
+        "item1": "Objective",
+        "item2": "Services",
+        "item3": "Our Team",
+        "item4": "Contact Us"
+    },
+    "s-signUp": {
+        "item1": "Sign Up"
+    },
+    "s-login": {
+        "item1": "Login"
+    },
+    "s-hero": {
+        "item1": "Smart Health, Smarter Living",
+        "item2": "Elevate Your Health with VitaLink; Smart Monitoring, Real Results.",
+        "item3": "Send Message"
+    },
+    "s-objective": {
+        "item1": "Our",
+        "item2": "Objective",
+        "item3": "VitaLink reimagines healthcare with SensorPath technology, offering seamless monitoring of vital signs for personalized wellness. Our purpose is to empower individuals with real-time health insights, connect healthcare professionals with actionable data and revolutionize the way we approach well-being. Experience precision care, effortless health tracking, and a brighter, healthier future with VitaLink."
+    }
+}

@@ -4,6 +4,7 @@ import { useAuth } from "../../Context/authContext.tsx";
 import { Alert } from "./Alert.tsx";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Link} from "@nextui-org/react";
 import { MailIcon, LockIcon, Logo } from '../HomePage/Icons.tsx';
+import { useTranslation } from "react-i18next";
 
 export function Login() {
   // const navigate = useNavigate();
@@ -59,6 +60,8 @@ export function Login() {
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+  const [t] = useTranslation("global");
+
   return ( //Se hace un form para poder ingresar los datos del usuario, (Importante name y onChange)
     // <div className="container mx-auto flex justify-center items-center h-screen">
     //   <div className="w-full max-w-xs m-auto">
@@ -103,8 +106,8 @@ export function Login() {
 
     // </div>
 
-      <div>
-      <Button onPress={onOpen} color="danger" variant="ghost">Login</Button>
+      <div className="flex flex-col gap-">
+      <Button onPress={onOpen} color="danger" variant="ghost">{t("s-login.item1")}</Button>
       <Modal
         backdrop="opaque"
         isOpen={isOpen}
@@ -120,7 +123,7 @@ export function Login() {
             <>
             <form onSubmit={handleSubmit}>
               
-              <ModalHeader className="flex flex-col gap-1 text-center text-blue-600"><Logo />Login</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-center text-blue-600"><Logo />{t("s-login.item1")}</ModalHeader>
               {error && <Alert mesagge={error} />}
               <ModalBody>
                 <Input

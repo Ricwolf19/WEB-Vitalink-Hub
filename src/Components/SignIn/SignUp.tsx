@@ -1,10 +1,13 @@
 import { ValidationError, useForm } from "@formspree/react";
 import { Button, Input, Modal, ModalBody, ModalContent, ModalHeader, Select, SelectItem, Textarea, useDisclosure } from "@nextui-org/react";
 import { Logo } from "../HomePage/Icons";
+import { useTranslation } from "react-i18next";
 
 
 export function SignUp(){
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+    const [t] = useTranslation("global");
 
     const selectOptions = [
       { label: "Personal Use", value: "personal", description: "Selected option for personal use.  " },
@@ -17,7 +20,7 @@ export function SignUp(){
     return (
         <>
          <div className="flex flex-col gap-2">
-              <Button onPress={onOpen} color="danger" variant="solid">Sign Up</Button>
+              <Button onPress={onOpen} color="danger" variant="solid">{t("s-signUp.item1")}</Button>
               <Modal
                 backdrop="opaque"
                 isOpen={isOpen}

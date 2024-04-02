@@ -12,9 +12,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { StatisticsCard } from "../../Components/Dashboard/Cards/statistics-card";
 import { StatisticsChart } from "../../Components/Dashboard/Charts/statistics-chart";
-import {
-  projectsTableData,
-} from "../../Data";
+
 
 import { AlertTriangleIcon, ClipboardPlusIcon, Contact2, PlusCircle, ScanFaceIcon, Users } from "lucide-react";
 import { useDoctorData, usePatientData } from "../../Context/authContext";
@@ -441,7 +439,7 @@ export function Home() {
               <tbody>
                 {patientData.map(
                   ({ age, allergies, area, birthDate, bloodType, chronicDiseases, lastName, name, status, doctorAssigned, id }: any, key: any) => {
-                    const className = `py-3 px-5 ${key === projectsTableData.length - 1
+                    const className = `py-3 px-5 ${key === patientData.length - 1
                       ? ""
                       : "border-b border-blue-gray-50 text-center"
                       }`;
