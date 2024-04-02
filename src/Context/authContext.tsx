@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import {
-    // createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
@@ -12,7 +11,6 @@ import {
     collection,
     deleteDoc,
     doc,
-    // setDoc, 
     getDoc,
     getDocs,
     updateDoc,
@@ -23,24 +21,21 @@ import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { v4 } from 'uuid'
 
 export const useFileStorage = () => {
-    // const [imgBgList, setImgBgList] = useState<any>([])
+    const [imgStorageList, setImgStorageList] = useState<any>([])
     const [imgProfileList, setImgProfileList] = useState<any>([])
-    // const imgRefBg = ref(storage, `backGround/`)
+    const imgRefStorage = ref(storage, `storage/`)
     const imgRefProfile = ref(storage, `profile/`)
 
-    // const uploadImageToBackGround = async (imgToUpload: any) => {
-    //     if (imgToUpload == null) return;
-    //     const imgRef = ref(storage, `backGround/${imgToUpload[0].name + v4()}`)
+    const uploadImageToStorage = async (imgToUpload: any) => {
+        const imgRef = ref(storage, `storage/${imgToUpload[0].name}`)
 
-    //     try {
-    //         await uploadBytes(imgRef, imgToUpload[0])
-    //         // getBgFiles()
-    //         // alert('Img for Background succesfully uploaded')
-    //         // console.log(imgToUpload[0].name)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+        try {
+            await uploadBytes(imgRef, imgToUpload[0])
+            getStorageFiles()
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const uploadImageToProfile = async (imgToUpload: any) => {
         const imgRef = ref(storage, `profile/${imgToUpload[0].name + v4()}`)
@@ -53,20 +48,20 @@ export const useFileStorage = () => {
         }
     }
 
-    // const getBgFiles = async () => {
-    //     try {
-    //         const data = await listAll(imgRefBg);
+    const getStorageFiles = async () => {
+        try {
+            const data = await listAll(imgRefStorage);
 
-    //         const urls = await Promise.all(data.items.map(async (item) => {
-    //             return await getDownloadURL(item);
-    //         }));
+            const urls = await Promise.all(data.items.map(async (item) => {
+                return await getDownloadURL(item);
+            }));
 
-    //         setImgBgList(urls);
+            setImgStorageList(urls);
 
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const getProfileFiles = async () => {
         try {
@@ -85,15 +80,15 @@ export const useFileStorage = () => {
     }
 
     useEffect(() => {
-        // getBgFiles()
+        getStorageFiles()
         getProfileFiles()
     }, [])
 
 
     return {
-        // uploadImageToBackGround,
+        uploadImageToStorage,
         uploadImageToProfile,
-        // imgBgList,
+        imgStorageList,
         imgProfileList
     }
 }

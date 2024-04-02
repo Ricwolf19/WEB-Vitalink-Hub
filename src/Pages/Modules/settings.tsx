@@ -43,7 +43,7 @@ export function Settings() {
 
   return (
     <>
-      <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url('https://t3.ftcdn.net/jpg/01/12/72/68/360_F_112726816_u0a1lhRwLuZgZYCawX0SBksh2hPMBPbw.jpg')] bg-cover	bg-center">
+      <div className="relative mt-8 h-40 w-full overflow-hidden rounded-xl bg-[url('https://t3.ftcdn.net/jpg/01/12/72/68/360_F_112726816_u0a1lhRwLuZgZYCawX0SBksh2hPMBPbw.jpg')] bg-cover	bg-center">
         <div className="absolute inset-0 h-full w-full bg-red-900/35" />
       </div>
       <Card placeholder="" className="mx-3 -mt-16 mb-6 lg:mx-4 border border-blue-gray-100">
@@ -188,30 +188,6 @@ export function Settings() {
                   </Button> */}
               </div>
             </div>
-
-            {/* <ProfileInfoCard
-              title="Profile Information"
-              description="Hi, I'm Alec Thompson, Decisions: If you can't decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
-              details={{
-                "first name": "Alec M. Thompson",
-                mobile: "(44) 123 1234 123",
-                email: "alecthompson@mail.com",
-                location: "USA",
-                social: (
-                  <div className="flex items-center gap-4">
-                    <i className="fa-brands fa-facebook text-blue-700" />
-                    <i className="fa-brands fa-twitter text-blue-400" />
-                    <i className="fa-brands fa-instagram text-purple-500" />
-                  </div>
-                ),
-              }}
-              action={
-                <Tooltip content="Edit Profile">
-                  <PencilIcon className="h-4 w-4 cursor-pointer text-blue-gray-500" />
-                </Tooltip>
-              }
-            /> */}
-
             <div>
               <Typography placeholder="" variant="h6" color="blue-gray" className="mb-3">
                 Profesional Staff
@@ -283,84 +259,6 @@ export function Settings() {
               </div>
             </div>
           </div>
-          {/* <div className="px-4 pb-4">
-            <Typography placeholder="" variant="h6" color="blue-gray" className="mb-2">
-              Projects
-            </Typography>
-            <Typography
-            placeholder=""
-              variant="small"
-              className="font-normal text-blue-gray-500"
-            >
-              Architects design houses
-            </Typography>
-            <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
-              {projectsData.map(
-                ({ img, title, description, tag, route, members }) => (
-                  <Card placeholder="" color="transparent" shadow={false}>
-                    <CardHeader
-                    placeholder=""
-                      floated={false}
-                      color="gray"
-                      className="mx-0 mt-0 mb-4 h-64 xl:h-40"
-                    >
-                      <img
-                        src={accountData.profilePhoto}
-                        alt={accountData.userName}
-                        className="h-full w-full object-cover"
-                      />
-                    </CardHeader>
-                    <CardBody placeholder="" className="py-0 px-1">
-                      <Typography
-                      placeholder=""
-                        variant="small"
-                        className="font-normal text-blue-gray-500"
-                      >
-                        {accountData.userName}
-                      </Typography>
-                      <Typography
-                      placeholder=""
-                        variant="h5"
-                        color="blue-gray"
-                        className="mt-1 mb-2"
-                      >
-                        {accountData.userName}
-                      </Typography>
-                      <Typography
-                      placeholder=""
-                        variant="small"
-                        className="font-normal text-blue-gray-500"
-                      >
-                        {accountData.userName}
-                      </Typography>
-                    </CardBody>
-                    <CardFooter placeholder="" className="mt-6 flex items-center justify-between py-0 px-1">
-                      <Link to={route}>
-                        <Button placeholder="" variant="outlined" size="sm">
-                          view project
-                        </Button>
-                      </Link> 
-                      <div>
-                        {members.map(({ img, name }, key) => (
-                          <Tooltip key={name} content={name}>
-                            <Avatar
-                            placeholder=""
-                              src={img}
-                              alt={name}
-                              size="xs"
-                              variant="circular"
-                              className={`cursor-pointer border-2 border-white ${key === 0 ? "" : "-ml-2.5"
-                                }`}
-                            />
-                          </Tooltip>
-                        ))}
-                      </div>
-                     </CardFooter>
-                  </Card>
-                 )
-              )} 
-            </div>
-          </div> */}
         </CardBody>
       </Card>
     </>
