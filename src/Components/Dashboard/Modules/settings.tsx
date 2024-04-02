@@ -12,8 +12,8 @@ import {
 import {
   HomeIcon,
 } from "@heroicons/react/24/solid";
-import { MessageCard } from "../../Components/Dashboard/Cards";
-import { useAccountData, useDoctorData, useFileStorage } from "../../Context/authContext";
+import { MessageCard } from "../../../Components/Dashboard/Cards";
+import { useAccountData, useDoctorData, useFileStorage } from "../../../Context/authContext";
 import { useState } from "react";
 import { Select, SelectItem, Avatar } from "@nextui-org/react";
 

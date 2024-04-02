@@ -1,4 +1,7 @@
 {
+    "b-switch": {
+        "spanish": "ES"
+    },
     "s-navbar": {
         "item1": "Objetivo",
         "item2": "Servicios",
@@ -82,7 +85,6 @@
     "s-footer": {
         "text": "© 2024. Todos los Derechos Reservados"
     },
-
     "d-home": {
         "text": "© 2024. Todos los Derechos Reservados"
     },
@@ -101,5 +103,4 @@
     "d-settings": {
         "text": "© 2024. Todos los Derechos Reservados"
     }
-   
 }

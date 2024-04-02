@@ -6,7 +6,7 @@ import { Objective } from "../Components/HomePage/Objective";
 import { OurTeam } from "../Components/HomePage/OurTeam";
 import { Services } from "../Components/HomePage/Services";
 
-export function Home() {
+export function LandingpPage() {
     return (
         <div className=" bg-blue-50">
             <NavbarHome></NavbarHome>

@@ -6,7 +6,7 @@ import {
     CardFooter,
     CardHeader,
 } from "@material-tailwind/react";
-import { useFileStorage } from "../../Context/authContext";
+import { useFileStorage } from "../../../Context/authContext";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, Trash2Icon } from "lucide-react";

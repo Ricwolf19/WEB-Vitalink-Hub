@@ -4,7 +4,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css"; // Keep the base sty
 import { CalendarPlus2Icon } from 'lucide-react';
 import { Popover, PopoverTrigger, PopoverContent, Button, Input, Tooltip, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { useState } from 'react';
-import { useEventCalendar } from '../../Context/authContext';
+import { useEventCalendar } from '../../../Context/authContext';
 
 
 export function Calendars() {

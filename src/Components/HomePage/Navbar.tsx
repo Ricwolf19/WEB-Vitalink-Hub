@@ -7,8 +7,8 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
-  Switch,
 } from "@nextui-org/react";
+import { SwitchI18n } from "../../i18n/SwitchI18n";
 
 import { Logo } from "./Icons";
 import { Link as ScrollLink } from "react-scroll"; //Se puede adaptar nombre a lo que se agarre de el paquete
@@ -18,15 +18,8 @@ import { useTranslation } from "react-i18next";
 
 export function NavbarHome() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
 
-  const [t, i18n] = useTranslation("global");
-
-  const handleChangeLenguage = (option: boolean) => {
-    setIsSelected(option)
-    const lenguage = option ? 'es' : 'en';
-    i18n.changeLanguage(lenguage)
-  }
+  const [t] = useTranslation("global");
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -71,23 +64,7 @@ export function NavbarHome() {
 
 
       <NavbarContent justify="end">
-        <Switch
-          defaultSelected
-          size="lg"
-          color="warning"
-          isSelected={isSelected}
-          onValueChange={handleChangeLenguage}
-          thumbIcon={({ isSelected, className }) =>
-            isSelected ? (
-              <img src="https://flagcdn.com/16x12/es.png" className={className} />
-            ) : (
-              <img src="https://flagcdn.com/16x12/us.png" className={className} />
-            )
-          }
-        >
-          <p className="text-small text-default-500">{isSelected ? "ES" : "EN"}</p>
-        </Switch>
-
+       <SwitchI18n/>
       </NavbarContent>
       <NavbarMenu>
         <NavbarMenuItem>

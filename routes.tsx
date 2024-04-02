@@ -7,7 +7,7 @@ import {
   Files,
 } from 'lucide-react'
 
-import { Home, Personal, Calendars, Kanban,  Settings, Documents } from "./src/Pages/Modules";
+import { Home, Personal, Calendars, Kanban,  Settings, Documents } from "./src/Components/Dashboard/Modules";
 
 const icon = {
   className: "text-inherit",

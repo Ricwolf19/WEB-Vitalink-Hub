@@ -10,13 +10,13 @@ import {
 import {
   ArrowUpIcon,
 } from "@heroicons/react/24/outline";
-import { StatisticsCard } from "../../Components/Dashboard/Cards/statistics-card";
-import { StatisticsChart } from "../../Components/Dashboard/Charts/statistics-chart";
+import { StatisticsCard } from "../../../Components/Dashboard/Cards/statistics-card";
+import { StatisticsChart } from "../../../Components/Dashboard/Charts/statistics-chart";
 
 
 import { AlertTriangleIcon, ClipboardPlusIcon, Contact2, PlusCircle, ScanFaceIcon, Users } from "lucide-react";
-import { useDoctorData, usePatientData } from "../../Context/authContext";
-import { chartsConfig } from "../../Configs";
+import { useDoctorData, usePatientData } from "../../../Context/authContext";
+import { chartsConfig } from "../../../Configs";
 import { MdBloodtype } from "react-icons/md";
 import { TbMoodBoy } from "react-icons/tb";
 import { SlPeople } from "react-icons/sl";

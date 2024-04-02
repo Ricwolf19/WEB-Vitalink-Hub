@@ -9,12 +9,12 @@ import {
 import {
   Button,
 } from "@nextui-org/react";
-import { useDoctorData, usePatientData, } from "../../Context/authContext";
-import { EditPatient } from "../../Components/Dashboard/CrudActions/EditPatient";
-import { EditDoctor } from "../../Components/Dashboard/CrudActions/EditDoctor";
+import { useDoctorData, usePatientData, } from "../../../Context/authContext";
+import { EditPatient } from "../../../Components/Dashboard/CrudActions/EditPatient";
+import { EditDoctor } from "../../../Components/Dashboard/CrudActions/EditDoctor";
 import { ActivityIcon, UserMinus } from "lucide-react";
-import { AddPatient } from "../../Components/Dashboard/CrudActions/AddPatient";
-import { AddDoctor } from "../../Components/Dashboard/CrudActions/AddDoctor";
+import { AddPatient } from "../../../Components/Dashboard/CrudActions/AddPatient";
+import { AddDoctor } from "../../../Components/Dashboard/CrudActions/AddDoctor";
 
 export function Personal() {
   const { patientData, handleDeletePatient } = usePatientData();
