@@ -131,7 +131,7 @@ export function Login() {
                   endContent={
                     <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
                   }
-                  label="Email"
+                  label={t("s-login.item2")}
                   color="primary" 
                   variant="flat"
                   type="email"
@@ -143,7 +143,7 @@ export function Login() {
                   endContent={
                     <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
                   }
-                  label="Password"
+                  label={t("s-login.item3")}
                   type="password"
                   color="primary" 
                   variant="flat"
@@ -160,15 +160,15 @@ export function Login() {
                   >
                     Remember me
                   </Checkbox> */}
-                 <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
+                 <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{t("s-login.item1")}</button>
                   <Link color="primary" href="#!" size="sm">
-                    <a href="#!" className="inline-block align-baseline font-bold text-blue-500 text-sm hover:text-blue-800" onClick={handleResetPassword}>Forgot Password</a>
+                    <a href="#!" className="inline-block align-baseline font-bold text-blue-500 text-sm hover:text-blue-800" onClick={handleResetPassword}>{t("s-login.item4")}</a>
                   </Link> 
                 </div>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="flat" onPress={onClose}>
-                  Close
+                {t("s-login.item5")}
                 </Button>
               </ModalFooter>
               </form>

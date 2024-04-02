@@ -88,33 +88,26 @@ export function NavbarHome() {
           <p className="text-small text-default-500">{isSelected ? "ES" : "EN"}</p>
         </Switch>
 
-        {/* <Button color="success" size="sm" endContent={'https://flagcdn.com/16x12/es.png'}>
-          EN
-        </Button>
-        <Button color="danger" size="sm" variant="bordered" startContent={'https://flagcdn.com/16x12/us.png'}>
-          ES
-        </Button> */}
-
       </NavbarContent>
       <NavbarMenu>
         <NavbarMenuItem>
           <ScrollLink to="Objective" spy offset={-80} duration={500} className="text-red-600">
-            Objective
+          {t('s-navbar.item1')}
           </ScrollLink>
         </NavbarMenuItem>
         <NavbarMenuItem>
           <ScrollLink to="Services" spy offset={-80} duration={500} className="text-red-600">
-            Services
+          {t('s-navbar.item2')}
           </ScrollLink>
         </NavbarMenuItem>
         <NavbarMenuItem>
           <ScrollLink to="OurTeam" spy offset={-80} duration={500} className="text-red-600">
-            Our Team
+          {t('s-navbar.item3')}
           </ScrollLink>
         </NavbarMenuItem>
         <NavbarMenuItem>
           <ScrollLink to="ContactUs" spy offset={-80} duration={500} className="text-red-600">
-            Contact Us
+          {t('s-navbar.item4')}
           </ScrollLink>
         </NavbarMenuItem>
         <NavbarMenuItem>

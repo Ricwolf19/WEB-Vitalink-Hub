@@ -6,10 +6,32 @@
         "item4": "Contact Us"
     },
     "s-signUp": {
-        "item1": "Sign Up"
+        "item1": "Sign Up",
+        "item2": "Create an Account",
+        "item3": "If you want to create an account to access VitaLink's technology, please contact us and provide the following information for better interaction with the VitaLinkTeam. Thank you.",
+        "selectItems": {
+            "title": "Target Audience",
+            "item1": "Personal Use",
+            "item2": "Company",
+            "item3": "Hospital",
+            "item1Desc": "Selected option for personal use.   ",
+            "item2Desc": "Selected for company-related accounts.   ",
+            "item3Desc": "Selected option for hospital-related accounts.  "
+        },
+        "item4": "Company, Hospital or Full Name",
+        "item5": "Email",
+        "item6": "Contact Number",
+        "item7": "Reason for Account",
+        "item8": "Tell us why you need the account...",
+        "item10": "Submit",
+        "item11": "Close"
     },
     "s-login": {
-        "item1": "Login"
+        "item1": "Login",
+        "item2": "Email",
+        "item3": "Password",
+        "item4": "Forgot Password",
+        "item5": "Close"
     },
     "s-hero": {
         "item1": "Smart Health, Smarter Living",

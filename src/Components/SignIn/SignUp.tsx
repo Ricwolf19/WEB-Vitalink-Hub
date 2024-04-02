@@ -10,9 +10,9 @@ export function SignUp(){
     const [t] = useTranslation("global");
 
     const selectOptions = [
-      { label: "Personal Use", value: "personal", description: "Selected option for personal use.  " },
-      { label: "Company", value: "company", description: "Selected for company-related accounts.  " },
-      { label: "Hospital", value: "hospital", description: "Selected option for hospital-related accounts.  " },
+      { label: t("s-signUp.selectItems.item1"), value: t("s-signUp.selectItems.item1"), description: t("s-signUp.selectItems.item1Desc")},
+      { label: t("s-signUp.selectItems.item2"), value: t("s-signUp.selectItems.item2"), description: t("s-signUp.selectItems.item2Desc") },
+      { label: t("s-signUp.selectItems.item3"), value: t("s-signUp.selectItems.item3"), description: t("s-signUp.selectItems.item3Desc")},
     ]
   
     const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_KEY as string);
@@ -34,19 +34,17 @@ export function SignUp(){
                 <ModalContent>
                   {(onClose) => (
                     <>
-                      <ModalHeader className="flex flex-col gap-1 text-red-600">Create an Account</ModalHeader>
+                      <ModalHeader className="flex flex-col gap-1 text-red-600">{t("s-signUp.item2")}</ModalHeader>
                       <ModalBody>
                         <Logo />
                         <p className="text-center">
-                          If you want to create an account to access VitaLink's technology, please
-                          contact us and provide the following information for better interaction
-                          with the VitaLinkTeam. Thank you.
+                        {t("s-signUp.item3")}
                         </p>
 
                         <form onSubmit={handleSubmit} className="mt-4">
                           <div className="flex w-full h-full items-center justify-center">
                             <Select
-                              label="Target audience"
+                              label={t("s-signUp.selectItems.title")}
                               className="max-w-xs"
                               variant="underlined"
                               color="danger"
@@ -62,20 +60,20 @@ export function SignUp(){
                           </div>
                           <br />
                           <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                            <Input label="Company, Hospital or Full Name" id="message" name="message" color="danger" variant="faded" />
+                            <Input label={t("s-signUp.item4")} id="message" name="message" color="danger" variant="faded" />
                           </div>
                           <br />
                           <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                            <Input type="email" label="Email" id="email" name="email" color="danger" variant="faded" />
-                            <Input label="Contact Number" id="message" name="message" color="danger" variant="faded" />
+                            <Input type="email" label={t("s-signUp.item5")} id="email" name="email" color="danger" variant="faded" />
+                            <Input label={t("s-signUp.item6")} id="message" name="message" color="danger" variant="faded" />
                             <ValidationError prefix="Email" field="email" errors={state.errors} />
                           </div>
                           <br />
                           <Textarea
-                            label="Reason for Account"
+                            label={t("s-signUp.item7")}
                             color="danger"
                             variant="faded"
-                            placeholder="Tell us why you need the account..."
+                            placeholder={t("s-signUp.item8")}
                             className="col-span-12 md:col-span-6 mb-6 md:mb-0"
                             id="message"
                             name="message"
@@ -84,10 +82,10 @@ export function SignUp(){
 
                           <div className="mt-4 text-right">
                             <Button color="danger" variant="light" onPress={onClose}>
-                              Close
+                            {t("s-signUp.item11")}
                             </Button>
                             <Button color="primary" onPress={onClose} type="submit" disabled={state.submitting}>
-                              Submit
+                             {t("s-signUp.item10")}
                             </Button>
                           </div>
                         </form>
