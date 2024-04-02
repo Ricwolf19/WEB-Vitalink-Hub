@@ -1,6 +1,9 @@
 import { Image } from "@nextui-org/react";
+import { useTranslation } from "react-i18next";
 
 export function Objective() {
+    const [t] = useTranslation("global");
+    
     return (
         <section id="Objective" className="max-w-[1200px] flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between lg:items-stretch mx-auto lg:gap-10 lg:p-6">
             <div className="flex-1 order-2 lg:order-1 mb-8 lg:mb-0">
@@ -18,10 +21,10 @@ export function Objective() {
                 <div className="max-w-xl">
                     <div className="p-5">
                         <h2 className="font-palanquin text-4xl lg:text-5xl font-bold text-center lg:text-left capitalize">
-                            Our <span className="text-blue-800">Objective</span>
+                        {t("s-objective.item1")} <span className="text-blue-800">{t("s-objective.item2")}</span>
                         </h2>
                         <p className="mt-4 info-text lg:max-w-lg text-justify lg:text-justify">
-                            VitaLink reimagines healthcare with SensorPath technology, offering seamless monitoring of vital signs for personalized wellness. Our purpose is to empower individuals with real-time health insights, connect healthcare professionals with actionable data and revolutionize the way we approach well-being. Experience precision care, effortless health tracking, and a brighter, healthier future with VitaLink.
+                        {t("s-objective.item3")}
                         </p>
                     </div>
                 </div>

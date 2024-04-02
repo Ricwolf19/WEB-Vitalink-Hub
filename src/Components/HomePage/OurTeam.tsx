@@ -1,36 +1,7 @@
-// import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-//Interface of arrow for better practice
-// interface ArrowProps {
-//     className?: string;
-//     style?: React.CSSProperties;
-//     onClick?: () => void;
-// }
-
-// function NextArrow(props: ArrowProps) {
-//     const { className, style, onClick } = props;
-//     return (
-//         <FaChevronRight
-//             className={`next-arrow ${className}`}
-//             style={{ ...style, display: "block", color: "blue", fontSize: "30px" }}
-//             onClick={onClick}
-//         />
-//     );
-// }
-
-// function PrevArrow(props: ArrowProps) {
-//     const { className, style, onClick } = props;
-//     return (
-//         <FaChevronLeft
-//             className={`prev-arrow ${className}`}
-//             style={{ ...style, display: "block", color: "blue", fontSize: "0px" }}
-//             onClick={onClick}
-//         />
-//     );
-// }
+import { useTranslation } from "react-i18next";
 
 export function OurTeam() {
     var settings = {
@@ -63,10 +34,12 @@ export function OurTeam() {
         ]
     };
 
+    const [t] = useTranslation("global")
+
     return (
         <section id="OurTeam">
             <div className="max-w-[1200px] mx-auto">
-                <h5 className="text-2xl font-semibold text-blue-700 text-center mb-10">Our Team</h5>
+                <h5 className="text-2xl font-semibold text-blue-700 text-center mb-10">{t("s-ourTeam.title")}</h5>
                 <div className="text-center">
                     <Slider {...settings}>
                         <div className="card p-4  rounded ">

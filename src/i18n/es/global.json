@@ -6,19 +6,100 @@
         "item4": "Contáctanos"
     },
     "s-signUp": {
-        "item1": "Registrarse"
+        "item1": "Registrarse",
+        "item2": "Crear una Cuenta",
+        "item3": "Si desea crear una cuenta para acceder a la tecnología de VitaLink, contáctenos y proporcione la siguiente información para una mejor interacción con el equipo de VitaLink. Gracias.",
+        "selectItems": {
+            "title": "Público Objetivo",
+            "item1": "Uso Personal",
+            "item2": "Empresa",
+            "item3": "Hospital",
+            "item1Desc": "Opción seleccionada para uso personal.",
+            "item2Desc": "Seleccionado para cuentas relacionadas con empresas.",
+            "item3Desc": "Opción seleccionada para cuentas relacionadas con hospitales."
+        },
+        "item4": "Empresa, Hospital o Nombre Completo",
+        "item5": "Correo Electrónico",
+        "item6": "Número de Contacto",
+        "item7": "Motivo de la Cuenta",
+        "item8": "Cuéntenos por qué necesita la cuenta...",
+        "item10": "Enviar",
+        "item11": "Cerrar"
     },
     "s-login": {
-        "item1": "Iniciar Sesión"
+        "item1": "Iniciar Sesión",
+        "item2": "Correo Electrónico",
+        "item3": "Contraseña",
+        "item4": "¿Olvidó su Contraseña?",
+        "item5": "Cerrar"
     },
     "s-hero": {
         "item1": "Salud Inteligente, Vida Más Inteligente",
         "item2": "Eleve su salud con VitaLink; Monitoreo Inteligente, Resultados Reales.",
-        "item3": "Enviar Mensaje"
+        "itemMessage": {
+            "title": "Envíenos un mensaje",
+            "lastName": "Apellido",
+            "name": "Nombre",
+            "email": "Correo Electrónico",
+            "message": "Mensaje"
+        },
+        "acknowledgments": "Gracias por su mensaje, del equipo de vitalinkhub.",
+        "item3": "Cerrar",
+        "item4": "Enviar",
+        "item5": "Enviar Mensaje"
     },
     "s-objective": {
         "item1": "Nuestro",
         "item2": "Objetivo",
-        "item3": "VitaLink redefine la atención médica con la tecnología SensorPath, ofreciendo un monitoreo perfecto de signos vitales para el bienestar personalizado. Nuestro propósito es capacitar a las personas con información de salud en tiempo real, conectar a los profesionales de la salud con datos accionables y revolucionar la forma en que abordamos el bienestar. Experimente cuidados precisos, seguimiento de salud sin esfuerzo y un futuro más brillante y saludable con VitaLink."
+        "item3": "VitaLink reimagina la atención médica con la tecnología SensorPath, ofreciendo un monitoreo perfecto de signos vitales para el bienestar personalizado. Nuestro propósito es capacitar a las personas con información de salud en tiempo real, conectar a los profesionales de la salud con datos accionables y revolucionar la forma en que abordamos el bienestar. Experimente cuidados precisos, seguimiento de salud sin esfuerzo y un futuro más brillante y saludable con VitaLink."
+    },
+    "s-services": {
+        "title": "Nuestros Servicios",
+        "item1": {
+            "title": "Inteligencia en Salud Inteligente",
+            "description": "Desbloquee información inteligente sobre su salud con VitaLink. Nuestra tecnología SensorPath brinda datos en tiempo real, ofreciendo una visión integral de su bienestar. Reciba recomendaciones de salud personalizadas basadas en análisis avanzados, lo que le permite tomar decisiones informadas para un estilo de vida más saludable."
+        },
+        "item2": {
+            "title": "Bienestar Conectado",
+            "description": "Embárquese en un viaje hacia el bienestar como nunca antes con VitaLink. Nuestra innovadora tecnología SensorPath establece una conexión perfecta entre usted y su atención médica. Desde el monitoreo de la salud en tiempo real hasta planes de bienestar personalizados, VitaLink asegura un enfoque integral para su bienestar, haciendo que el manejo de la salud sea una experiencia integrada y sin esfuerzo."
+        },
+        "item3": {
+            "title": "Empoderando a Profesionales de la Salud",
+            "description": "VitaLink va más allá del monitoreo: capacita a los profesionales de la salud con conocimientos prácticos. Al utilizar nuestra tecnología SensorPath, los médicos y especialistas obtienen una comprensión integral de la salud del paciente en tiempo real. Únase a nosotros en la revolución de la prestación de atención médica, fomentando la colaboración y construyendo un futuro más brillante y saludable para todos."
+        },
+        "item4": {
+            "title": "Monitoreo de Salud Intuitivo",
+            "description": "VitaLink redefine el monitoreo de la salud, haciéndolo amigable y accesible. Con nuestra tecnología SensorPath, realice un seguimiento sin esfuerzo de los signos vitales, acceda a información de salud personalizada y tome el control de su bienestar a través de una plataforma intuitiva y fácil de usar. Experimente un nuevo estándar en el manejo de la salud diseñado pensando en usted."
+        }
+    },
+    "s-ourTeam": {
+        "title": "Nuestro Equipo"
+    },
+    "s-contactUs": {
+        "title": "Contáctanos",
+        "description": "¿Tiene preguntas o necesita ayuda? No dude en comunicarse con nosotros. Nuestro equipo dedicado en VitaLink está aquí para brindarle soporte y responder cualquier consulta que pueda tener. Su salud y satisfacción son nuestras prioridades. Contacte a VitaLink hoy para vivir una experiencia de atención médica conectada y personalizada."
+    },
+    "s-footer": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+
+    "d-home": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+    "d-personal": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+    "d-calendar": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+    "d-kanban": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+    "d-documents": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+    "d-settings": {
+        "text": "© 2024. Todos los Derechos Reservados"
     }
+   
 }

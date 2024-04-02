@@ -1,14 +1,17 @@
+import { useTranslation } from "react-i18next";
 import ModalContacUs from "../HomePage/ModalContactUs";
 
 
 export function Hero() {
+    const [t] = useTranslation("global");
+    
     return (
         <section className=" max-w-screen-xl flex flex-col-reverse gap-12 items-center mx-auto py-16 px-6 md:flex-row ">
             <div className=" flex-1 text-center md:text-left">
-                <h2 className="text-3xl font-bold text-gradient mb-3 md:text-4xl md:leading-[3rem] lg:text-5xl lg:leading-[4rem]">Smart Health, Smarter Living</h2>
+                <h2 className="text-3xl font-bold text-gradient mb-3 md:text-4xl md:leading-[3rem] lg:text-5xl lg:leading-[4rem]"> {t("s-hero.item1")}</h2>
 
                 <p className=" text-lg leading-6 text-blue-800 mb-6 md:w-4/5">
-                    "Elevate Your Health with VitaLink; Smart Monitoring, Real Results".
+                    {t("s-hero.item2")}
                 </p>
                 <div>
                     <ModalContacUs />

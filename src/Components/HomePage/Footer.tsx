@@ -1,10 +1,13 @@
+import { useTranslation } from "react-i18next";
 
 export function Footer() {
+    const [t] = useTranslation("global");
+    
     return (
         <>
         <br />
         <div className="bg-blue-700 text-xs text-white text-center p-4 font-semibold">
-        © 2024. All Rights Reserved
+        {t("s-footer.text")}
         </div>
         </>
     )

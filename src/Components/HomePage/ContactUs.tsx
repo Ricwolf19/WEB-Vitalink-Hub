@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next";
 import ModalContactUs from "./ModalContactUs"
 import { Image } from "@nextui-org/react";
 
 export function ContactUs() {
+    const [t] = useTranslation("global");
+    
     return (
         <section id="ContactUs">
             <div className="bg-blue-50">
@@ -14,10 +17,10 @@ export function ContactUs() {
                     />
 
                     <div className="p-6">
-                        <h5 className="text-lg font-bold text-blue-800 mb-2 lg:mb-4">Contact Us</h5>
+                        <h5 className="text-lg font-bold text-blue-800 mb-2 lg:mb-4">{t("s-contactUs.title")}</h5>
 
                         <p className=" text-lx text-blue-800 leading-6 text-justify mb-5">
-                            "Have questions or need assistance? Feel free to reach out to us. Our dedicated team at VitaLink is here to provide support and answer any inquiries you may have. Your health and satisfaction are our priorities. Contact VitaLink today for a connected and personalized healthcare experience."
+                        {t("s-contactUs.description")}
                         </p>
 
                         <ModalContactUs></ModalContactUs>

@@ -36,11 +36,50 @@
     "s-hero": {
         "item1": "Smart Health, Smarter Living",
         "item2": "Elevate Your Health with VitaLink; Smart Monitoring, Real Results.",
-        "item3": "Send Message"
+        "itemMessage": {
+            "title": "Send us a message",
+            "lastName": "Last Name",
+            "name": "Name",
+            "email": "Email",
+            "message": "Message"
+        },
+        "acknowledgments": "Thank you for your message, from the vitalinkhub team.",
+        "item3": "Close",
+        "item4": "Submit",
+        "item5": "Send Message"
     },
     "s-objective": {
         "item1": "Our",
         "item2": "Objective",
         "item3": "VitaLink reimagines healthcare with SensorPath technology, offering seamless monitoring of vital signs for personalized wellness. Our purpose is to empower individuals with real-time health insights, connect healthcare professionals with actionable data and revolutionize the way we approach well-being. Experience precision care, effortless health tracking, and a brighter, healthier future with VitaLink."
+    },
+    "s-services": {
+        "title": "Our Services",
+        "item1": {
+            "title": "Smart Health Insights",
+            "description": "Unlock smart insights into your health with VitaLink. Our SensorPath technology delivers real-time data, providing a comprehensive view of your well-being. Receive personalized health recommendations based on advanced analytics, empowering you to make informed decisions for a healthier lifestyle."
+        },
+        "item2": {
+            "title": "Connected Wellness",
+            "description": "Embark on a journey to wellness like never before with VitaLink. Our innovative SensorPath technology establishes a seamless connection between you and your healthcare. From real-time health monitoring to personalized wellness plans, VitaLink ensures a holistic approach to your well-being, making health management an integrated and effortless experience."
+        },
+        "item3": {
+            "title": "Empowering Healthcare Professionals",
+            "description": "VitaLink goes beyond monitoring – it empowers healthcare professionals with actionable insights. By utilizing our SensorPath technology, doctors and specialists gain a comprehensive understanding of patient health in real time. Join us in revolutionizing healthcare delivery, fostering collaboration, and building a brighter and healthier future for all."
+        },
+        "item4": {
+            "title": "User-Friendly Health Monitoring",
+            "description": "VitaLink redefines health monitoring, making it user-friendly and accessible. With our SensorPath technology, effortlessly track vital signs, access personalized health insights, and take control of your well-being through an intuitive and easy-to-use platform. Experience a new standard in health management designed with you in mind."
+        }
+    },
+    "s-ourTeam": {
+        "title": "Our Team"
+    },
+    "s-contactUs": {
+        "title": "Contact Us",
+        "description": "Have questions or need assistance? Feel free to reach out to us. Our dedicated team at VitaLink is here to provide support and answer any inquiries you may have. Your health and satisfaction are our priorities. Contact VitaLink today for a connected and personalized healthcare experience."
+    },
+    "s-footer": {
+        "text": "© 2024. All Rights Reserved"
     }
 }
