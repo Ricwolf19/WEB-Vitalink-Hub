@@ -6,31 +6,22 @@ import {
     CardFooter,
     CardHeader,
 } from "@material-tailwind/react";
-import { useAccountData, useFileStorage } from "../../Context/authContext";
+import { useFileStorage } from "../../Context/authContext";
 import { useState } from "react";
-import { projectsData } from "../../Data";
 import { Link } from "react-router-dom";
-import { DownloadCloud, Trash2Icon } from "lucide-react";
+import { Eye, Trash2Icon } from "lucide-react";
 
 export function Documents() {
-    // const { imgProfileList } = useFileStorage()
 
-    const { accountData } = useAccountData();
-    const { imgStorageList, uploadImageToStorage } = useFileStorage();
+    const { docsStorageList, uploadToStorage, deleteStorageFile } = useFileStorage();
 
-    const [profileImg, newProfileImg] = useState<string>("");
-
-    const handlePhotoProfile = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        newProfileImg(e.target.value);
-    };
-
-    interface selectPhotoProps {
+    interface storageProps {
         url: string
         name: string
     }
 
     const [imgToUpload, setImgToUpload] = useState<any>(null);
-     
+
 
     return (
         <>
@@ -51,7 +42,7 @@ export function Documents() {
                             Pdfs, Words, Images and more...
                         </Typography>
 
-                        <div className="mt-7 grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-4">
+                        <div className="mt-7 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
                             <div>
                                 <div
                                     id="FileUpload"
@@ -92,23 +83,23 @@ export function Documents() {
                                             </svg>
                                         </span>
                                         <p>
-                                            <span className="text-primary">Click to upload</span> or Drag and drop
+                                            <span className="text-primary">Click to upload</span>
                                         </p>
                                         <p className="mt-1.5">Pdf, Docs, Imgs...</p>
                                     </div>
-                                </div>                        
-                        
+                                </div>
+
                                 <div className="flex justify-center gap-5">
-                                    <Button placeholder="" onClick={() => uploadImageToStorage(imgToUpload)} variant="outlined" size="lg"  className=" bg-white text-green-800 border-green-800">
+                                    <Button placeholder="" onClick={() => uploadToStorage(imgToUpload)} variant="outlined" size="lg" className=" bg-white text-green-800 border-green-800">
                                         Upload File
                                     </Button>
                                 </div>
                             </div>
 
 
-                            {projectsData.map(
-                                ({ img, title, description, tag, route, members }) => (
-                                    <Card placeholder="" color="transparent" shadow={false}>
+                            {docsStorageList.map(
+                                ({ url, name }: storageProps) => (
+                                    <Card placeholder="" color="transparent" shadow={false} key={name}>
                                         <CardHeader
                                             placeholder=""
                                             floated={false}
@@ -116,12 +107,12 @@ export function Documents() {
                                             className="mx-0 mt-0 mb-4 h-64 xl:h-40"
                                         >
                                             <img
-                                                src={accountData.profilePhoto}
-                                                alt={accountData.userName}
+                                                src={'https://i.ibb.co/VDZ3HH6/5853.jpg' || url}
+                                                alt={name}
                                                 className="h-full w-full object-cover"
                                             />
                                         </CardHeader>
-                                        <CardBody placeholder="" className="py-0 px-1">
+                                        <CardBody placeholder="" className="py-0 px-1 text-center">
 
                                             <Typography
                                                 placeholder=""
@@ -129,24 +120,26 @@ export function Documents() {
                                                 color="blue-gray"
                                                 className="mt-1 mb-2"
                                             >
-                                                {accountData.userName}
+                                                {name}
                                             </Typography>
 
                                         </CardBody>
                                         <CardFooter placeholder="" className="mt-2 flex items-center justify-between py-0 px-1">
-                                            <Link to={route}>
-                                                <Button placeholder="" variant="outlined" color="blue" size="sm">
-                                                    <DownloadCloud />
+                                            {/* <Button placeholder="" onClick={() => downloadStorageFile(url)} variant="outlined" color="blue" size="sm">
+                                                <DownloadCloud />
+                                            </Button> */}
+                                            <Link to={`${url}`}>
+                                                <Button placeholder="" variant="outlined" color="purple" size="sm">
+                                                    <Eye />
                                                 </Button>
                                             </Link>
-                                            <Button placeholder="" variant="outlined" color="red" size="sm">
+                                            <Button placeholder="" variant="outlined" color="red" size="sm" onClick={() => deleteStorageFile(name)}>
                                                 <Trash2Icon />
                                             </Button>
                                         </CardFooter>
                                     </Card>
                                 )
                             )}
-
                         </div>
                     </div>
                 </CardBody>

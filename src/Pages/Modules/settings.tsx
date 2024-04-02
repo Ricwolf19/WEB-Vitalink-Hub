@@ -20,7 +20,7 @@ import { Select, SelectItem, Avatar } from "@nextui-org/react";
 export function Settings() {
   const { accountData, handleUpdateEmail, handleUpdateUserName, handleUpdatePhotoProfile } = useAccountData();
   const { doctorData } = useDoctorData();
-  const { uploadImageToProfile, imgProfileList } = useFileStorage();
+  const { uploadImageToProfile, imgProfileList, deleteProfileImg } = useFileStorage();
 
   const [profileImg, newProfileImg] = useState<string>("");
 
@@ -28,11 +28,16 @@ export function Settings() {
     newProfileImg(e.target.value);
   };
 
+  const handleDelPhotoProfile = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setImgToDelete(e.target.value);
+  };
+
   interface selectPhotoProps {
     url: string
     name: string
   }
 
+  const [imgToDelete, setImgToDelete] = useState<any>(null);
   const [imgToUpload, setImgToUpload] = useState<any>(null);
   // const [imgBg, setImgBg] = useState<any>(null);
   const [newEmail, setNewEmail] = useState("");
@@ -103,34 +108,7 @@ export function Settings() {
                 </CardHeader>
               </Card> */}
 
-              <div className="pb-5 text-center">
-                <Select
-                  label="Image"
-                  variant="flat"
-                  color="primary"
-                  placeholder="Select an Image"
-                  className="max-w-xs"
-                  onChange={handlePhotoProfile}
-                >
-                  {imgProfileList.map((e: selectPhotoProps) => (
-                    <SelectItem key={e.url} value={e.url} textValue={e.name}>
-                      <div className="flex gap-2 items-center">
-                        <Avatar alt={e.name} className="flex-shrink-0" size="sm" src={e.url} />
-                        <div className="flex flex-col">
-                          <span className="text-small">{e.name}</span>
-                        </div>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </Select>
 
-                <div className="flex justify-center gap-5 pt-5">
-                  <Button placeholder="" onClick={() => handleUpdatePhotoProfile(profileImg)} variant="outlined" size="sm" className=" bg-blue-800 text-white border-white">
-                    Update Photo
-                  </Button>
-                </div>
-
-              </div>
 
               <div
                 id="FileUpload"
@@ -171,11 +149,10 @@ export function Settings() {
                     </svg>
                   </span>
                   <p>
-                    <span className="text-primary">Click to upload</span> or
-                    drag and drop
+                    <span className="text-primary">Click to upload</span> an image
                   </p>
                   {/* <p className="mt-1.5">SVG, PNG, JPG</p> */}
-                    <p>(max, 100 X 100px)</p>
+                  <p>(max, 100 X 100px)</p>
                 </div>
               </div>
               <br />
@@ -187,7 +164,38 @@ export function Settings() {
                     Save
                   </Button> */}
               </div>
+
+              <div className="pb-0 pt-10 text-center">
+                <Select
+                  label="Update Image"
+                  variant="faded"
+                  color="primary"
+                  placeholder="Select an Image"
+                  className="max-w-xs"
+                  onChange={handlePhotoProfile}
+                >
+                  {imgProfileList.map((e: selectPhotoProps) => (
+                    <SelectItem key={e.url} value={e.url} textValue={e.name}>
+                      <div className="flex gap-2 items-center">
+                        <Avatar alt={e.name} className="flex-shrink-0" size="sm" src={e.url} />
+                        <div className="flex flex-col">
+                          <span className="text-small">{e.name}</span>
+                        </div>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </Select>
+
+                <div className="flex justify-center gap-5 pt-5">
+                  <Button placeholder="" onClick={() => handleUpdatePhotoProfile(profileImg)} variant="outlined" size="sm" className=" bg-blue-800 text-white border-white">
+                    Update Photo
+                  </Button>
+                </div>
+
+              </div>
             </div>
+
+
             <div>
               <Typography placeholder="" variant="h6" color="blue-gray" className="mb-3">
                 Profesional Staff
@@ -206,6 +214,35 @@ export function Settings() {
                   />
                 ))}
               </ul>
+
+              <div className="pb-0 pt-12 text-center">
+                <Select
+                  label="Delete Image"
+                  variant="faded"
+                  color="danger"
+                  placeholder="Select an Image"
+                  className="max-w-xs"
+                  onChange={handleDelPhotoProfile}
+                >
+                  {imgProfileList.map((e: selectPhotoProps) => (
+                    <SelectItem key={e.name} value={e.name} textValue={e.name}>
+                      <div className="flex gap-2 items-center">
+                        <Avatar alt={e.name} className="flex-shrink-0" size="sm" src={e.url} />
+                        <div className="flex flex-col">
+                          <span className="text-small">{e.name}</span>
+                        </div>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </Select>
+
+                <div className="flex justify-center gap-5 pt-5">
+                  <Button placeholder="" onClick={() => deleteProfileImg(imgToDelete)} variant="outlined" size="sm" className=" bg-red-800 text-white border-white">
+                    Delete Photo
+                  </Button>
+                </div>
+
+              </div>
             </div>
 
 

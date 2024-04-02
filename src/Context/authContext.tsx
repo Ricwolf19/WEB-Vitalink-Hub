@@ -17,20 +17,31 @@ import {
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
-import { v4 } from 'uuid'
+import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
+// import { v4 } from 'uuid'
 
 export const useFileStorage = () => {
-    const [imgStorageList, setImgStorageList] = useState<any>([])
+    const [docsStorageList, setDocsStorageList] = useState<any>([])
     const [imgProfileList, setImgProfileList] = useState<any>([])
-    const imgRefStorage = ref(storage, `storage/`)
+    const fileRefStorage = ref(storage, `files/`)
     const imgRefProfile = ref(storage, `profile/`)
 
-    const uploadImageToStorage = async (imgToUpload: any) => {
-        const imgRef = ref(storage, `storage/${imgToUpload[0].name}`)
+    const uploadToStorage = async (imgToUpload: any) => {
+        const fileRef = ref(storage, `files/${imgToUpload[0].name}`)
 
         try {
-            await uploadBytes(imgRef, imgToUpload[0])
+            await uploadBytes(fileRef, imgToUpload[0])
+            getStorageFiles()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteStorageFile = async (fileName: string) => {
+        const fileRef = ref(storage, `files/${fileName}`)
+
+        try {
+            await deleteObject(fileRef)
             getStorageFiles()
         } catch (error) {
             console.log(error)
@@ -38,7 +49,7 @@ export const useFileStorage = () => {
     }
 
     const uploadImageToProfile = async (imgToUpload: any) => {
-        const imgRef = ref(storage, `profile/${imgToUpload[0].name + v4()}`)
+        const imgRef = ref(storage, `profile/${imgToUpload[0].name}`)
 
         try {
             await uploadBytes(imgRef, imgToUpload[0])
@@ -50,16 +61,28 @@ export const useFileStorage = () => {
 
     const getStorageFiles = async () => {
         try {
-            const data = await listAll(imgRefStorage);
+            const data = await listAll(fileRefStorage);
 
             const urls = await Promise.all(data.items.map(async (item) => {
-                return await getDownloadURL(item);
+                const url = await getDownloadURL(item)
+                return { url: url, name: item.name, bucket: item.bucket }
             }));
 
-            setImgStorageList(urls);
+            setDocsStorageList(urls);
 
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    const deleteProfileImg = async (fileName: string) => {
+        const fileRef = ref(storage, `profile/${fileName}`)
+
+        try {
+            await deleteObject(fileRef)
+            getProfileFiles()
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -84,12 +107,13 @@ export const useFileStorage = () => {
         getProfileFiles()
     }, [])
 
-
     return {
-        uploadImageToStorage,
+        uploadToStorage,
         uploadImageToProfile,
-        imgStorageList,
-        imgProfileList
+        docsStorageList,
+        imgProfileList,
+        deleteStorageFile,
+        deleteProfileImg
     }
 }
 
