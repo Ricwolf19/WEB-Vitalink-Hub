@@ -134,11 +134,11 @@
             "item1": "Name",
             "item2": "Status",
             "item3": "Area",
-            "item4": "Chronic Diseases", 
-            "item5": "Allergies", 
-            "item6": "Blood Type", 
-            "item7": "Birth Date", 
-            "item8": "Age", 
+            "item4": "Chronic Diseases",
+            "item5": "Allergies",
+            "item6": "Blood Type",
+            "item7": "Birth Date",
+            "item8": "Age",
             "item9": "Doctor Assigned"
         },
         "extra": {
@@ -164,7 +164,7 @@
                 "item7": "Blood Type",
                 "item8": "ChronicDiseases",
                 "item9": "Allergies",
-                "item10": "Select Doctor"              
+                "item10": "Select Doctor"
             },
             "scan": {
                 "title": "VITALINK LAST SCAN",
@@ -186,7 +186,7 @@
                 "item4": "Area",
                 "item5": "Num. Cedula",
                 "item6": "Select Patients",
-                "item7": "Patients"            
+                "item7": "Patients"
             }
         },
         "delete": "Delete",
@@ -195,7 +195,31 @@
         "close": "Close"
     },
     "d-calendar": {
-        "text": "© 2024. Todos los Derechos Reservados"
+        "title": "Events Calendar",
+        "titleEvents": "Events",
+        "add": {
+            "item1": "New Event",
+            "item2": "Start Date",
+            "item3": "End Date",
+            "item4": "Title",
+            "item5": "Event Title",
+            "action": "Add",
+            "titleButton": "Add Event"
+        },
+        "update": {
+            "item1": "Select event to update",
+            "item2": "New start date",
+            "item3": "New end date",
+            "item4": "Title",
+            "item5": "Event title",
+            "action": "Update",
+            "titleButton": "Update Event"
+        },
+        "delete": {
+            "item1": "Select event to delete",
+            "action": "Delete",
+            "titleButton": "Delete Event"
+        }
     },
     "d-kanban": {
         "text": "© 2024. Todos los Derechos Reservados"

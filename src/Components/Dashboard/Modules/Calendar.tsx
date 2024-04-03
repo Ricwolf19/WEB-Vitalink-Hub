@@ -5,6 +5,7 @@ import { CalendarPlus2Icon } from 'lucide-react';
 import { Popover, PopoverTrigger, PopoverContent, Button, Input, Tooltip, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { useState } from 'react';
 import { useEventCalendar } from '../../../Context/authContext';
+import { useTranslation } from 'react-i18next';
 
 
 export function Calendars() {
@@ -132,8 +133,7 @@ export function Calendars() {
     const [newTitle, setNewTitle] = useState('')
 
     const [deletedEvent, setDeletedEvents] = useState('');
-    // const [testing, setTesting] = useState<any>([])
-    // setTesting(getVitalinkSignsEvents())
+    const [t] = useTranslation('global')
 
     return (
         <>
@@ -141,27 +141,27 @@ export function Calendars() {
                 <div className=''>
                     <Popover placement="bottom" showArrow offset={10}>
                         <PopoverTrigger>
-                            <Button color="primary" variant='shadow'>Add Event</Button>
+                            <Button color="primary" variant='shadow'>{t("d-calendar.add.titleButton")}</Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-[240px]">
                             {(titleProps) => (
                                 <div className="px-1 py-2 w-full">
                                     <p className="text-small font-bold text-foreground" {...titleProps}>
-                                        New Event
+                                    {t("d-calendar.add.item1")}
                                     </p>
                                     <div className="mt-2 flex flex-col gap-2 w-full">
-                                        <Input placeholder='mm/dd/yyyy' label="Start date" size="md" type='datetime-local' variant="underlined" onChange={(e) => setStartDate(e.target.value)} />
-                                        <Input placeholder='mm/dd/yyyy' label="End date" size="md" type='datetime-local' variant="underlined" onChange={(e) => setEndDate(e.target.value)} />
+                                        <Input placeholder='mm/dd/yyyy' label={t("d-calendar.add.item2")} size="md" type='datetime-local' variant="underlined" onChange={(e) => setStartDate(e.target.value)} />
+                                        <Input placeholder='mm/dd/yyyy' label={t("d-calendar.add.item3")}size="md" type='datetime-local' variant="underlined" onChange={(e) => setEndDate(e.target.value)} />
                                         {/* <Input placeholder='Event title' label="Title" size="md" type='text' variant="underlined" onChange={(e) => setTitle(e.target.value)} /> */}
                                         <Textarea                                            
-                                            label="Title"
+                                            label={t("d-calendar.add.item4")}
                                             variant="bordered"
                                             labelPlacement="outside"
-                                            placeholder="Event title"
+                                            placeholder={t("d-calendar.add.item5")}
                                             className="max-w-xs"
                                             onChange={(e: any) => setTitle(e.target.value)}
                                         />
-                                        <Button color='danger' variant='shadow' onClick={() => handleCreateEvent(startDate, endDate, title)}>Add New Event</Button>
+                                        <Button color='danger' variant='shadow' onClick={() => handleCreateEvent(startDate, endDate, title)}>{t("d-calendar.add.action")}</Button>
                                     </div>
                                 </div>
                             )}
@@ -172,18 +172,18 @@ export function Calendars() {
                 <div className=''>
                     <Popover placement="bottom" showArrow offset={10}>
                         <PopoverTrigger>
-                            <Button color="warning" variant='shadow'>Update Event</Button>
+                            <Button color="warning" variant='shadow'>{t("d-calendar.update.titleButton")}</Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-[240px]">
                             {(titleProps) => (
                                 <div className="px-1 py-2 w-full">
                                     <p className="text-small font-bold text-foreground pb-2" {...titleProps}>
-                                        Events
+                                    {t("d-calendar.titleEvents")}
                                     </p>
 
                                     <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                         <Select
-                                            label="Select event to update"
+                                            label={t("d-calendar.update.item1")}
                                             selectionMode="single"
                                             color="danger"
                                             variant="faded"
@@ -198,18 +198,18 @@ export function Calendars() {
                                         </Select>
                                     </div>
                                     <div className='mt-2 flex flex-col gap-2 w-full'>
-                                        <Input placeholder='mm/dd/yyyy' label="New start date" size="md" type='datetime-local' variant="underlined" onChange={(e) => setNewStartDate(e.target.value)} />
-                                        <Input placeholder='mm/dd/yyyy' label="New end date" size="md" type='datetime-local' variant="underlined" onChange={(e) => setNewEndDate(e.target.value)} />
+                                        <Input placeholder='mm/dd/yyyy' label={t("d-calendar.update.item2")}size="md" type='datetime-local' variant="underlined" onChange={(e) => setNewStartDate(e.target.value)} />
+                                        <Input placeholder='mm/dd/yyyy' label={t("d-calendar.update.item3")} size="md" type='datetime-local' variant="underlined" onChange={(e) => setNewEndDate(e.target.value)} />
                                         {/* <Input placeholder='New event title' label="New title" size="md" type='text' variant="underlined" onChange={(e) => setNewTitle(e.target.value)} /> */}
                                         <Textarea                                            
-                                            label="Title"
+                                            label={t("d-calendar.update.item4")}
                                             variant="bordered"
                                             labelPlacement="outside"
-                                            placeholder="Event title"
+                                            placeholder={t("d-calendar.update.item5")}
                                             className="max-w-xs"
                                             onChange={(e) => setNewTitle(e.target.value)}
                                         />
-                                        <Button color='danger' variant='shadow' onClick={() => handleUpdateEvent(updateEvent, newStartDate, newEndDate, newTitle)}>Update Event</Button>
+                                        <Button color='danger' variant='shadow' onClick={() => handleUpdateEvent(updateEvent, newStartDate, newEndDate, newTitle)}>{t("d-calendar.update.action")}</Button>
                                     </div>
                                 </div>
                             )}
@@ -220,18 +220,18 @@ export function Calendars() {
                 <div className=''>
                     <Popover placement="bottom" showArrow offset={10}>
                         <PopoverTrigger>
-                            <Button color="warning" variant='shadow'>Delete Event</Button>
+                            <Button color="warning" variant='shadow'>{t("d-calendar.delete.titleButton")}</Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-[240px]">
                             {(titleProps) => (
                                 <div className="px-1 py-2 w-full">
                                     <p className="text-small font-bold text-foreground pb-2" {...titleProps}>
-                                        Events
+                                    {t("d-calendar.titleEvents")}
                                     </p>
 
                                     <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                         <Select
-                                            label="Select event to delete"
+                                            label={t("d-calendar.delete.item1")}
                                             selectionMode="single"
                                             color="danger"
                                             variant="faded"
@@ -246,7 +246,7 @@ export function Calendars() {
                                         </Select>
                                     </div>
                                     <div className='mt-2 flex flex-col gap-2 w-full'>
-                                        <Button color="danger" variant='shadow' onClick={() => handleDeleteEvent(deletedEvent)}>Delete</Button>
+                                        <Button color="danger" variant='shadow' onClick={() => handleDeleteEvent(deletedEvent)}>{t("d-calendar.delete.action")}</Button>
                                     </div>
                                 </div>
                             )}
@@ -258,7 +258,7 @@ export function Calendars() {
             <div style={{ height: '125vh', maxWidth: '100%', overflow: 'hidden', backgroundColor: 'white' }} className=' mt-6 rounded-lg'>
 
                 <div className='text-center'>
-                    <h2 className="text-3xl font-bold text-gradient md:text-4xl md:leading-[3rem] lg:text-3xl lg:leading-[4rem]">Events Calendar</h2>
+                    <h2 className="text-3xl font-bold text-gradient md:text-4xl md:leading-[3rem] lg:text-3xl lg:leading-[4rem]">{t("d-calendar.title")}</h2>
                 </div>
 
                 <BigCalendar

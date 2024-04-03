@@ -87,111 +87,138 @@
     },
     "d-navbar": {
         "settings": "Editar perfil"
-      },
-      "d-home": {
+    },
+    "d-home": {
         "cards": {
-          "item1": "Total de Doctores",
-          "item2": "Total de Pacientes",
-          "item3": "Pacientes Críticos",
-          "item4": "Exploraciones Totales VitaLink"
+            "item1": "Total de Doctores",
+            "item2": "Total de Pacientes",
+            "item3": "Pacientes Críticos",
+            "item4": "Exploraciones Totales VitaLink"
         },
         "charts": {
-          "1": {
-            "series": "Estado de los Pacientes",
-            "item1": "Estable",
-            "item2": "Inestable",
-            "item3": "Mejorando",
-            "item4": "Crítico",
-            "item5": "Recuperándose",
-            "item6": "Serio",
-            "item7": "En observación"
-          },
-          "2": {
-            "series": "Áreas concurridas",
-            "item1": "Cirugía",
-            "item2": "Emergencia",
-            "item3": "Intensivos",
-            "item4": "Pediátricos",
-            "item5": "Maternidad",
-            "item6": "Ortopedia",
-            "item7": "Oncología",
-            "item8": "Cardiología",
-            "item9": "Neurología",
-            "item10": "Psiquiatría",
-            "item11": "Radiología",
-            "item12": "Laboratorio"
-          },
-          "3": {
-            "series": "Estado de los Médicos",
-            "item1": "De Guardia",
-            "item2": "Ausente",
-            "item3": "Disponible",
-            "item4": "No Disponible"
-          }
+            "1": {
+                "series": "Estado de los Pacientes",
+                "item1": "Estable",
+                "item2": "Inestable",
+                "item3": "Mejorando",
+                "item4": "Crítico",
+                "item5": "Recuperándose",
+                "item6": "Serio",
+                "item7": "En observación"
+            },
+            "2": {
+                "series": "Áreas concurridas",
+                "item1": "Cirugía",
+                "item2": "Emergencia",
+                "item3": "Intensivos",
+                "item4": "Pediátricos",
+                "item5": "Maternidad",
+                "item6": "Ortopedia",
+                "item7": "Oncología",
+                "item8": "Cardiología",
+                "item9": "Neurología",
+                "item10": "Psiquiatría",
+                "item11": "Radiología",
+                "item12": "Laboratorio"
+            },
+            "3": {
+                "series": "Estado de los Médicos",
+                "item1": "De Guardia",
+                "item2": "Ausente",
+                "item3": "Disponible",
+                "item4": "No Disponible"
+            }
         },
         "crud": {
-          "title": "Pacientes",
-          "item1": "Nombre",
-          "item2": "Estado",
-          "item3": "Área",
-          "item4": "Enfermedades Crónicas",
-          "item5": "Alergias",
-          "item6": "Tipo de Sangre",
-          "item7": "Fecha de Nacimiento",
-          "item8": "Edad",
-          "item9": "Médico Asignado"
+            "title": "Pacientes",
+            "item1": "Nombre",
+            "item2": "Estado",
+            "item3": "Área",
+            "item4": "Enfermedades Crónicas",
+            "item5": "Alergias",
+            "item6": "Tipo de Sangre",
+            "item7": "Fecha de Nacimiento",
+            "item8": "Edad",
+            "item9": "Médico Asignado"
         },
         "extra": {
-          "item1": "Último Paciente Agregado: ",
-          "item2": "Último Doctor Agregado: ",
-          "item3": "Pacientes Mayores: ",
-          "item4": "Pacientes Menores de Edad: ",
-          "item5": "Tipo de Sangre Más Común: "
+            "item1": "Último Paciente Agregado: ",
+            "item2": "Último Doctor Agregado: ",
+            "item3": "Pacientes Mayores: ",
+            "item4": "Pacientes Menores de Edad: ",
+            "item5": "Tipo de Sangre Más Común: "
         }
-      },
-      "d-personal": {
+    },
+    "d-personal": {
         "patients": {
-          "title": "Tabla de Pacientes",
-          "crudActions": {
-            "title1": "Agregar Paciente",
-            "title2": "Editar Paciente",
-            "item1": "Nombre",
-            "item2": "Apellido",
-            "item3": "Edad",
-            "item4": "Fecha de Nacimiento",
-            "item5": "Estado",
-            "item6": "Área",
-            "item7": "Tipo de Sangre",
-            "item8": "Enfermedades Crónicas",
-            "item9": "Alergias",
-            "item10": "Seleccionar Médico"
-          },
-          "scan": {
-            "title": "ÚLTIMO ANÁLISIS VITALINK",
-            "item1": "FECHA DEL ANÁLISIS:",
-            "item2": "FC DEL PACIENTE:",
-            "item3": "SPO2 DEL PACIENTE:",
-            "item4": "TEMPERATURA DEL PACIENTE:",
-            "no": "NO DETECTADO"
-          }
+            "title": "Tabla de Pacientes",
+            "crudActions": {
+                "title1": "Agregar Paciente",
+                "title2": "Editar Paciente",
+                "item1": "Nombre",
+                "item2": "Apellido",
+                "item3": "Edad",
+                "item4": "Fecha de Nacimiento",
+                "item5": "Estado",
+                "item6": "Área",
+                "item7": "Tipo de Sangre",
+                "item8": "Enfermedades Crónicas",
+                "item9": "Alergias",
+                "item10": "Seleccionar Médico"
+            },
+            "scan": {
+                "title": "ÚLTIMO ANÁLISIS VITALINK",
+                "item1": "FECHA DEL ANÁLISIS:",
+                "item2": "FC DEL PACIENTE:",
+                "item3": "SPO2 DEL PACIENTE:",
+                "item4": "TEMPERATURA DEL PACIENTE:",
+                "no": "NO DETECTADO"
+            }
         },
         "doctors": {
-          "title": "Tabla de Doctores",
-          "crudActions": {
-            "title1": "Agregar Doctor",
-            "title2": "Editar Doctor",
-            "item1": "Nombre",
-            "item2": "Apellido",
-            "item3": "Estado",
-            "item4": "Área",
-            "item5": "Num. de Cédula",
-            "item6": "Seleccionar Pacientes",
-            "item7": "Pacientes"   
-          }
+            "title": "Tabla de Doctores",
+            "crudActions": {
+                "title1": "Agregar Doctor",
+                "title2": "Editar Doctor",
+                "item1": "Nombre",
+                "item2": "Apellido",
+                "item3": "Estado",
+                "item4": "Área",
+                "item5": "Num. de Cédula",
+                "item6": "Seleccionar Pacientes",
+                "item7": "Pacientes"
+            }
         },
         "delete": "Borrar",
         "edit": "Editar",
         "add": "Agregar",
         "close": "Cerrar"
-      }            
+    },
+    "d-calendar": {
+        "title": "Calendario de Eventos",
+        "titleEvents": "Eventos",
+        "add": {
+            "item1": "Nuevo Evento",
+            "item2": "Fecha de Inicio",
+            "item3": "Fecha de Fin",
+            "item4": "Título",
+            "item5": "Título del Evento",
+            "action": "Agregar",
+            "titleButton": "Agregar Evento"
+        },
+        "update": {
+            "item1": "Seleccionar evento a actualizar",
+            "item2": "Nueva fecha de inicio",
+            "item3": "Nueva fecha de fin",
+            "item4": "Título",
+            "item5": "Título del Evento",
+            "action": "Actualizar",
+            "titleButton": "Actualizar Evento"
+        },
+        "delete": {
+            "item1": "Seleccionar evento a eliminar",
+            "action": "Eliminar",
+            "titleButton": "Eliminar Evento"
+        }
+    }
 }
