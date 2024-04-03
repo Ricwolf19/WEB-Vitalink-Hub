@@ -12,7 +12,6 @@ export function SwitchI18n() {
         i18n.changeLanguage(lenguage)
     }
 
-
     return (
         <>
             <Switch
@@ -29,7 +28,7 @@ export function SwitchI18n() {
                     )
                 }
             >
-                <p className="text-small text-default-500">{isSelected ? t("b-switch.spanish") : "EN"}</p>
+                <p className="text-small text-default-500">{t("b-switch.lenguage")}</p>
             </Switch>
         </>
     )

@@ -13,7 +13,8 @@ const icon = {
   className: "text-inherit",
 };
 
-export const routes = [
+export const routes = 
+[
   {
     layout: "dashboard",
     pages: [
@@ -26,13 +27,13 @@ export const routes = [
       {
         icon: <UsersIcon {...icon} />,
         name: "Personal",
-        path: "/personal",
+        path: `/personal`,
         element: <Personal />,
       },
       {
         icon: <CalendarHeartIcon {...icon} />,
-        name: "Calendars",
-        path: "/calendars",
+        name: "Calendar",
+        path: "/calendar",
         element: <Calendars />,
       },
       {

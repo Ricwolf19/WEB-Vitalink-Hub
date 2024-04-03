@@ -20,10 +20,13 @@ import { chartsConfig } from "../../../Configs";
 import { MdBloodtype } from "react-icons/md";
 import { TbMoodBoy } from "react-icons/tb";
 import { SlPeople } from "react-icons/sl";
+import { useTranslation } from "react-i18next";
 
 export function Home() {
   const { patientData, alerts, vitalinkScans, statusChartPatient, lastPatientLastName, lastPatientName, getElderlyPatients, getUnderAgePatients, getMostCommonBloodType } = usePatientData()
   const { doctorData, statusChartDoctor, lastDoctorName, lastDoctorLastName } = useDoctorData()
+
+  const [t] = useTranslation("global")
 
   const crowdedArea = () => {
     let arrFinal = []
@@ -177,7 +180,7 @@ export function Home() {
     height: 220,
     series: [
       {
-        name: "Views",
+        name: t("d-home.charts.1.series"),
         data: statusChartPatient(),
       },
     ],
@@ -192,7 +195,15 @@ export function Home() {
       },
       xaxis: {
         ...chartsConfig.xaxis,
-        categories: ["Stable", "Unstable", "Improving", "Critical", "Recovering", "Serious", "Guarded"],
+        categories: [
+          t("d-home.charts.1.item1"),
+          t("d-home.charts.1.item2"),
+          t("d-home.charts.1.item3"),
+          t("d-home.charts.1.item4"),
+          t("d-home.charts.1.item5"),
+          t("d-home.charts.1.item6"),
+          t("d-home.charts.1.item7")
+        ],
       },
     },
   };
@@ -202,7 +213,7 @@ export function Home() {
     height: 220,
     series: [
       {
-        name: 'Personal in area',
+        name: t("d-home.charts.2.series"),
         data: crowdedArea(),
       },
     ],
@@ -210,18 +221,18 @@ export function Home() {
       xaxis: {
         ...chartsConfig.xaxis,
         categories: [
-          'Surgery',
-          'Emergency',
-          'Intensive',
-          'Pediatric',
-          'Maternity',
-          'Orthopedic',
-          'Oncology',
-          'Cardiology',
-          'Neurology',
-          'Psychiatric',
-          'Radiology',
-          'Laboratory',
+          t("d-home.charts.2.item1"),
+          t("d-home.charts.2.item2"),
+          t("d-home.charts.2.item3"),
+          t("d-home.charts.2.item4"),
+          t("d-home.charts.2.item5"),
+          t("d-home.charts.2.item6"),
+          t("d-home.charts.2.item7"),
+          t("d-home.charts.2.item8"),
+          t("d-home.charts.2.item9"),
+          t("d-home.charts.2.item10"),
+          t("d-home.charts.2.item11"),
+          t("d-home.charts.2.item12")
         ]
       },
     },
@@ -233,7 +244,7 @@ export function Home() {
     height: 220,
     series: [
       {
-        name: "Sales",
+        name:  t("d-home.charts.3.series"),
         data: statusChartDoctor(),
       },
     ],
@@ -248,7 +259,12 @@ export function Home() {
       },
       xaxis: {
         ...chartsConfig.xaxis,
-        categories: ['On Call', 'Away', 'Available', 'Not Available'],
+        categories: [
+          t("d-home.charts.3.item1"),
+          t("d-home.charts.3.item2"),
+          t("d-home.charts.3.item3"),
+          t("d-home.charts.3.item4")
+        ],
       },
     },
   };
@@ -256,7 +272,7 @@ export function Home() {
     ...statusDoctorChartConf,
     series: [
       {
-        name: "Doctor Status",
+        name: t("d-home.charts.3.series"),
         data: statusChartDoctor(),
       },
     ],
@@ -266,19 +282,19 @@ export function Home() {
   const statisticsChartsData = [
     {
       color: "white",
-      title: "Patients Status",
+      title: t("d-home.charts.1.series"),
       description: "@vitalink",
       chart: statusPatientsChart,
     },
     {
       color: "white",
-      title: "Crowded Areas",
+      title: t("d-home.charts.2.series"),
       description: "@vitalink",
       chart: crowdedAreasChart,
     },
     {
       color: "white",
-      title: "Doctors Status",
+      title: t("d-home.charts.3.series"),
       description: "@vitalink",
       chart: statusDoctorChart,
 
@@ -290,46 +306,26 @@ export function Home() {
     {
       color: "green",
       icon: ClipboardPlusIcon,
-      title: "Total Doctors",
-      value: `${doctorData.length}`,
-      footer: {
-        color: "text-green-500",
-        value: "+ 1",
-        label: "doctors",
-      },
+      title: t("d-home.cards.item1"),
+      value: `${doctorData.length}`,    
     },
     {
       color: "blue",
       icon: Contact2,
-      title: "Total Patients",
-      value: `${patientData.length}`,
-      footer: {
-        color: "text-green-500",
-        value: "+ 3",
-        label: "patients",
-      },
+      title: t("d-home.cards.item2"),
+      value: `${patientData.length}`,   
     },
     {
       color: "red",
       icon: AlertTriangleIcon,
-      title: "Critical Patients",
-      value: `${alerts()}`,
-      footer: {
-        color: "text-red-500",
-        value: "+ 10",
-        label: "incidents",
-      },
+      title: t("d-home.cards.item3"),
+      value: `${alerts()}`,     
     },
     {
       color: "blue",
       icon: ScanFaceIcon,
-      title: "Vitalink Total Scans",
+      title: t("d-home.cards.item4"),
       value: `${vitalinkScans()}`,
-      footer: {
-        color: "text-green-500",
-        value: "+5",
-        label: "successful scans",
-      },
     },
   ];
 
@@ -338,31 +334,31 @@ export function Home() {
     {
       icon: PlusCircle,
       color: "text-blue-gray-300",
-      title: `Last Patient Added:  ${lastPatientName} ${lastPatientLastName}`,
+      title: `${t("d-home.extra.item1")} ${lastPatientName} ${lastPatientLastName}`,
       description: <Avatar placeholder="" src={"https://i.ibb.co/k1v2vgn/pacient-icon.jpg"} size="sm" className="text-center" />,
     },
     {
       icon: PlusCircle,
       color: "text-blue-gray-300",
-      title: `Last Doctor Added:  ${lastDoctorName} ${lastDoctorLastName}`,
+      title: `${t("d-home.extra.item2")} ${lastDoctorName} ${lastDoctorLastName}`,
       description: <Avatar placeholder="" src={'/img/doctor-icon.png'} size="sm" variant="rounded" />,
     },
     {
       icon: SlPeople,
       color: "text-blue-gray-300",
-      title: `Elderly Patients:  ${getElderlyPatients()}`,
+      title: `${t("d-home.extra.item3")} ${getElderlyPatients()}`,
       description: <Avatar placeholder="" src={'https://i.ibb.co/0cd85H9/older-Patients-Icon.png'} size="sm" variant="rounded" />,
     },
     {
       icon: TbMoodBoy,
       color: "text-blue-gray-300",
-      title: `Underage Patients:  ${getUnderAgePatients()}`,
+      title: `${t("d-home.extra.item4")} ${getUnderAgePatients()}`,
       description: <Avatar placeholder="" src={'https://i.ibb.co/CsxFJBy/adolescents-icons.png'} size="sm" variant="rounded" />,
     },
     {
       icon: MdBloodtype,
       color: "text-blue-gray-300",
-      title: `Most Common Blood Type: ${getMostCommonBloodType()}`,
+      title: `${t("d-home.extra.item5")}  ${getMostCommonBloodType()}`,
       description: <Avatar placeholder="" src={'https://i.ibb.co/ZJz1vZP/blood-Type-icon.png'} size="sm" variant="rounded" />,
     },
   ];
@@ -371,7 +367,7 @@ export function Home() {
   return (
     <div className="mt-12">
       <div className="mb-10 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
-        {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
+        {statisticsCardsData.map(({ icon, title, ...rest }) => (
           <StatisticsCard //Puesto como any por si da error
             key={title}
             {...rest}
@@ -379,12 +375,7 @@ export function Home() {
             icon={React.createElement(icon, {
               className: "w-6 h-6 text-white",
             })}
-            footer={
-              <Typography placeholder="" className="font-normal text-blue-gray-600">
-                <strong className={footer.color}>{footer.value}</strong>
-                &nbsp;{footer.label}
-              </Typography>
-            }
+           
           />
         ))}
       </div>
@@ -409,7 +400,7 @@ export function Home() {
 
               <Typography placeholder="" variant="h6" color="blue-gray" className="mb-1">
                 <Users strokeWidth={3} className="h-4 w-4 text-blue-gray-200" />
-                {`Patients`}
+                {t("d-home.crud.title")}
               </Typography>
             </div>
 
@@ -418,11 +409,11 @@ export function Home() {
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["Name", "Status", "Area", "Chronic Diseases", "Allergies", "Blood Type", "Birth Date", "Age", "Doctor Assigned"].map(
+                  {[t("d-home.crud.item1"), t("d-home.crud.item2"), t("d-home.crud.item3"), t("d-home.crud.item4"), t("d-home.crud.item5"), t("d-home.crud.item6"), t("d-home.crud.item7"), t("d-home.crud.item8"), t("d-home.crud.item9")].map(
                     (el) => (
                       <th
                         key={el}
-                        className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                        className="border-b border-blue-gray-50 py-3 px-6 text-center"
                       >
                         <Typography
                           placeholder=""
@@ -471,7 +462,7 @@ export function Home() {
                           <Typography
                             placeholder=""
                             variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
+                            className="text-xs text-center font-medium text-blue-gray-600"
                           >
                             {status}
                           </Typography>
@@ -480,7 +471,7 @@ export function Home() {
                           <Typography
                             placeholder=""
                             variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
+                            className="text-xs text-center font-medium text-blue-gray-600"
                           >
                             {area}
                           </Typography>
@@ -489,7 +480,7 @@ export function Home() {
                           <Typography
                             placeholder=""
                             variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
+                            className="text-xs text-center font-medium text-blue-gray-600"
                           >
                             {" " + chronicDiseases}
                           </Typography>
@@ -498,7 +489,7 @@ export function Home() {
                           <Typography
                             placeholder=""
                             variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
+                            className="text-xs text-center font-medium text-blue-gray-600"
                           >
                             {" " + allergies}
                           </Typography>
@@ -507,7 +498,7 @@ export function Home() {
                           <Typography
                             placeholder=""
                             variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
+                            className="text-xs text-center font-medium text-blue-gray-600"
                           >
                             {bloodType}
                           </Typography>
@@ -516,7 +507,7 @@ export function Home() {
                           <Typography
                             placeholder=""
                             variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
+                            className="text-xs text-center font-medium text-blue-gray-600"
                           >
                             {birthDate}
                           </Typography>
@@ -525,7 +516,7 @@ export function Home() {
                           <Typography
                             placeholder=""
                             variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
+                            className="text-xs text-center font-medium text-blue-gray-600"
                           >
                             {age}
 
@@ -534,7 +525,7 @@ export function Home() {
                               value={age}
                               variant="gradient"
                               color="green"
-                              className="h-1 mt-2"
+                              className="h-1 text-center mt-2"
                             />
                           </Typography>
                         </td>
@@ -542,7 +533,7 @@ export function Home() {
                           <Typography
                             placeholder=""
                             variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
+                            className="text-xs font-medium text-center text-blue-gray-600"
                           >
                             {doctorAssigned}
 

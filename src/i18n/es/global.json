@@ -1,6 +1,6 @@
 {
     "b-switch": {
-        "spanish": "ES"
+        "lenguage": "ES"
     },
     "s-navbar": {
         "item1": "Objetivo",
@@ -85,22 +85,68 @@
     "s-footer": {
         "text": "© 2024. Todos los Derechos Reservados"
     },
-    "d-home": {
-        "text": "© 2024. Todos los Derechos Reservados"
-    },
-    "d-personal": {
-        "text": "© 2024. Todos los Derechos Reservados"
-    },
-    "d-calendar": {
-        "text": "© 2024. Todos los Derechos Reservados"
-    },
-    "d-kanban": {
-        "text": "© 2024. Todos los Derechos Reservados"
-    },
-    "d-documents": {
-        "text": "© 2024. Todos los Derechos Reservados"
-    },
-    "d-settings": {
-        "text": "© 2024. Todos los Derechos Reservados"
-    }
+    "d-navbar": {
+        "settings": "Editar perfil"
+      },
+      "d-home": {
+        "cards": {
+          "item1": "Total de Doctores",
+          "item2": "Total de Pacientes",
+          "item3": "Pacientes Críticos",
+          "item4": "Exploraciones Totales VitaLink"
+        },
+        "charts": {
+          "1": {
+            "series": "Estado de los Pacientes",
+            "item1": "Estable",
+            "item2": "Inestable",
+            "item3": "Mejorando",
+            "item4": "Crítico",
+            "item5": "Recuperándose",
+            "item6": "Serio",
+            "item7": "En observación"
+          },
+          "2": {
+            "series": "Áreas concurridas",
+            "item1": "Cirugía",
+            "item2": "Emergencia",
+            "item3": "Intensivos",
+            "item4": "Pediátricos",
+            "item5": "Maternidad",
+            "item6": "Ortopedia",
+            "item7": "Oncología",
+            "item8": "Cardiología",
+            "item9": "Neurología",
+            "item10": "Psiquiatría",
+            "item11": "Radiología",
+            "item12": "Laboratorio"
+          },
+          "3": {
+            "series": "Estado de los Médicos",
+            "item1": "De Guardia",
+            "item2": "Ausente",
+            "item3": "Disponible",
+            "item4": "No Disponible"
+          }
+        },
+        "crud": {
+          "title": "Pacientes",
+          "item1": "Nombre",
+          "item2": "Estado",
+          "item3": "Área",
+          "item4": "Enfermedades Crónicas",
+          "item5": "Alergias",
+          "item6": "Tipo de Sangre",
+          "item7": "Fecha de Nacimiento",
+          "item8": "Edad",
+          "item9": "Médico Asignado"
+        },
+        "extra": {
+          "item1": "Último Paciente Agregado: ",
+          "item2": "Último Doctor Agregado: ",
+          "item3": "Pacientes Mayores: ",
+          "item4": "Pacientes Menores de Edad: ",
+          "item5": "Tipo de Sangre Más Común: "
+        }
+      }      
 }

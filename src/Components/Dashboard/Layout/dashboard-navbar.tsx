@@ -12,6 +12,7 @@ import {
   MenuItem,
   Avatar,
 } from "@material-tailwind/react";
+import { Button as ButtonX } from "@nextui-org/react";
 
 import {
   useMaterialTailwindController,
@@ -21,16 +22,20 @@ import {
 import React from "react";
 import { useAccountData, useAuth } from "../../../Context/authContext";
 import { AlignJustifyIcon, ChevronDown, CircleUserIcon, LogOutIcon } from "lucide-react";
+import { SwitchI18n } from "../../../i18n/SwitchI18n";
+import { useTranslation } from "react-i18next";
 
 function ProfileMenu() {
   const { accountData } = useAccountData()
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  const [t] = useTranslation("global");
+
   // profile menu component
   const profileMenuItems = [
     {
-      label: `Edit profile`,
+      label: t("d-navbar.settings"),
       icon: CircleUserIcon,
     },
   ];
@@ -148,24 +153,13 @@ export function DashboardNavbar() {
                 {layout}
               </Typography>
             </Link>
-            <Typography
-              placeholder=""
-              variant="small"
-              color="blue-gray"
-              className="font-normal"
-            >
+            <Typography variant="h6" placeholder="" color="blue-gray">
               {page}
             </Typography>
-            {/* <Typography variant="h6" placeholder="" color="blue-gray">
-              {page}
-            </Typography> */}
           </Breadcrumbs>
         </div>
+
         <div className="flex items-center">
-          {/* <div className="mr-auto md:mr-4 md:w-56">
-            <Input label="Search" crossOrigin="" />
-            
-          </div> */}
           <IconButton
             placeholder=""
             variant="text"
@@ -176,64 +170,15 @@ export function DashboardNavbar() {
             <AlignJustifyIcon strokeWidth={3} className="h-6 w-6 text-blue-900" />
           </IconButton>
 
-          {/* <Menu>
-            <MenuHandler>
-              <IconButton placeholder="" variant="text" color="blue-gray">
-                <BellDotIcon className="h-5 w-5 text-blue-900 mr-2" />
-              </IconButton>
-            </MenuHandler>
-
-            <MenuList placeholder="" className="w-max border-0">
-
-              <MenuItem placeholder="" className="flex items-center gap-3">
-                <Avatar
-                  placeholder=""
-                  src="/img/user-icon.jpg"
-                  alt="item-1"
-                  size="sm"
-                  variant="circular"
-                />
-                <div>
-                  <Typography
-                    placeholder=""
-                    variant="small"
-                    color="blue-gray"
-                    className="mb-1 font-normal"
-                  >
-                    <strong>New Patient</strong> Brandon Chacon
-                  </Typography>
-                  <Typography
-                    placeholder=""
-                    variant="small"
-                    color="blue-gray"
-                    className="flex items-center gap-1 text-xs font-normal opacity-60"
-                  >
-                    <Clock className="h-3.5 w-3.5 text-blue-900" /> 13 minutes ago
-                  </Typography>
-                </div>
-              </MenuItem>
-
-            </MenuList>
-          </Menu> */}
-          {/* <IconButton
-          placeholder=""
-            variant="text"
-            color="blue-gray"
-            onClick={() => setOpenConfigurator(dispatch, true)}
-          >
-            <Cog6ToothIcon className="h-5 w-5 text-blue-gray-500" />
-          </IconButton> */}
           <ProfileMenu />
-          <Button
-            placeholder=""
-            variant="text"
-            color="blue-gray"
-            className="hidden items-center gap-1 px-4 xl:flex normal-case text-red-600"
+          <SwitchI18n />
+          <ButtonX
+            className="hidden items-center gap-1 px-4 xl:flex normal-case text-red-600 bg-white"
             onClick={handleLogout}
           >
             <LogOutIcon className="h-5 w-5 text-red-600" />
-            Sign Out
-          </Button>
+          </ButtonX>
+
           <IconButton
             placeholder=""
             variant="text"
@@ -243,6 +188,7 @@ export function DashboardNavbar() {
           >
             <LogOutIcon className="h-5 w-5 text-red-600" />
           </IconButton>
+
         </div>
       </div>
     </Navbar>

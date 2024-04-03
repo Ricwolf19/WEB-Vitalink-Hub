@@ -1,4 +1,7 @@
 {
+    "b-switch": {
+        "lenguage": "EN"
+    },
     "s-navbar": {
         "item1": "Objective",
         "item2": "Services",
@@ -81,5 +84,84 @@
     },
     "s-footer": {
         "text": "© 2024. All Rights Reserved"
+    },
+    "d-navbar": {
+        "settings": "Edit profile"
+    },
+    "d-home": {
+        "cards": {
+            "item1": "Total Doctors",
+            "item2": "Total Patients",
+            "item3": "Critical Patients",
+            "item4": "Vitalink Total Scans"
+        },
+        "charts": {
+            "1": {
+                "series": "Patients Status",
+                "item1": "Stable",
+                "item2": "Unstable",
+                "item3": "Improving",
+                "item4": "Critical",
+                "item5": "Recovering",
+                "item6": "Serious",
+                "item7": "Guarded"
+            },
+            "2": {
+                "series": "Crowded Areas",
+                "item1": "Surgery",
+                "item2": "Emergency",
+                "item3": "Intensive",
+                "item4": "Pediatric",
+                "item5": "Maternity",
+                "item6": "Orthopedic",
+                "item7": "Oncology",
+                "item8": "Cardiology",
+                "item9": "Neurology",
+                "item10": "Psychiatric",
+                "item11": "Radiology",
+                "item12": "Laboratory"
+            },
+            "3": {
+                "series": "Doctor Status",
+                "item1": "On Call",
+                "item2": "Away",
+                "item3": "Available",
+                "item4": "Not Available"
+            }
+        },
+        "crud": {
+            "title": "Patients",
+            "item1": "Name",
+            "item2": "Status",
+            "item3": "Area",
+            "item4": "Chronic Diseases", 
+            "item5": "Allergies", 
+            "item6": "Blood Type", 
+            "item7": "Birth Date", 
+            "item8": "Age", 
+            "item9": "Doctor Assigned"
+        },
+        "extra": {
+            "item1": "Last Patient Added: ",
+            "item2": "Last Doctor Added: ",
+            "item3": "Elderly Patients: ",
+            "item4": "Underage Patients: ",
+            "item5": "Most Common Blood Type: "
+        }
+    },
+    "d-personal": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+    "d-calendar": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+    "d-kanban": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+    "d-documents": {
+        "text": "© 2024. Todos los Derechos Reservados"
+    },
+    "d-settings": {
+        "text": "© 2024. Todos los Derechos Reservados"
     }
 }
