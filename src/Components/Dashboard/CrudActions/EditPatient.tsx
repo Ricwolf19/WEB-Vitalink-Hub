@@ -15,6 +15,7 @@ import { Logo } from "../../HomePage/Icons";
 import { UserCog } from "lucide-react";
 import { useDoctorData, usePatientData } from "../../../Context/authContext";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function EditPatient({ name, lastName, age, birthDate, area, status, doctorAssigned, bloodType, id, chronicDiseases, allergies }: any) {
   const { doctorData } = useDoctorData()
@@ -40,9 +41,11 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
     setNewPtAllergies(e.target.value.split(","));
   };
 
+  const [t] = useTranslation("global")
+
   return (
     <div>
-      <Button onPress={onOpen} color="primary" variant="shadow" startContent={<UserCog />} className="font-semibold">Edit</Button>
+      <Button onPress={onOpen} color="primary" variant="shadow" startContent={<UserCog />} className="font-semibold">{t("d-personal.edit")}</Button>
       <Modal
         isOpen={isOpen}
         placement="auto"
@@ -56,20 +59,20 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-red-600 text-center"><div className="pb-2 text-center flex-col flex gap-1"><Logo /></div>Edit Patient</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-red-600 text-center"><div className="pb-2 text-center flex-col flex gap-1"><Logo /></div>{t("d-personal.patients.crudActions.title2")}</ModalHeader>
               <ModalBody>
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                  <Input label="Name" color="primary" type="text" placeholder={name} onChange={(e) => setNewPtName(e.target.value)} variant="faded" />
-                  <Input label="Last Name" color="primary" type="text" placeholder={lastName} onChange={(e) => setNewPtlastName(e.target.value)} variant="faded" />
+                  <Input label={t("d-personal.patients.crudActions.item1")} color="primary" type="text" placeholder={name} onChange={(e) => setNewPtName(e.target.value)} variant="faded" />
+                  <Input label={t("d-personal.patients.crudActions.item2")} color="primary" type="text" placeholder={lastName} onChange={(e) => setNewPtlastName(e.target.value)} variant="faded" />
                 </div>
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                  <Input label="Age" color="primary" type="number" placeholder={age} onChange={(e) => setNewPtAge(e.target.valueAsNumber)} variant="faded" />
-                  <Input label="Birth Day" color="primary" type="date" placeholder={birthDate} onChange={(e) => setNewPtBirthDate(e.target.value)} variant="faded" />
+                  <Input label={t("d-personal.patients.crudActions.item3")} color="primary" type="number" placeholder={age} onChange={(e) => setNewPtAge(e.target.valueAsNumber)} variant="faded" />
+                  <Input label={t("d-personal.patients.crudActions.item4")} color="primary" type="date" placeholder={birthDate} onChange={(e) => setNewPtBirthDate(e.target.value)} variant="faded" />
                 </div>
 
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                   <Select
-                    label="Status"
+                    label={t("d-personal.patients.crudActions.item5")}
                     placeholder={status}
                     className="max-w-xs"
                     variant="underlined"
@@ -84,7 +87,7 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
                   </Select>
 
                   <Select
-                    label="Area"
+                    label={t("d-personal.patients.crudActions.item6")}
                     placeholder={area}
                     className="max-w-xs"
                     variant="underlined"
@@ -101,7 +104,7 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
 
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                   <Select
-                    label="Blood Type"
+                    label={t("d-personal.patients.crudActions.item7")}
                     placeholder={bloodType}
                     variant="underlined"
                     color="primary"
@@ -120,8 +123,8 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                   <Select
                     items={selectOptionsChronicDiseases}
-                    aria-label="ChronicDiseases"
-                    placeholder="ChronicDiseases"
+                    aria-label={t("d-personal.patients.crudActions.item8")}
+                    placeholder={t("d-personal.patients.crudActions.item8")}
                     color="primary"
                     variant="bordered"
                     isMultiline={true}
@@ -159,8 +162,8 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
                   <Select
                     items={selectOptionsAllergies}
                     color="primary"
-                    aria-label="Allergies"
-                    placeholder="Allergies"
+                    aria-label={t("d-personal.patients.crudActions.item9")}
+                    placeholder={t("d-personal.patients.crudActions.item9")}
                     variant="bordered"
                     isMultiline={true}
                     selectedKeys={newPtAllergies}
@@ -196,7 +199,7 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
 
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                   <Select
-                    label="Select Doctor"
+                    label={t("d-personal.patients.crudActions.item10")}
                     placeholder={doctorAssigned}
                     selectionMode="single"
                     color="primary"
@@ -213,10 +216,10 @@ export function EditPatient({ name, lastName, age, birthDate, area, status, doct
 
                 <div className="mt-4 text-right">
                   <Button color="danger" variant="light" onPress={onClose}>
-                    Close
+                  {t("d-personal.close")}
                   </Button>
                   <Button color="primary" onPress={onClose} onClick={() => handleUpdatePatient(id, newPtName, newPtlastName, newPtStatus, newPtArea, newPtChronicDiseases, newPtAllergies, newPtBloodType, newPtBirthDate, newPtAge, newPtDoctorAssigned)}>
-                    Edit patient
+                  {t("d-personal.edit")}
                   </Button>
                 </div>
 

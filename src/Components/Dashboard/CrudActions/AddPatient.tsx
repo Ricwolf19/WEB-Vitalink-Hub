@@ -15,12 +15,15 @@ import { Logo } from "../../HomePage/Icons";
 import { UserPlus } from "lucide-react";
 import { useDoctorData, usePatientData } from "../../../Context/authContext";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function AddPatient() {
     const { doctorData } = useDoctorData()
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const { handleCreatePatient } = usePatientData()
     // const [values, setValues] = React.useState(new Set([]));
+
+    const [t] = useTranslation("global")
 
     const [newPtName, setNewPtName] = useState('');
     const [newPtlastName, setNewPtlastName] = useState('');
@@ -47,7 +50,7 @@ export function AddPatient() {
 
     return (
         <div>
-            <Button onPress={onOpen} color="success" variant="shadow" className="text-black" startContent={<UserPlus />}>Add</Button>
+            <Button onPress={onOpen} color="success" variant="shadow" className="text-black" startContent={<UserPlus />}>{t("d-personal.add")}</Button>
             <Modal
                 isOpen={isOpen}
                 placement="auto"
@@ -61,21 +64,21 @@ export function AddPatient() {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1 text-red-600 text-center"><div className="pb-2 text-center flex-col flex gap-1"><Logo /></div>Create Patient</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1 text-red-600 text-center"><div className="pb-2 text-center flex-col flex gap-1"><Logo /></div>{t("d-personal.patients.crudActions.title1")}</ModalHeader>
                             <ModalBody>
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                                    <Input label="Name" color="primary" type="text" variant="faded" onChange={(e) => setNewPtName(e.target.value)} />
-                                    <Input label="Last Name" color="primary" type="text" variant="faded" onChange={(e) => setNewPtlastName(e.target.value)} />
+                                    <Input label={t("d-personal.patients.crudActions.item1")} color="primary" type="text" variant="faded" onChange={(e) => setNewPtName(e.target.value)} />
+                                    <Input label={t("d-personal.patients.crudActions.item2")} color="primary" type="text" variant="faded" onChange={(e) => setNewPtlastName(e.target.value)} />
                                 </div>
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                                    <Input label="Age" color="primary" type="number" variant="faded" onChange={(e) => setNewPtAge(e.target.valueAsNumber)} />
-                                    <Input label="Birth Day" color="primary" type="date" placeholder="mm/dd/yyyy" variant="faded" onChange={(e) => setNewPtBirthDate(e.target.value)} />
+                                    <Input label={t("d-personal.patients.crudActions.item3")} color="primary" type="number" variant="faded" onChange={(e) => setNewPtAge(e.target.valueAsNumber)} />
+                                    <Input label={t("d-personal.patients.crudActions.item4")} color="primary" type="date" placeholder="mm/dd/yyyy" variant="faded" onChange={(e) => setNewPtBirthDate(e.target.value)} />
                                 </div>
                                 {/* {<p>{typeof newPtBirthDay}</p>} */}
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                     <Select
-                                        label="Status"
+                                        label={t("d-personal.patients.crudActions.item5")}
                                         className="max-w-xs"
                                         variant="underlined"
                                         color="primary"
@@ -89,7 +92,7 @@ export function AddPatient() {
                                     </Select>
 
                                     <Select
-                                        label="Area"
+                                        label={t("d-personal.patients.crudActions.item6")}
                                         className="max-w-xs"
                                         variant="underlined"
                                         color="primary"
@@ -105,7 +108,7 @@ export function AddPatient() {
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                     <Select
-                                        label="Blood Type"
+                                        label={t("d-personal.patients.crudActions.item7")}
                                         variant="underlined"
                                         color="primary"
                                         id="message"
@@ -123,8 +126,8 @@ export function AddPatient() {
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                     <Select
                                         items={selectOptionsChronicDiseases}
-                                        aria-label="ChronicDiseases"
-                                        placeholder="ChronicDiseases"
+                                        aria-label={t("d-personal.patients.crudActions.item8")}
+                                        placeholder={t("d-personal.patients.crudActions.item8")}
                                         color="primary"
                                         variant="bordered"
                                         isMultiline={true}
@@ -162,8 +165,8 @@ export function AddPatient() {
                                     <Select
                                         items={selectOptionsAllergies}
                                         color="primary"
-                                        aria-label="Allergies"
-                                        placeholder="Allergies"
+                                        aria-label={t("d-personal.patients.crudActions.item9")}
+                                        placeholder={t("d-personal.patients.crudActions.item9")}
                                         variant="bordered"
                                         isMultiline={true}
                                         onChange={handleSelectionAllergies}
@@ -198,7 +201,7 @@ export function AddPatient() {
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                     <Select
-                                        label="Select Doctor"
+                                        label={t("d-personal.patients.crudActions.item10")}
                                         selectionMode="single"
                                         color="primary"
                                         variant="bordered"
@@ -215,10 +218,10 @@ export function AddPatient() {
 
                                 <div className="mt-4 text-right">
                                     <Button color="danger" variant="light" onPress={onClose}>
-                                        Close
+                                    {t("d-personal.close")}
                                     </Button>
                                     <Button color="primary" onClick={() => handleCreatePatient(newPtName, newPtlastName, newPtStatus, newPtArea, newPtChronicDiseases, newPtAllergies, newPtBloodType, newPtBirthDate, newPtAge, newPtDoctorAssigned)} onPress={onClose}>
-                                        Add Patient
+                                    {t("d-personal.add")}
                                     </Button>
                                 </div>
 

@@ -10,30 +10,33 @@ import {
   Button,
 } from "@nextui-org/react";
 import { useDoctorData, usePatientData, } from "../../../Context/authContext";
-import { EditPatient } from "../../../Components/Dashboard/CrudActions/EditPatient";
-import { EditDoctor } from "../../../Components/Dashboard/CrudActions/EditDoctor";
+import { EditPatient } from "../CrudActions/EditPatient";
+import { EditDoctor } from "../CrudActions/EditDoctor";
 import { ActivityIcon, UserMinus } from "lucide-react";
-import { AddPatient } from "../../../Components/Dashboard/CrudActions/AddPatient";
-import { AddDoctor } from "../../../Components/Dashboard/CrudActions/AddDoctor";
+import { AddPatient } from "../CrudActions/AddPatient";
+import { AddDoctor } from "../CrudActions/AddDoctor";
+import { useTranslation } from "react-i18next";
 
 export function Personal() {
   const { patientData, handleDeletePatient } = usePatientData();
   const { handleDeleteDoctor, doctorData } = useDoctorData()
   const { getVitaLinkSigns } = usePatientData()
 
+  const [t] = useTranslation("global")
+
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <Card placeholder="">
         <CardHeader placeholder="" variant="gradient" color="red" className="mb-8 p-6">
           <Typography placeholder="" variant="h6" color="white">
-            Patients Table
+          {t("d-personal.patients.title")}
           </Typography>
         </CardHeader>
         <CardBody placeholder="" className="overflow-x-scroll px-0 pt-0 pb-2">
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["Name", "Status", "Area", "Chronic Diseases", "Allergies", "Blood Type", "Birth Date", "Age", "Doctor Assigned"].map((el) => (
+                {[t("d-home.crud.item1"), t("d-home.crud.item2"), t("d-home.crud.item3"), t("d-home.crud.item4"), t("d-home.crud.item5"), t("d-home.crud.item6"), t("d-home.crud.item7"), t("d-home.crud.item8"), t("d-home.crud.item9")].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-center"
@@ -173,7 +176,7 @@ export function Personal() {
 
                           <div className="pt-2">
                             <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeletePatient(id)}>
-                              Del
+                            {t("d-personal.delete")}
                             </Button>
                           </div>
                           
@@ -191,14 +194,14 @@ export function Personal() {
       <Card placeholder="">
         <CardHeader placeholder="" variant="gradient" color="red" className="mb-8 p-6">
           <Typography placeholder="" variant="h6" color="white">
-            Doctors Table
+          {t("d-personal.doctors.title")}
           </Typography>
         </CardHeader>
         <CardBody placeholder="" className="overflow-x-scroll px-0 pt-0 pb-2">
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["Name", "Status", "Area", "Num. Cedula", "Patients"].map((el) => (
+                {[t("d-personal.doctors.crudActions.item1"), t("d-personal.doctors.crudActions.item3"), t("d-personal.doctors.crudActions.item4"), t("d-personal.doctors.crudActions.item5"), t("d-personal.doctors.crudActions.item7")].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-center"
@@ -301,7 +304,7 @@ export function Personal() {
                           />
                           <div className="pt-2">
                             <Button color="danger" variant="shadow" startContent={<UserMinus />} className="font-semibold" onClick={() => handleDeleteDoctor(id)} >
-                              Del
+                            {t("d-personal.delete")}
                             </Button>
                           </div>
                         </div>

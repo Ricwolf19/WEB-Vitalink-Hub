@@ -150,7 +150,49 @@
         }
     },
     "d-personal": {
-        "text": "© 2024. Todos los Derechos Reservados"
+        "patients": {
+            "title": "Patients Table",
+            "crudActions": {
+                "title1": "Add Patient",
+                "title2": "Edit Patient",
+                "item1": "Name",
+                "item2": "Last Name",
+                "item3": "Age",
+                "item4": "Birth Day",
+                "item5": "Status",
+                "item6": "Area",
+                "item7": "Blood Type",
+                "item8": "ChronicDiseases",
+                "item9": "Allergies",
+                "item10": "Select Doctor"              
+            },
+            "scan": {
+                "title": "VITALINK LAST SCAN",
+                "item1": "SCANNER DATE:",
+                "item2": "PATIENT FC:",
+                "item3": "PATIENT SPO2:",
+                "item4": "PATIENT TEMPERATURE:",
+                "no": "NOT DETECTED"
+            }
+        },
+        "doctors": {
+            "title": "Doctors Table",
+            "crudActions": {
+                "title1": "Add Doctor",
+                "title2": "Edit Doctor",
+                "item1": "Name",
+                "item2": "Last Name",
+                "item3": "Status",
+                "item4": "Area",
+                "item5": "Num. Cedula",
+                "item6": "Select Patients",
+                "item7": "Patients"            
+            }
+        },
+        "delete": "Delete",
+        "edit": "Edit",
+        "add": "Add",
+        "close": "Close"
     },
     "d-calendar": {
         "text": "© 2024. Todos los Derechos Reservados"

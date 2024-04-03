@@ -148,5 +148,50 @@
           "item4": "Pacientes Menores de Edad: ",
           "item5": "Tipo de Sangre Más Común: "
         }
-      }      
+      },
+      "d-personal": {
+        "patients": {
+          "title": "Tabla de Pacientes",
+          "crudActions": {
+            "title1": "Agregar Paciente",
+            "title2": "Editar Paciente",
+            "item1": "Nombre",
+            "item2": "Apellido",
+            "item3": "Edad",
+            "item4": "Fecha de Nacimiento",
+            "item5": "Estado",
+            "item6": "Área",
+            "item7": "Tipo de Sangre",
+            "item8": "Enfermedades Crónicas",
+            "item9": "Alergias",
+            "item10": "Seleccionar Médico"
+          },
+          "scan": {
+            "title": "ÚLTIMO ANÁLISIS VITALINK",
+            "item1": "FECHA DEL ANÁLISIS:",
+            "item2": "FC DEL PACIENTE:",
+            "item3": "SPO2 DEL PACIENTE:",
+            "item4": "TEMPERATURA DEL PACIENTE:",
+            "no": "NO DETECTADO"
+          }
+        },
+        "doctors": {
+          "title": "Tabla de Doctores",
+          "crudActions": {
+            "title1": "Agregar Doctor",
+            "title2": "Editar Doctor",
+            "item1": "Nombre",
+            "item2": "Apellido",
+            "item3": "Estado",
+            "item4": "Área",
+            "item5": "Num. de Cédula",
+            "item6": "Seleccionar Pacientes",
+            "item7": "Pacientes"   
+          }
+        },
+        "delete": "Borrar",
+        "edit": "Editar",
+        "add": "Agregar",
+        "close": "Cerrar"
+      }            
 }

@@ -14,13 +14,15 @@ import { Logo } from "../../../Components/HomePage/Icons";
 import { UserPlus } from "lucide-react";
 import { useDoctorData, usePatientData } from "../../../Context/authContext";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 
 export function AddDoctor() {
     const { patientData } = usePatientData();
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const { handleCreateDoctor } = useDoctorData()
-    // const [values, setValues] = React.useState(new Set([]));
+    
+    const [t] = useTranslation("global")
 
     const [newDcName, setNewDcName] = useState('');
     const [newDclastName, setNewDclastName] = useState('');
@@ -35,7 +37,7 @@ export function AddDoctor() {
 
     return (
         <div>
-            <Button onPress={onOpen} color="success" variant="shadow" className="text-black" startContent={<UserPlus />}>Add</Button>
+            <Button onPress={onOpen} color="success" variant="shadow" className="text-black" startContent={<UserPlus />}>{t("d-personal.add")}</Button>
             <Modal
                 isOpen={isOpen}
                 placement="auto"
@@ -49,11 +51,11 @@ export function AddDoctor() {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1 text-red-600 text-center"><div className="pb-2 text-center flex-col flex gap-1"><Logo /></div>Create Doctor</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1 text-red-600 text-center"><div className="pb-2 text-center flex-col flex gap-1"><Logo /></div>{t("d-personal.doctors.crudActions.title1")}</ModalHeader>
                             <ModalBody>
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                                    <Input label="Name" type="text" color="primary"  variant="faded" onChange={(e) => setNewDcName(e.target.value)}/>
-                                    <Input label="Last Name" type="text" color="primary"  variant="faded" onChange={(e) => setNewDclastName(e.target.value)}/>
+                                    <Input label={t("d-personal.doctors.crudActions.item1")} type="text" color="primary"  variant="faded" onChange={(e) => setNewDcName(e.target.value)}/>
+                                    <Input label={t("d-personal.doctors.crudActions.item2")} type="text" color="primary"  variant="faded" onChange={(e) => setNewDclastName(e.target.value)}/>
                                 </div>
                                 {/* <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                       <Input label="Age" color="primary" placeholder={age} variant="faded" />
@@ -62,7 +64,7 @@ export function AddDoctor() {
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                     <Select
-                                        label="Status"
+                                        label={t("d-personal.doctors.crudActions.item3")}
                                         className="max-w-xs"
                                         variant="underlined"
                                         color="primary"
@@ -76,7 +78,7 @@ export function AddDoctor() {
                                     </Select>
 
                                     <Select
-                                        label="Area"
+                                        label={t("d-personal.doctors.crudActions.item4")}
                                         className="max-w-xs"
                                         variant="underlined"
                                         color="primary"
@@ -91,12 +93,12 @@ export function AddDoctor() {
                                 </div>
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                                    <Input label="Num. Cedula" type="number" color="primary" variant="faded" onChange={(e) => setNewDcNumCedula(e.target.valueAsNumber)} />
+                                    <Input label={t("d-personal.doctors.crudActions.item5")} type="number" color="primary" variant="faded" onChange={(e) => setNewDcNumCedula(e.target.valueAsNumber)} />
                                 </div>
 
                                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                                     <Select
-                                        label="Select Patients"
+                                        label={t("d-personal.doctors.crudActions.item6")}
                                         selectionMode="multiple"
                                         onChange={handleSelectionPatients}
                                     >
@@ -111,10 +113,10 @@ export function AddDoctor() {
 
                                 <div className="mt-4 text-right">
                                     <Button color="danger" variant="light" onPress={onClose} >
-                                        Close
+                                    {t("d-personal.close")}
                                     </Button>
                                     <Button color="primary" onClick={() => handleCreateDoctor(newDcName, newDclastName, newDcArea, newDcNumCedula, newDcPatients, newDcStatus)} onPress={onClose} >
-                                        Add Doctor
+                                    {t("d-personal.add")}
                                     </Button>
                                 </div>
 

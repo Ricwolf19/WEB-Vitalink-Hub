@@ -10,8 +10,8 @@ import {
 import {
   ArrowUpIcon,
 } from "@heroicons/react/24/outline";
-import { StatisticsCard } from "../../../Components/Dashboard/Cards/statistics-card";
-import { StatisticsChart } from "../../../Components/Dashboard/Charts/statistics-chart";
+import { StatisticsCard } from "../Cards/statistics-card";
+import { StatisticsChart } from "../Charts/statistics-chart";
 
 
 import { AlertTriangleIcon, ClipboardPlusIcon, Contact2, PlusCircle, ScanFaceIcon, Users } from "lucide-react";

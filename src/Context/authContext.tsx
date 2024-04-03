@@ -18,6 +18,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
+import { useTranslation } from "react-i18next";
 // import { v4 } from 'uuid'
 
 export const useFileStorage = () => {
@@ -230,6 +231,7 @@ export const useEventCalendar = () => {
 
 
 export const usePatientData = () => {
+    const [t] = useTranslation("global")
     const { user } = useAuth();
     // const [patientData, setPatientData] = useState<any>([]);
     const documentId = user.uid;
@@ -372,16 +374,16 @@ export const usePatientData = () => {
             const filterData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             const filterSigns = filterData[filterData.length - 1]
 
-            console.log(filterSigns)
+            // console.log(filterSigns)
 
             function sweetAlert({ ...filterSigns }) {
                 swal({
-                    title: ` VITALINK LAST SCANN `,
+                    title: `${t("d-personal.patients.scan.title")}`,
                     text: `
-                       SCANNER DATE: \xa0 ${filterSigns.dateTime ? filterSigns.dateTime : 'NO DETECTADA'} \n
-                       PATIENT FC: \xa0 ${filterSigns.fc ? filterSigns.fc : "NO DETECTADA"} \n
-                       PATIENT SPO2: \xa0 ${filterSigns.spo2 ? filterSigns.spo2 : 'NO DETECTADA'} \n
-                       PATIENT TEMPERATURE: \xa0 ${filterSigns.temp ? filterSigns.temp : 'NO DETECTADA'} \n
+                    ${t("d-personal.patients.scan.item1")} \xa0 ${filterSigns.dateTime ? filterSigns.dateTime : t("d-personal.patients.scan.no")} \n
+                    ${t("d-personal.patients.scan.item2")} \xa0 ${filterSigns.fc ? filterSigns.fc : t("d-personal.patients.scan.no")} \n
+                    ${t("d-personal.patients.scan.item3")} \xa0 ${filterSigns.spo2 ? filterSigns.spo2 : t("d-personal.patients.scan.no")} \n
+                    ${t("d-personal.patients.scan.item4")} \xa0 ${filterSigns.temp ? filterSigns.temp : t("d-personal.patients.scan.no")} \n
                                
                        `,
                     icon: "success"
