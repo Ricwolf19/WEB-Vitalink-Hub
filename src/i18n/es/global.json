@@ -93,7 +93,7 @@
             "item1": "Total de Doctores",
             "item2": "Total de Pacientes",
             "item3": "Pacientes Críticos",
-            "item4": "Exploraciones Totales VitaLink"
+            "item4": "Escaneos Totales"
         },
         "charts": {
             "1": {
@@ -142,6 +142,8 @@
             "item9": "Médico Asignado"
         },
         "extra": {
+            "title": "Informacion Extra",
+            "subtitle": "Informacion",
             "item1": "Último Paciente Agregado: ",
             "item2": "Último Doctor Agregado: ",
             "item3": "Pacientes Mayores: ",
@@ -220,5 +222,41 @@
             "action": "Eliminar",
             "titleButton": "Eliminar Evento"
         }
-    }
+    },
+    "d-kanban": {
+        "...": ""
+    },
+    "d-documents": {
+        "title": "Documentos Digitales",
+        "subtitle": "PDFs, Word, Imágenes y más...",
+        "item1": "Hacer clic para cargar",
+        "item2": "PDF, Docs, Imgs...",
+        "item3": "Cargar Archivo"
+      },
+      "d-settings": {
+        "title1": "Foto de Perfil",
+        "title2": "Personal Profesional",
+        "actions": {
+          "upload": {
+            "item1": "Hacer clic para cargar",
+            "item2": "una imagen",
+            "item3": "(máx. 100 x 100px)",
+            "button": "Subir Foto"
+          },
+          "update": {
+            "label": "Actualizar Perfil",
+            "button": "Actualizar Foto"
+          },
+          "delete": {
+            "label": "Eliminar Imagen",
+            "button": "Eliminar Foto"
+          },
+          "account": {
+            "email": "Correo Electrónico",
+            "user": "Nombre de Usuario"
+          }
+        },
+        "holders": "Seleccionar una Imagen"
+      }
+      
 }

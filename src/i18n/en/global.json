@@ -142,6 +142,8 @@
             "item9": "Doctor Assigned"
         },
         "extra": {
+            "title": "Extra Important",
+            "subtitle": "Information",
             "item1": "Last Patient Added: ",
             "item2": "Last Doctor Added: ",
             "item3": "Elderly Patients: ",
@@ -222,12 +224,38 @@
         }
     },
     "d-kanban": {
-        "text": "© 2024. Todos los Derechos Reservados"
+        "...": ""
     },
     "d-documents": {
-        "text": "© 2024. Todos los Derechos Reservados"
+        "title": "Digital Documents",
+        "subtitle": "Pdfs, Words, Images and more...",
+        "item1": "Click to upload",
+        "item2": "Pdf, Docs, Imgs...",
+        "item3": "Upload File"
     },
     "d-settings": {
-        "text": "© 2024. Todos los Derechos Reservados"
+        "title1": "Profile Photo",
+        "title2": "Profesional Staff",
+        "actions": {
+            "upload": {
+                "item1": "Click to upload",
+                "item2": "an image",
+                "item3": "(max, 100 X 100px)",
+                "button": "Upload Photo"
+            },
+            "update": {
+                "label": "Update Profile",
+                "button": "Update Photo"
+            },
+            "delete": {
+                "label": "Delete Image",
+                "button": "Delete Photo"
+            },
+            "account": {
+                "email": "Email Address",
+                "user": "User Name"
+            }           
+        },
+        "holders": "Select an Image"
     }
 }

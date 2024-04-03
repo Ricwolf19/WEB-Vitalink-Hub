@@ -556,7 +556,7 @@ export function Home() {
             className="m-0 p-6"
           >
             <Typography placeholder="" variant="h6" color="blue-gray" className="mb-2">
-              Extra important
+              {t("d-home.extra.title")}
             </Typography>
             <Typography
               placeholder=""
@@ -567,7 +567,7 @@ export function Home() {
                 strokeWidth={3}
                 className="h-3.5 w-3.5 text-green-500"
               />
-              <strong>information</strong>
+              <strong> {t("d-home.extra.subtitle")}</strong>
             </Typography>
           </CardHeader>
           <CardBody placeholder="" className="pt-0">

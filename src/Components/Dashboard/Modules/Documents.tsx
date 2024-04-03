@@ -10,6 +10,7 @@ import { useFileStorage } from "../../../Context/authContext";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, Trash2Icon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function Documents() {
 
@@ -22,6 +23,8 @@ export function Documents() {
 
     const [imgToUpload, setImgToUpload] = useState<any>(null);
 
+    const [t] = useTranslation('global')
+
 
     return (
         <>
@@ -32,14 +35,14 @@ export function Documents() {
                 <CardBody placeholder="" className="p-4">
                     <div className="px-4 pb-4">
                         <Typography placeholder="" variant="h3" color="blue-gray" className="mb-2">
-                            Digital Documents
+                           {t("d-documents.title")}
                         </Typography>
                         <Typography
                             placeholder=""
                             variant="small"
                             className="font-normal text-blue-gray-500"
                         >
-                            Pdfs, Words, Images and more...
+                             {t("d-documents.subtitle")}
                         </Typography>
 
                         <div className="mt-7 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
@@ -83,15 +86,15 @@ export function Documents() {
                                             </svg>
                                         </span>
                                         <p>
-                                            <span className="text-primary">Click to upload</span>
+                                            <span className="text-primary"> {t("d-documents.item1")}</span>
                                         </p>
-                                        <p className="mt-1.5">Pdf, Docs, Imgs...</p>
+                                        <p className="mt-1.5"> {t("d-documents.item2")}</p>
                                     </div>
                                 </div>
 
                                 <div className="flex justify-center gap-5">
                                     <Button placeholder="" onClick={() => uploadToStorage(imgToUpload)} variant="outlined" size="lg" className=" bg-white text-green-800 border-green-800">
-                                        Upload File
+                                    {t("d-documents.item3")}
                                     </Button>
                                 </div>
                             </div>

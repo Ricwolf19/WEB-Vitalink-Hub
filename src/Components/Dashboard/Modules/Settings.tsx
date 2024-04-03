@@ -16,8 +16,11 @@ import { MessageCard } from "../Cards";
 import { useAccountData, useDoctorData, useFileStorage } from "../../../Context/authContext";
 import { useState } from "react";
 import { Select, SelectItem, Avatar } from "@nextui-org/react";
+import { useTranslation } from "react-i18next";
 
 export function Settings() {
+  const [t] = useTranslation("global")
+  
   const { accountData, handleUpdateEmail, handleUpdateUserName, handleUpdatePhotoProfile } = useAccountData();
   const { doctorData } = useDoctorData();
   const { uploadImageToProfile, imgProfileList, deleteProfileImg } = useFileStorage();
@@ -91,7 +94,7 @@ export function Settings() {
           <div className="gird-cols-1 mb-12 grid gap-12 px-4 lg:grid-cols-2 xl:grid-cols-3">
             <div>
               <Typography placeholder="" variant="h6" color="blue-gray" className="mb-3">
-                Profile Photo
+                {t("d-settings.title1")}
               </Typography>
               {/* <Card placeholder="" color="transparent" shadow={false}>
                 <CardHeader
@@ -149,16 +152,16 @@ export function Settings() {
                     </svg>
                   </span>
                   <p>
-                    <span className="text-primary">Click to upload</span> an image
+                    <span className="text-primary">{t("d-settings.actions.upload.item1")}</span> {t("d-settings.actions.upload.item2")}
                   </p>
                   {/* <p className="mt-1.5">SVG, PNG, JPG</p> */}
-                  <p>(max, 100 X 100px)</p>
+                  <p>{t("d-settings.actions.upload.item3")}</p>
                 </div>
               </div>
               <br />
               <div className="flex justify-center gap-5">
                 <Button placeholder="" onClick={() => uploadImageToProfile(imgToUpload)} variant="outlined" size="sm" className=" bg-white text-black border-black">
-                  Upload Image
+                {t("d-settings.actions.upload.button")}
                 </Button>
                 {/* <Button placeholder="" variant="outlined" size="sm" className=" bg-blue-800 text-white border-white">
                     Save
@@ -167,10 +170,10 @@ export function Settings() {
 
               <div className="pb-0 pt-10 text-center">
                 <Select
-                  label="Update Image"
+                  label={t("d-settings.actions.update.label")}
                   variant="faded"
                   color="primary"
-                  placeholder="Select an Image"
+                  placeholder={t("d-settings.holders")}
                   className="max-w-xs"
                   onChange={handlePhotoProfile}
                 >
@@ -188,7 +191,7 @@ export function Settings() {
 
                 <div className="flex justify-center gap-5 pt-5">
                   <Button placeholder="" onClick={() => handleUpdatePhotoProfile(profileImg)} variant="outlined" size="sm" className=" bg-blue-800 text-white border-white">
-                    Update Photo
+                  {t("d-settings.actions.update.button")}
                   </Button>
                 </div>
 
@@ -198,7 +201,7 @@ export function Settings() {
 
             <div>
               <Typography placeholder="" variant="h6" color="blue-gray" className="mb-3">
-                Profesional Staff
+              {t("d-settings.title2")}
               </Typography>
               <ul className="flex flex-col gap-6">
                 {doctorData.map((props: any) => (
@@ -217,10 +220,10 @@ export function Settings() {
 
               <div className="pb-0 pt-12 text-center">
                 <Select
-                  label="Delete Image"
+                  label={t("d-settings.actions.delete.label")}
                   variant="faded"
                   color="danger"
-                  placeholder="Select an Image"
+                  placeholder={t("d-settings.holders")}
                   className="max-w-xs"
                   onChange={handleDelPhotoProfile}
                 >
@@ -238,7 +241,7 @@ export function Settings() {
 
                 <div className="flex justify-center gap-5 pt-5">
                   <Button placeholder="" onClick={() => deleteProfileImg(imgToDelete)} variant="outlined" size="sm" className=" bg-red-800 text-white border-white">
-                    Delete Photo
+                  {t("d-settings.actions.delete.button")}
                   </Button>
                 </div>
 
@@ -250,7 +253,7 @@ export function Settings() {
               <Input
                 crossOrigin=''
                 type="email"
-                label="Email Adress"
+                label={t("d-settings.actions.account.email")}
                 value={newEmail}
                 onChange={onChangeEmail}
                 className="pr-20"
@@ -274,7 +277,7 @@ export function Settings() {
                 <Input
                   crossOrigin=''
                   type="text"
-                  label="User Name"
+                  label={t("d-settings.actions.account.user")}
                   value={newUserName}
                   onChange={onChangeUser}
                   className="pr-20"
