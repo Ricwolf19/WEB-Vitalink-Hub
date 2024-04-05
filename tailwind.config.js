@@ -12,7 +12,12 @@ module.exports = withMT({
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "main": '#0D1117',
+        "column": '#161c22'
+      }
+    },
     screens: {
       xs: '475px',
       sm: '640px',
