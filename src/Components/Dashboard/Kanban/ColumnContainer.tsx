@@ -1,15 +1,19 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { Trash2Icon } from "lucide-react"
 import { CSS } from "@dnd-kit/utilities"
+import { useState } from "react";
+import { Input } from "@nextui-org/react";
 
 interface Props {
     column: Column;
-    deleteColumn: (id: Id) => void
+    deleteColumn: (id: Id) => void;
+    updateColumn: (id: Id, title: string) => void;
 }
 
 export function ColumnContainer(props: Props) {
-    const { column, deleteColumn } = props
+    const { column, deleteColumn, updateColumn } = props
 
+    const [editMode, setEditMode] = useState(false);
 
     const { setNodeRef, attributes, listeners, transform, transition, isDragging }
         =
@@ -19,6 +23,7 @@ export function ColumnContainer(props: Props) {
                 type: "Column",
                 column,
             },
+            disabled: editMode
         })
 
     const style = {
@@ -63,6 +68,9 @@ export function ColumnContainer(props: Props) {
             <div
                 {...attributes}
                 {...listeners}
+                onClick={() => {
+                    setEditMode(true);
+                }}
                 className="
             bg-main
             text-md
@@ -80,18 +88,40 @@ export function ColumnContainer(props: Props) {
             justify-between
             ">
                 <div className="flex gap-2">
-                    <div className="
+                    <div 
+                    className="
                 flex
                 justify-center
                 items-center
-                text-white
-                bg-column
+                text-white          
                 px-2
                 py-1
                 text-sm
                 rounded-full
-                ">0</div>
-                    {column.title}
+                "
+                >
+                    0
+                    </div>
+
+                    {/* {column.title} */}
+                    {!editMode && column.title}
+                    {editMode && (
+                    <Input 
+                    variant="underlined"
+                    color="primary"
+                    className="  focus:border-blue-300 rounded outline-none px-2"
+                    value={column.title}
+                    onChange={e => updateColumn(column.id, e.target.value)}
+                    autoFocus
+                    onBlur={() => {
+                        setEditMode(false)
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key !== "Enter") return;
+                        setEditMode(false)
+                    }}
+                    />
+                )}
                 </div>
 
                 <button

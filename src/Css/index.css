@@ -12,6 +12,18 @@
     }
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-red-400
+}
+
 .text-gradient {
     background: linear-gradient(96deg, #2f2891 11.46%, #4eb5f1 91.65%);
     background-clip: text;
