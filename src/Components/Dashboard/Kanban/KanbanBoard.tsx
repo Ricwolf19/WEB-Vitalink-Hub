@@ -1,12 +1,14 @@
-import { Plus } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 import { ColumnContainer } from "./ColumnContainer";
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core"
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
+import { Column, Id, Task } from "./Types";
 
 export function KanbanBoard() {
 
+    const [tasks, setTasks] = useState<Task[]>([])
     const [columns, setColumns] = useState<Column[]>([])
     const [activeColumn, setActiveColumn] = useState<Column | null>(null)
 
@@ -45,6 +47,30 @@ export function KanbanBoard() {
         })
 
         setColumns(newColumns)
+    }
+
+    function createTask(columnId: Id){
+        const newTask: Task = {
+            id: generateId(),
+            columnId,
+            content: `Task ${tasks.length + 1}`
+        }
+
+        setTasks([...tasks, newTask])
+    }
+
+    function deleteTask(id: Id) {
+        const newTasks = tasks.filter((task) => task.id !== id);
+        setTasks(newTasks)
+    }
+
+    function updateTask(id: Id, content: string){
+        const newTasks = tasks.map(task => {
+            if (task.id !== id) return task
+            return {...task, content};
+        })
+
+        setTasks(newTasks)
     }
 
     function onDragStart(event: DragStartEvent) {
@@ -102,6 +128,10 @@ export function KanbanBoard() {
                                         column={col}
                                         deleteColumn={deleteColumn}
                                         updateColumn={updateColumn}
+                                        createTask={createTask}
+                                        deleteTask={deleteTask}
+                                        updateTask={updateTask}
+                                        tasks={tasks.filter((task)  => task.columnId === col.id)}
                                     />
                                 ))}
                             </SortableContext>
@@ -126,7 +156,7 @@ export function KanbanBoard() {
                         flex
                         gap-2
                         ">
-                            <Plus />
+                            <PlusCircle />
                             Add column
                         </button>
                     </div>
@@ -138,6 +168,10 @@ export function KanbanBoard() {
                                     column={activeColumn}
                                     deleteColumn={deleteColumn}
                                     updateColumn={updateColumn}
+                                    createTask={createTask}
+                                    deleteTask={deleteTask}
+                                    updateTask={updateTask}
+                                    tasks={tasks.filter((task)  => task.columnId === activeColumn.id)}
                                 />
                             )}
                         </DragOverlay>,

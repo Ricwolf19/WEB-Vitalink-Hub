@@ -1,17 +1,23 @@
 import { useSortable } from "@dnd-kit/sortable";
-import { Trash2Icon } from "lucide-react"
+import { PlusCircle, Trash2Icon } from "lucide-react"
 import { CSS } from "@dnd-kit/utilities"
 import { useState } from "react";
 import { Input } from "@nextui-org/react";
+import { Column, Id, Task } from "./Types";
+import { TaskCard } from "./TaskCard";
 
 interface Props {
     column: Column;
     deleteColumn: (id: Id) => void;
     updateColumn: (id: Id, title: string) => void;
+    updateTask: (id: Id, content: string) => void;
+    createTask: (ColumnId: Id) => void;
+    deleteTask: (id: Id) => void;
+    tasks: Task[];
 }
 
 export function ColumnContainer(props: Props) {
-    const { column, deleteColumn, updateColumn } = props
+    const { column, deleteColumn, updateColumn, createTask, tasks, deleteTask, updateTask } = props
 
     const [editMode, setEditMode] = useState(false);
 
@@ -88,8 +94,8 @@ export function ColumnContainer(props: Props) {
             justify-between
             ">
                 <div className="flex gap-2">
-                    <div 
-                    className="
+                    <div
+                        className="
                 flex
                 justify-center
                 items-center
@@ -99,29 +105,29 @@ export function ColumnContainer(props: Props) {
                 text-sm
                 rounded-full
                 "
-                >
-                    0
+                    >
+                        0
                     </div>
 
                     {/* {column.title} */}
                     {!editMode && column.title}
                     {editMode && (
-                    <Input 
-                    variant="underlined"
-                    color="primary"
-                    className="  focus:border-blue-300 rounded outline-none px-2"
-                    value={column.title}
-                    onChange={e => updateColumn(column.id, e.target.value)}
-                    autoFocus
-                    onBlur={() => {
-                        setEditMode(false)
-                    }}
-                    onKeyDown={(e) => {
-                        if (e.key !== "Enter") return;
-                        setEditMode(false)
-                    }}
-                    />
-                )}
+                        <Input
+                            variant="underlined"
+                            color="primary"
+                            className="  focus:border-blue-300 rounded outline-none px-2"
+                            value={column.title}
+                            onChange={e => updateColumn(column.id, e.target.value)}
+                            autoFocus
+                            onBlur={() => {
+                                setEditMode(false)
+                            }}
+                            onKeyDown={(e) => {
+                                if (e.key !== "Enter") return;
+                                setEditMode(false)
+                            }}
+                        />
+                    )}
                 </div>
 
                 <button
@@ -141,14 +147,16 @@ export function ColumnContainer(props: Props) {
             </div>
 
             {/*Column Task Container*/}
-            <div className="flex flex-grow  text-white">
-                Content
+            <div className="flex flex-grow flex-col gap-4 p-2 overflow-x-hidden overflow-y-auto text-white">
+               {tasks.map(task => (
+                <TaskCard key={task.id} task={task} deleteTask={deleteTask} updateTask={updateTask}/>
+               ))}
             </div>
 
             {/*Column Footer*/}
-            <div className=" text-white">
-                Footer
-            </div>
+            <button onClick={() => {createTask(column.id)}} className="flex gap-2 items-center border-column border-2 rounded-md p-4 border-x-column hover:bg-main hover:text-blue-300 active:bg-black">
+                <PlusCircle />Add Task
+            </button>
 
         </div>
     )

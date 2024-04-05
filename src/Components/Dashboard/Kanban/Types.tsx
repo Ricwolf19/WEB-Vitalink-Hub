@@ -1,7 +1,13 @@
 
-type Id = string | number
+export type Id = string | number;
 
-type Column = {
+export type Column = {
     id: Id;
-    title: string
+    title: string;
+};
+
+export type Task = {
+    id: Id,
+    columnId: Id,
+    content: string
 }

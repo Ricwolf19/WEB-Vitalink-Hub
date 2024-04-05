@@ -21,8 +21,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-red-400
+  @apply bg-red-400 rounded-xl
 }
+
+.task > ::-webkit-scrollbar-thumb {
+  @apply bg-blue-300 rounded-xl
+}
+
 
 .text-gradient {
     background: linear-gradient(96deg, #2f2891 11.46%, #4eb5f1 91.65%);
