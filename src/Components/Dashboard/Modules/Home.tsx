@@ -23,7 +23,7 @@ import { SlPeople } from "react-icons/sl";
 import { useTranslation } from "react-i18next";
 
 export function Home() {
-  const { patientData, alerts, vitalinkScans, statusChartPatient, lastPatientLastName, lastPatientName, getElderlyPatients, getUnderAgePatients, getMostCommonBloodType } = usePatientData()
+  const { patientData, alerts, vitalinkScans, statusChartPatient, lastPatientLastName, lastPatientName, getElderlyPatients, getUnderAgePatients, getMostCommonBloodType, getSignsAlert } = usePatientData()
   const { doctorData, statusChartDoctor, lastDoctorName, lastDoctorLastName } = useDoctorData()
 
   const [t] = useTranslation("global")
@@ -363,6 +363,7 @@ export function Home() {
     },
   ];
 
+  getSignsAlert()
 
   return (
     <div className="mt-12">

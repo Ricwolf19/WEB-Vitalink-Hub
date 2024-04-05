@@ -480,7 +480,6 @@ export const usePatientData = () => {
         }
     }
 
-    getSignsAlert()
 
     // ACCIONES PARA EL CRUD
     const handleCreatePatient = async (newName: string, newLastName: string, newStatus: string, newArea: string, newChronicDiseases: string[], newAllergies: string[], newBloodType: string, newBirthDate: string, newAge: number, newDoctorAssigned: string) => {
@@ -588,6 +587,7 @@ export const usePatientData = () => {
         getElderlyPatients,
         getUnderAgePatients,
         getMostCommonBloodType,
+        getSignsAlert
     }
 }
 
