@@ -269,7 +269,7 @@ export function Settings() {
                 disabled={!newEmail}
                 className="!absolute right-1 top-1 rounded"
               >
-                Update
+                {t("d-settings.actions.account.button")}
               </Button>
 
               <br />
@@ -293,7 +293,7 @@ export function Settings() {
                   onClick={() => handleUpdateUserName(newUserName)}
                   className="!absolute right-1 top-1 rounded"
                 >
-                  Update
+                 {t("d-settings.actions.account.button")}
                 </Button>
 
               </div>

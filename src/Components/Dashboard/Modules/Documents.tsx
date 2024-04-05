@@ -107,12 +107,12 @@ export function Documents() {
                                             placeholder=""
                                             floated={false}
                                             color="gray"
-                                            className="mx-0 mt-0 mb-4 h-64 xl:h-40"
+                                            className="mx-0 mt-0 mb-4 h-40 xl:h-40 text-center"
                                         >
                                             <img
-                                                src={'https://i.ibb.co/VDZ3HH6/5853.jpg' || url}
+                                                src={ url || 'https://i.ibb.co/VDZ3HH6/5853.jpg'}
                                                 alt={name}
-                                                className="h-full w-full object-cover"
+                                                className="h-full w-full object-cover text-center"
                                             />
                                         </CardHeader>
                                         <CardBody placeholder="" className="py-0 px-1 text-center">

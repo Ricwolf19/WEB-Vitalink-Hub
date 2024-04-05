@@ -39,6 +39,13 @@
     "s-hero": {
         "item1": "Salud Inteligente, Vida Más Inteligente",
         "item2": "Eleve su salud con VitaLink; Monitoreo Inteligente, Resultados Reales.",
+        "itemFree": {
+            "button": "Haz clic para probar gratis",
+            "title": "Esta es una cuenta gratuita para probar nuestro sistema",
+            "text1": "Correo electrónico:",
+            "text2": "Contraseña:",
+            "text3": "¡Gracias por su tiempo!"
+        },
         "itemMessage": {
             "title": "Envíenos un mensaje",
             "lastName": "Apellido",
@@ -232,31 +239,31 @@
         "item1": "Hacer clic para cargar",
         "item2": "PDF, Docs, Imgs...",
         "item3": "Cargar Archivo"
-      },
-      "d-settings": {
+    },
+    "d-settings": {
         "title1": "Foto de Perfil",
         "title2": "Personal Profesional",
         "actions": {
-          "upload": {
-            "item1": "Hacer clic para cargar",
-            "item2": "una imagen",
-            "item3": "(máx. 100 x 100px)",
-            "button": "Subir Foto"
-          },
-          "update": {
-            "label": "Actualizar Perfil",
-            "button": "Actualizar Foto"
-          },
-          "delete": {
-            "label": "Eliminar Imagen",
-            "button": "Eliminar Foto"
-          },
-          "account": {
-            "email": "Correo Electrónico",
-            "user": "Nombre de Usuario"
-          }
+            "upload": {
+                "item1": "Hacer clic para cargar",
+                "item2": "una imagen",
+                "item3": "(máx. 100 x 100px)",
+                "button": "Subir Foto"
+            },
+            "update": {
+                "label": "Actualizar Perfil",
+                "button": "Actualizar Foto"
+            },
+            "delete": {
+                "label": "Eliminar Imagen",
+                "button": "Eliminar Foto"
+            },
+            "account": {
+                "email": "Correo Electrónico",
+                "user": "Nombre de Usuario",
+                "button": "Actualizar"
+            }
         },
         "holders": "Seleccionar una Imagen"
-      }
-      
+    }
 }

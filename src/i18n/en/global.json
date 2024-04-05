@@ -39,6 +39,13 @@
     "s-hero": {
         "item1": "Smart Health, Smarter Living",
         "item2": "Elevate Your Health with VitaLink; Smart Monitoring, Real Results.",
+        "itemFree": {
+            "button": "Click me to try for free",
+            "title": "This is a free account to test our system",
+            "text1": "Email:",
+            "text2": "Password:",
+            "text3": "¡Thanks for your time!"
+        },
         "itemMessage": {
             "title": "Send us a message",
             "lastName": "Last Name",
@@ -253,8 +260,9 @@
             },
             "account": {
                 "email": "Email Address",
-                "user": "User Name"
-            }           
+                "user": "User Name",
+                "button": "Update"
+            }
         },
         "holders": "Select an Image"
     }

@@ -46,9 +46,9 @@ export function Sidenav({ routes }: SidenavProps) {
       <div
         className={`relative`}
       >
-        <Link to="/" className="py-6 px-8 text-center">
+        <div className="pt-6 px-8 text-center">
           <div className="flex justify-center items-center h-full">
-            <img src="https://i.ibb.co/zHDB2x1/logo-rbg.png" alt="VitaLink" className="max-w-[40%] max-h-[40%]" />
+            <img src="https://i.ibb.co/zHDB2x1/logo-rbg.png" alt="VitaLink" className="max-w-[50%] max-h-[50%]" />
           </div>
           <Typography
             placeholder=""
@@ -59,7 +59,7 @@ export function Sidenav({ routes }: SidenavProps) {
             VITALINK
           </Typography>
           <br />
-        </Link>
+        </div>
         <IconButton
           placeholder=""
           variant="text"
