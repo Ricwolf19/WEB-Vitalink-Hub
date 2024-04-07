@@ -2,6 +2,7 @@ import { Card, CardBody, Typography } from "@material-tailwind/react";
 import { KanbanBoard } from "../Kanban/KanbanBoard";
 
 export function Kanban() {
+    
     return (
         <>
             <div className="relative mt-8 h-28 w-full bg-white overflow-hidden rounded-xl bg-cover bg-center">
@@ -11,7 +12,7 @@ export function Kanban() {
                 <CardBody placeholder="" className="p-4">
                     <div className="px-4 pb-4">
                         <Typography placeholder="" variant="h3" color="blue-gray" className="mb-2">
-                            Kanban Board
+                             Kanban Board
                         </Typography>
                         <KanbanBoard />
                     </div>

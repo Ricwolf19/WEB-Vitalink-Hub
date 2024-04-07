@@ -47,7 +47,7 @@ export function TaskCard({ task, deleteTask, updateTask }: Props) {
         style={style}
         className="
         opacity-30
-      bg-main p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl border-2 border-blue-500  cursor-grab relative
+      bg-main p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl border-2 border-red-100  cursor-grab relative
       "
       />
     );
@@ -60,7 +60,7 @@ export function TaskCard({ task, deleteTask, updateTask }: Props) {
         style={style}
         {...attributes}
         {...listeners}
-        className="bg-main p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-blue-500 cursor-grab relative"
+        className="bg-main p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-red-100 cursor-grab relative"
       >
         <textarea
           className="
@@ -89,7 +89,7 @@ export function TaskCard({ task, deleteTask, updateTask }: Props) {
       {...attributes}
       {...listeners}
       onClick={toggleEditMode}
-      className="bg-main p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-blue-500 cursor-grab relative task"
+      className="bg-main p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-red-100 cursor-grab relative task"
       onMouseEnter={() => {
         setMouseIsOver(true);
       }}

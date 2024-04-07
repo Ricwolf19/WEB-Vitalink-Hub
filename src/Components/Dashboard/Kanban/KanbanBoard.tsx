@@ -1,4 +1,4 @@
-import { PlusIcon } from "lucide-react";
+import { KanbanIcon, PlusIcon } from "lucide-react";
 import { useEffect } from "react";
 import { ColumnContainer } from "./ColumnContainer";
 import {
@@ -12,6 +12,7 @@ import { SortableContext } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import { TaskCard } from "./TaskCard";
 import { useNotes } from "../../../Context/authContext";
+import { useTranslation } from "react-i18next";
 
 
 export function KanbanBoard() {
@@ -45,6 +46,8 @@ export function KanbanBoard() {
       },
     })
   );
+
+  const [t] = useTranslation("global")
 
   return (
     <div
@@ -98,14 +101,15 @@ export function KanbanBoard() {
       border-2
       border-column
       p-4
-      ring-blue-500
+      ring-red-300
       hover:ring-2
       flex
       gap-2
       "
           >
             <PlusIcon />
-            Add Column
+            <KanbanIcon/>
+            {t("d-kanban.item2")}
           </button>
         </div>
 

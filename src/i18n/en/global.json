@@ -231,7 +231,9 @@
         }
     },
     "d-kanban": {
-        "...": ""
+        "item1": "Add task",
+        "item2": "Add Column",
+        "item3": "Kanban Board"      
     },
     "d-documents": {
         "title": "Digital Documents",

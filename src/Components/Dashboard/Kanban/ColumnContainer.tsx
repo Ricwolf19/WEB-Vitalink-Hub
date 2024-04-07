@@ -1,5 +1,5 @@
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
-import {TrashIcon} from "lucide-react";
+import {NotebookPen, TrashIcon} from "lucide-react";
 import { Column, Id, Task } from "./Types";
 import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
@@ -63,7 +63,7 @@ export function ColumnContainer({
       bg-column
       opacity-40
       border-2
-      border-blue-500
+      border-red-500
       w-[350px]
       h-[500px]
       max-h-[500px]
@@ -74,6 +74,8 @@ export function ColumnContainer({
       ></div>
     );
   }
+
+  // const [t] = useTranslation("global")
 
   return (
     <div
@@ -132,7 +134,7 @@ export function ColumnContainer({
             <Input
             variant="underlined"
             color="primary"
-              className="bg-black focus:border-blue-500 border rounded outline-none px-2"
+              className="bg-black focus:border-red-500 border rounded outline-none px-2"
               value={column.title}
               onChange={(e) => updateColumn(column.id, e.target.value)}
               autoFocus
@@ -178,13 +180,14 @@ export function ColumnContainer({
       </div>
       {/* Column footer */}
       <button
-        className="flex gap-2 items-center border-column border-2 rounded-md p-4 border-x-column hover:bg-main hover:text-blue-500 active:bg-black"
+        className="flex gap-2 items-center border-column border-2 rounded-md p-4 border-x-column hover:bg-main hover:text-red-100 active:bg-black"
         onClick={() => {
           createTask(column.id);
         }}
       >
         <PlusIcon />
-        Add task
+        <NotebookPen/>
+        {/* {t("d-kanban.item1")} */}
       </button>
     </div>
   );

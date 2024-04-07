@@ -21,11 +21,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-red-400 rounded-xl
+  @apply bg-red-200 rounded-xl
 }
 
 .task > ::-webkit-scrollbar-thumb {
-  @apply bg-blue-300 rounded-xl
+  @apply bg-red-300 rounded-xl
 }
 
 
