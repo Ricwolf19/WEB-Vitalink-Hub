@@ -27,8 +27,8 @@ export function KanbanBoard() {
 
   const { allTasks, allCols, KanbanBoardId } = useNotes()
 
-  const [columns, setColumns] = useState<Column[]>([]);
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [columns, setColumns] = useState<Column[]>(allCols);
+  const [tasks, setTasks] = useState<Task[]>(allTasks);
 
   // console.log(columns)
   // console.log(tasks)
@@ -49,14 +49,36 @@ export function KanbanBoard() {
   const [activeTask, setActiveTask] = useState<Task | null>(null);
 
   const createTask = async (columnId: Id) => {
-
+    // Generate a unique ID for the new task
+    const taskId = generateId();
+  
+    // Create a new task object
     const newTask: Task = {
-      id: generateId(),
+      id: taskId,
       columnId,
       content: `Task ${tasks.length + 1}`,
     };
-
-    setTasks([...tasks, newTask]);
+  
+    try {
+      // Add the new task to the local state
+      setTasks([...tasks, newTask]);
+  
+      // Update the AllTasks field in the Firestore database
+      const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const kanbanBoardData = docSnap.data();
+        const updatedTasks = kanbanBoardData.AllTasks ? [...kanbanBoardData.AllTasks, newTask] : [newTask];
+  
+        // Update the AllTasks field in the KanbanBoard document
+        await updateDoc(docRef, { AllTasks: updatedTasks });
+        console.log('New task added successfully.');
+      } else {
+        console.error('KanbanBoard document does not exist.');
+      }
+    } catch (error) {
+      console.error('Error adding new task: ', error);
+    }
   }
 
   // const deleteTask = async (id: Id) => {
