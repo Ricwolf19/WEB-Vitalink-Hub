@@ -244,7 +244,7 @@ export function Home() {
     height: 220,
     series: [
       {
-        name:  t("d-home.charts.3.series"),
+        name: t("d-home.charts.3.series"),
         data: statusChartDoctor(),
       },
     ],
@@ -307,19 +307,19 @@ export function Home() {
       color: "green",
       icon: ClipboardPlusIcon,
       title: t("d-home.cards.item1"),
-      value: `${doctorData.length}`,    
+      value: `${doctorData.length}`,
     },
     {
       color: "blue",
       icon: Contact2,
       title: t("d-home.cards.item2"),
-      value: `${patientData.length}`,   
+      value: `${patientData.length}`,
     },
     {
       color: "red",
       icon: AlertTriangleIcon,
       title: t("d-home.cards.item3"),
-      value: `${alerts()}`,     
+      value: `${alerts()}`,
     },
     {
       color: "blue",
@@ -347,19 +347,19 @@ export function Home() {
       icon: SlPeople,
       color: "text-blue-gray-300",
       title: `${t("d-home.extra.item3")} ${getElderlyPatients()}`,
-      description: <Avatar placeholder="" src={'https://i.ibb.co/0cd85H9/older-Patients-Icon.png'} size="sm" variant="rounded" />,
+      description: <Avatar placeholder="" src={'/img/elderlyPatients.png' } size="sm" variant="rounded" />,
     },
     {
       icon: TbMoodBoy,
       color: "text-blue-gray-300",
       title: `${t("d-home.extra.item4")} ${getUnderAgePatients()}`,
-      description: <Avatar placeholder="" src={'https://i.ibb.co/CsxFJBy/adolescents-icons.png'} size="sm" variant="rounded" />,
+      description: <Avatar placeholder="" src={'/img/underlyPatients.png' } size="sm" variant="rounded" />,
     },
     {
       icon: MdBloodtype,
       color: "text-blue-gray-300",
       title: `${t("d-home.extra.item5")}  ${getMostCommonBloodType()}`,
-      description: <Avatar placeholder="" src={'https://i.ibb.co/ZJz1vZP/blood-Type-icon.png'} size="sm" variant="rounded" />,
+      description: <Avatar placeholder="" src={'/img/bloodType.png' } size="sm" variant="rounded" />,
     },
   ];
 
@@ -376,7 +376,7 @@ export function Home() {
             icon={React.createElement(icon, {
               className: "w-6 h-6 text-white",
             })}
-           
+
           />
         ))}
       </div>
