@@ -1,7 +1,7 @@
-import {PlusIcon }from "lucide-react";
-import { useMemo, useState } from "react";
+import { PlusIcon } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import { Column, Id, Task } from "./Types";
-import { ColumnContainer }from "./ColumnContainer";
+import { ColumnContainer } from "./ColumnContainer";
 import {
   DndContext,
   DragEndEvent,
@@ -14,51 +14,128 @@ import {
 } from "@dnd-kit/core";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
-import {TaskCard} from "./TaskCard";
+import { TaskCard } from "./TaskCard";
+import { useAuth, useNotes } from "../../../Context/authContext";
+import { db } from "../../../Firebase";
+import { collection, doc, setDoc, deleteDoc, updateDoc, query, where, getDocs, addDoc, getDoc } from 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid';
 
-const defaultCols: Column[] = [
-  {
-    id: "todo",
-    title: "Todo",
-  },
-  {
-    id: "doing",
-    title: "Work in progress",
-  },
-  {
-    id: "done",
-    title: "Done",
-  },
-];``
-
-const defaultTasks: Task[] = [
-//   {
-//     id: "1",
-//     columnId: "todo",
-//     content: "List admin APIs for dashboard",
-//   },
-//   {
-//     id: "2",
-//     columnId: "todo",
-//     content:
-//       "Develop user registration functionality with OTP delivered on SMS after email confirmation and phone number confirmation",
-//   },
-//   {
-//     id: "3",
-//     columnId: "doing",
-//     content: "Conduct security testing",
-//   },
-];
 
 export function KanbanBoard() {
-  const [columns, setColumns] = useState<Column[]>(defaultCols);
-  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
+  const { user } = useAuth()
+  const documentId = user.uid;
 
-  const [tasks, setTasks] = useState<Task[]>(defaultTasks);
+  const { allTasks, allCols, KanbanBoardId } = useNotes()
+
+  const [columns, setColumns] = useState<Column[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  // console.log(columns)
+  // console.log(tasks)
+  // console.log(KanbanBoardId)
+  // const notesRef = collection(db, 'accounts', documentId, 'notes', KanbanBoardId)
+
+  const columnsId = useMemo(() => columns?.map(col => col.id) || [], [columns]);
+
+  useEffect(() => {
+    if (allCols && allTasks) {
+      setColumns(allCols);
+      setTasks(allTasks);
+    }
+  }, [allCols, allTasks]);
 
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
 
   const [activeTask, setActiveTask] = useState<Task | null>(null);
+
+  const createTask = async (columnId: Id) => {
+
+    const newTask: Task = {
+      id: generateId(),
+      columnId,
+      content: `Task ${tasks.length + 1}`,
+    };
+
+    setTasks([...tasks, newTask]);
+  }
+
+  // const deleteTask = async (id: Id) => {
+  //   const newTasks = tasks.filter((task) => task.id !== id);
+  //   setTasks(newTasks);
+  // }
+
+  const deleteTask = async (id: Id) => {
+    await deleteDoc(doc(db, 'accounts', documentId, 'notes', ''));
+
+    const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
+  }
+
+
+  const updateTask = async (id: Id, content: string) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id !== id) return task;
+      return { ...task, content };
+    });
+
+    setTasks(newTasks);
+  }
+
+  // const createNewColumn = async () => {
+  //   const columnToAdd: Column = {
+  //     id: generateId(),
+  //     title: `Column ${columns.length + 1}`,
+  //   };
+
+  //   setColumns([...columns, columnToAdd]);
+  // }
+
+
+  const createNewColumn = async () => {
+    const columnToAdd: Column = {
+      id: generateId(),
+      title: `Column ${columns.length + 1}`,
+    };
+  
+    try {
+      // Add the new column to the Firestore database
+      const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const kanbanBoardData = docSnap.data();
+        const updatedCols = kanbanBoardData.AllCols ? [...kanbanBoardData.AllCols, columnToAdd] : [columnToAdd];
+  
+        // Update the AllCols field in the KanbanBoard document
+        await updateDoc(docRef, { AllCols: updatedCols });
+        console.log('New column added successfully.');
+  
+        // Update the state to include the new column
+        setColumns([...columns, columnToAdd]);
+      } else {
+        console.error('KanbanBoard document does not exist.');
+      }
+    } catch (error) {
+      console.error('Error adding new column: ', error);
+    }
+  }
+
+
+  const deleteColumn = async (id: Id) => {
+    const filteredColumns = columns.filter((col) => col.id !== id);
+    setColumns(filteredColumns);
+
+    const newTasks = tasks.filter((t) => t.columnId !== id);
+    setTasks(newTasks);
+  }
+
+  const updateColumn = async (id: Id, title: string) => {
+    const newColumns = columns.map((col) => {
+      if (col.id !== id) return col;
+      return { ...col, title };
+    });
+
+    setColumns(newColumns);
+  }
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -160,55 +237,6 @@ export function KanbanBoard() {
     </div>
   );
 
-  function createTask(columnId: Id) {
-    const newTask: Task = {
-      id: generateId(),
-      columnId,
-      content: `Task ${tasks.length + 1}`,
-    };
-
-    setTasks([...tasks, newTask]);
-  }
-
-  function deleteTask(id: Id) {
-    const newTasks = tasks.filter((task) => task.id !== id);
-    setTasks(newTasks);
-  }
-
-  function updateTask(id: Id, content: string) {
-    const newTasks = tasks.map((task) => {
-      if (task.id !== id) return task;
-      return { ...task, content };
-    });
-
-    setTasks(newTasks);
-  }
-
-  function createNewColumn() {
-    const columnToAdd: Column = {
-      id: generateId(),
-      title: `Column ${columns.length + 1}`,
-    };
-
-    setColumns([...columns, columnToAdd]);
-  }
-
-  function deleteColumn(id: Id) {
-    const filteredColumns = columns.filter((col) => col.id !== id);
-    setColumns(filteredColumns);
-
-    const newTasks = tasks.filter((t) => t.columnId !== id);
-    setTasks(newTasks);
-  }
-
-  function updateColumn(id: Id, title: string) {
-    const newColumns = columns.map((col) => {
-      if (col.id !== id) return col;
-      return { ...col, title };
-    });
-
-    setColumns(newColumns);
-  }
 
   function onDragStart(event: DragStartEvent) {
     if (event.active.data.current?.type === "Column") {
@@ -291,5 +319,5 @@ export function KanbanBoard() {
 }
 
 function generateId() {
-  return Math.floor(Math.random() * 10001);
+  return uuidv4();
 }

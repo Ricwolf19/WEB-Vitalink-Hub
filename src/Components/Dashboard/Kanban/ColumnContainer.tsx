@@ -5,6 +5,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
 import {PlusIcon} from "lucide-react";
 import {TaskCard} from "./TaskCard";
+import { Input } from "@nextui-org/react";
 
 interface Props {
   column: Column;
@@ -128,7 +129,9 @@ export function ColumnContainer({
           </div>
           {!editMode && column.title}
           {editMode && (
-            <input
+            <Input
+            variant="underlined"
+            color="primary"
               className="bg-black focus:border-blue-500 border rounded outline-none px-2"
               value={column.title}
               onChange={(e) => updateColumn(column.id, e.target.value)}

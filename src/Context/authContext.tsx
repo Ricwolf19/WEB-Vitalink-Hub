@@ -19,7 +19,45 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { useTranslation } from "react-i18next";
+import { Column, Task } from "../Components/Dashboard/Kanban/Types";
+// import { Column, Task } from "../Components/Dashboard/Kanban/Types";
 // import { v4 } from 'uuid'
+
+export const useNotes = () => {
+    const { user } = useAuth()
+    const documentId = user.uid;
+
+    const [allCols, setAllCols] = useState<Column[]>([])
+    const [allTasks, setAllTasks] = useState<Task[]>([])
+    const [KanbanBoardId, setKanbanBoardId] = useState('')
+
+    const notesRef = collection(db, 'accounts', documentId, 'notes')
+
+
+    const getNotes = async () => {
+        try {
+            const data = await getDocs(notesRef);
+            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }) as any);
+            setAllCols(filteredData[0].AllCols);
+            setAllTasks(filteredData[0].AllTasks);
+            setKanbanBoardId(filteredData[0].id)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getNotes()
+    }, [])
+
+    return {
+        allCols,
+        allTasks,
+        KanbanBoardId
+    }
+}
+
+
 
 export const useFileStorage = () => {
     const [docsStorageList, setDocsStorageList] = useState<any>([])
