@@ -30,11 +30,6 @@ export function KanbanBoard() {
   const [columns, setColumns] = useState<Column[]>(allCols);
   const [tasks, setTasks] = useState<Task[]>(allTasks);
 
-  // console.log(columns)
-  // console.log(tasks)
-  // console.log(KanbanBoardId)
-  // const notesRef = collection(db, 'accounts', documentId, 'notes', KanbanBoardId)
-
   const columnsId = useMemo(() => columns?.map(col => col.id) || [], [columns]);
 
   useEffect(() => {
@@ -51,25 +46,25 @@ export function KanbanBoard() {
   const createTask = async (columnId: Id) => {
     // Generate a unique ID for the new task
     const taskId = generateId();
-  
+
     // Create a new task object
     const newTask: Task = {
       id: taskId,
       columnId,
       content: `Task ${tasks.length + 1}`,
     };
-  
+
     try {
       // Add the new task to the local state
       setTasks([...tasks, newTask]);
-  
+
       // Update the AllTasks field in the Firestore database
       const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         const kanbanBoardData = docSnap.data();
         const updatedTasks = kanbanBoardData.AllTasks ? [...kanbanBoardData.AllTasks, newTask] : [newTask];
-  
+
         // Update the AllTasks field in the KanbanBoard document
         await updateDoc(docRef, { AllTasks: updatedTasks });
         console.log('New task added successfully.');
@@ -118,7 +113,7 @@ export function KanbanBoard() {
       id: generateId(),
       title: `Column ${columns.length + 1}`,
     };
-  
+
     try {
       // Add the new column to the Firestore database
       const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
@@ -126,11 +121,11 @@ export function KanbanBoard() {
       if (docSnap.exists()) {
         const kanbanBoardData = docSnap.data();
         const updatedCols = kanbanBoardData.AllCols ? [...kanbanBoardData.AllCols, columnToAdd] : [columnToAdd];
-  
+
         // Update the AllCols field in the KanbanBoard document
         await updateDoc(docRef, { AllCols: updatedCols });
         console.log('New column added successfully.');
-  
+
         // Update the state to include the new column
         setColumns([...columns, columnToAdd]);
       } else {
@@ -143,20 +138,63 @@ export function KanbanBoard() {
 
 
   const deleteColumn = async (id: Id) => {
-    const filteredColumns = columns.filter((col) => col.id !== id);
-    setColumns(filteredColumns);
+    try {
+      // Delete the column and associated tasks from the local state
+      const filteredColumns = columns.filter((col) => col.id !== id);
+      setColumns(filteredColumns);
 
-    const newTasks = tasks.filter((t) => t.columnId !== id);
-    setTasks(newTasks);
+      const newTasks = tasks.filter((t) => t.columnId !== id);
+      setTasks(newTasks);
+
+      // Update the AllCols and associated tasks in the Firestore database
+      const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const kanbanBoardData = docSnap.data();
+
+        // Filter out the deleted column from AllCols
+        const updatedCols = kanbanBoardData.AllCols.filter((col: Column) => col.id !== id);
+        const updatedTasks = kanbanBoardData.AllTasks.filter((task: Task) => task.columnId !== id);
+
+        // Update the AllCols and AllTasks fields in the KanbanBoard document
+        await updateDoc(docRef, { AllCols: updatedCols, AllTasks: updatedTasks });
+        console.log('Column and associated tasks deleted successfully.');
+      } else {
+        console.error('KanbanBoard document does not exist.');
+      }
+    } catch (error) {
+      console.error('Error deleting column: ', error);
+    }
   }
 
   const updateColumn = async (id: Id, title: string) => {
-    const newColumns = columns.map((col) => {
-      if (col.id !== id) return col;
-      return { ...col, title };
-    });
+    try {
+      // Update the local state with the new title for the specific column
+      const newColumns = columns.map((col) => {
+        if (col.id !== id) return col;
+        return { ...col, title };
+      });
+      setColumns(newColumns);
 
-    setColumns(newColumns);
+      // Update the AllCols field in the Firestore database
+      const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const kanbanBoardData = docSnap.data();
+        const updatedCols = kanbanBoardData.AllCols.map((col: Column) => {
+          if (col.id !== id) return col;
+          return { ...col, title };
+        });
+
+        // Update the AllCols field in the KanbanBoard document
+        await updateDoc(docRef, { AllCols: updatedCols });
+        console.log('Column title updated successfully.');
+      } else {
+        console.error('KanbanBoard document does not exist.');
+      }
+    } catch (error) {
+      console.error('Error updating column title: ', error);
+    }
   }
 
   const sensors = useSensors(
