@@ -1,201 +1,35 @@
 import { PlusIcon } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
-import { Column, Id, Task } from "./Types";
+import { useMemo } from "react";
 import { ColumnContainer } from "./ColumnContainer";
 import {
   DndContext,
-  DragEndEvent,
-  DragOverEvent,
   DragOverlay,
-  DragStartEvent,
   PointerSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { SortableContext, arrayMove } from "@dnd-kit/sortable";
+import { SortableContext } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import { TaskCard } from "./TaskCard";
-import { useAuth, useNotes } from "../../../Context/authContext";
-import { db } from "../../../Firebase";
-import { collection, doc, setDoc, deleteDoc, updateDoc, query, where, getDocs, addDoc, getDoc } from 'firebase/firestore';
-import { v4 as uuidv4 } from 'uuid';
+import { useNotes } from "../../../Context/authContext";
 
 
 export function KanbanBoard() {
-  const { user } = useAuth()
-  const documentId = user.uid;
-
-  const { allTasks, allCols, KanbanBoardId } = useNotes()
-
-  const [columns, setColumns] = useState<Column[]>(allCols);
-  const [tasks, setTasks] = useState<Task[]>(allTasks);
-
-  const columnsId = useMemo(() => columns?.map(col => col.id) || [], [columns]);
-
-  useEffect(() => {
-    if (allCols && allTasks) {
-      setColumns(allCols);
-      setTasks(allTasks);
-    }
-  }, [allCols, allTasks]);
-
-  const [activeColumn, setActiveColumn] = useState<Column | null>(null);
-
-  const [activeTask, setActiveTask] = useState<Task | null>(null);
-
-  const createTask = async (columnId: Id) => {
-    // Generate a unique ID for the new task
-    const taskId = generateId();
-
-    // Create a new task object
-    const newTask: Task = {
-      id: taskId,
-      columnId,
-      content: `Task ${tasks.length + 1}`,
-    };
-
-    try {
-      // Add the new task to the local state
-      setTasks([...tasks, newTask]);
-
-      // Update the AllTasks field in the Firestore database
-      const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const kanbanBoardData = docSnap.data();
-        const updatedTasks = kanbanBoardData.AllTasks ? [...kanbanBoardData.AllTasks, newTask] : [newTask];
-
-        // Update the AllTasks field in the KanbanBoard document
-        await updateDoc(docRef, { AllTasks: updatedTasks });
-        console.log('New task added successfully.');
-      } else {
-        console.error('KanbanBoard document does not exist.');
-      }
-    } catch (error) {
-      console.error('Error adding new task: ', error);
-    }
-  }
-
-  // const deleteTask = async (id: Id) => {
-  //   const newTasks = tasks.filter((task) => task.id !== id);
-  //   setTasks(newTasks);
-  // }
-
-  const deleteTask = async (id: Id) => {
-    await deleteDoc(doc(db, 'accounts', documentId, 'notes', ''));
-
-    const newTasks = tasks.filter((task) => task.id !== id);
-    setTasks(newTasks);
-  }
-
-
-  const updateTask = async (id: Id, content: string) => {
-    const newTasks = tasks.map((task) => {
-      if (task.id !== id) return task;
-      return { ...task, content };
-    });
-
-    setTasks(newTasks);
-  }
-
-  // const createNewColumn = async () => {
-  //   const columnToAdd: Column = {
-  //     id: generateId(),
-  //     title: `Column ${columns.length + 1}`,
-  //   };
-
-  //   setColumns([...columns, columnToAdd]);
-  // }
-
-
-  const createNewColumn = async () => {
-    const columnToAdd: Column = {
-      id: generateId(),
-      title: `Column ${columns.length + 1}`,
-    };
-
-    try {
-      // Add the new column to the Firestore database
-      const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const kanbanBoardData = docSnap.data();
-        const updatedCols = kanbanBoardData.AllCols ? [...kanbanBoardData.AllCols, columnToAdd] : [columnToAdd];
-
-        // Update the AllCols field in the KanbanBoard document
-        await updateDoc(docRef, { AllCols: updatedCols });
-        console.log('New column added successfully.');
-
-        // Update the state to include the new column
-        setColumns([...columns, columnToAdd]);
-      } else {
-        console.error('KanbanBoard document does not exist.');
-      }
-    } catch (error) {
-      console.error('Error adding new column: ', error);
-    }
-  }
-
-
-  const deleteColumn = async (id: Id) => {
-    try {
-      // Delete the column and associated tasks from the local state
-      const filteredColumns = columns.filter((col) => col.id !== id);
-      setColumns(filteredColumns);
-
-      const newTasks = tasks.filter((t) => t.columnId !== id);
-      setTasks(newTasks);
-
-      // Update the AllCols and associated tasks in the Firestore database
-      const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const kanbanBoardData = docSnap.data();
-
-        // Filter out the deleted column from AllCols
-        const updatedCols = kanbanBoardData.AllCols.filter((col: Column) => col.id !== id);
-        const updatedTasks = kanbanBoardData.AllTasks.filter((task: Task) => task.columnId !== id);
-
-        // Update the AllCols and AllTasks fields in the KanbanBoard document
-        await updateDoc(docRef, { AllCols: updatedCols, AllTasks: updatedTasks });
-        console.log('Column and associated tasks deleted successfully.');
-      } else {
-        console.error('KanbanBoard document does not exist.');
-      }
-    } catch (error) {
-      console.error('Error deleting column: ', error);
-    }
-  }
-
-  const updateColumn = async (id: Id, title: string) => {
-    try {
-      // Update the local state with the new title for the specific column
-      const newColumns = columns.map((col) => {
-        if (col.id !== id) return col;
-        return { ...col, title };
-      });
-      setColumns(newColumns);
-
-      // Update the AllCols field in the Firestore database
-      const docRef = doc(db, 'accounts', documentId, 'notes', KanbanBoardId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const kanbanBoardData = docSnap.data();
-        const updatedCols = kanbanBoardData.AllCols.map((col: Column) => {
-          if (col.id !== id) return col;
-          return { ...col, title };
-        });
-
-        // Update the AllCols field in the KanbanBoard document
-        await updateDoc(docRef, { AllCols: updatedCols });
-        console.log('Column title updated successfully.');
-      } else {
-        console.error('KanbanBoard document does not exist.');
-      }
-    } catch (error) {
-      console.error('Error updating column title: ', error);
-    }
-  }
+  const {
+    updateColumn,
+    updateTask,
+    createNewColumn,
+    createTask,
+    deleteColumn,
+    deleteTask,
+    columns,
+    tasks,
+    activeColumn,
+    activeTask,
+    onDragEnd,
+    onDragOver,
+    onDragStart
+  } = useNotes()
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -204,6 +38,8 @@ export function KanbanBoard() {
       },
     })
   );
+
+  const columnsId = useMemo(() => columns?.map(col => col.id) || [], [columns]);
 
   return (
     <div
@@ -298,86 +134,5 @@ export function KanbanBoard() {
   );
 
 
-  function onDragStart(event: DragStartEvent) {
-    if (event.active.data.current?.type === "Column") {
-      setActiveColumn(event.active.data.current.column);
-      return;
-    }
-
-    if (event.active.data.current?.type === "Task") {
-      setActiveTask(event.active.data.current.task);
-      return;
-    }
-  }
-
-  function onDragEnd(event: DragEndEvent) {
-    setActiveColumn(null);
-    setActiveTask(null);
-
-    const { active, over } = event;
-    if (!over) return;
-
-    const activeId = active.id;
-    const overId = over.id;
-
-    if (activeId === overId) return;
-
-    const isActiveAColumn = active.data.current?.type === "Column";
-    if (!isActiveAColumn) return;
-
-    console.log("DRAG END");
-
-    setColumns((columns) => {
-      const activeColumnIndex = columns.findIndex((col) => col.id === activeId);
-
-      const overColumnIndex = columns.findIndex((col) => col.id === overId);
-
-      return arrayMove(columns, activeColumnIndex, overColumnIndex);
-    });
-  }
-
-  function onDragOver(event: DragOverEvent) {
-    const { active, over } = event;
-    if (!over) return;
-
-    const activeId = active.id;
-    const overId = over.id;
-
-    if (activeId === overId) return;
-
-    const isActiveATask = active.data.current?.type === "Task";
-    const isOverATask = over.data.current?.type === "Task";
-
-    if (!isActiveATask) return;
-
-    if (isActiveATask && isOverATask) {
-      setTasks((tasks) => {
-        const activeIndex = tasks.findIndex((t) => t.id === activeId);
-        const overIndex = tasks.findIndex((t) => t.id === overId);
-
-        if (tasks[activeIndex].columnId != tasks[overIndex].columnId) {
-          tasks[activeIndex].columnId = tasks[overIndex].columnId;
-          return arrayMove(tasks, activeIndex, overIndex - 1);
-        }
-
-        return arrayMove(tasks, activeIndex, overIndex);
-      });
-    }
-
-    const isOverAColumn = over.data.current?.type === "Column";
-
-    if (isActiveATask && isOverAColumn) {
-      setTasks((tasks) => {
-        const activeIndex = tasks.findIndex((t) => t.id === activeId);
-
-        tasks[activeIndex].columnId = overId;
-        console.log("DROPPING TASK OVER COLUMN", { activeIndex });
-        return arrayMove(tasks, activeIndex, activeIndex);
-      });
-    }
-  }
 }
 
-function generateId() {
-  return uuidv4();
-}
